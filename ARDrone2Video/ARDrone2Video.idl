@@ -1,0 +1,34 @@
+import "Windows.Media.idl";
+
+#include <sdkddkver.h>
+
+namespace ARDrone2Video
+{
+	runtimeclass ARDroneSchemeHandler;
+	[uuid(eb16d197-e1b2-4f41-a660-33d4a7a7b11c), version(1.0), exclusiveto(ARDroneSchemeHandler)]
+	interface IARDroneSchemeHandler : IInspectable
+	{
+	}
+
+    [version(NTDDI_WIN8)]
+    runtimeclass ARDroneSchemeHandler
+	{
+		[default] interface IARDroneSchemeHandler;
+    }
+
+	
+	interface IARDroneMFExtensionsManager;
+    runtimeclass ARDroneMFExtensionsManager;
+
+    [uuid(eb16d197-e1b2-4f41-a660-33d4a7a7b11d), version(1.0), exclusiveto(ARDroneMFExtensionsManager)] 
+    interface IARDroneMFExtensionsManager : IInspectable
+    {
+		HRESULT RegisterMFExtensions();
+    }
+
+    [version(1.0), activatable(1.0)]
+    runtimeclass ARDroneMFExtensionsManager
+    {
+        [default] interface IARDroneMFExtensionsManager;
+    }
+}
