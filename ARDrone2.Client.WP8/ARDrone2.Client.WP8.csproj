@@ -1,0 +1,399 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>10.0.20506</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}</ProjectGuid>
+    <ProjectTypeGuids>{C089C8C0-30E0-4E22-80C0-CE093F111A43};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ARDrone2.Client.WP8</RootNamespace>
+    <AssemblyName>ARDrone2.Client.WP8</AssemblyName>
+    <TargetFrameworkIdentifier>WindowsPhone</TargetFrameworkIdentifier>
+    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <SilverlightVersion>$(TargetFrameworkVersion)</SilverlightVersion>
+    <SilverlightApplication>false</SilverlightApplication>
+    <ValidateXaml>true</ValidateXaml>
+    <MinimumVisualStudioVersion>11.0</MinimumVisualStudioVersion>
+    <ThrowErrorsInValidation>true</ThrowErrorsInValidation>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\x86\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\x86\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|ARM' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>Bin\ARM\Debug</OutputPath>
+    <DefineConstants>DEBUG;TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|ARM' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>Bin\ARM\Release</OutputPath>
+    <DefineConstants>TRACE;SILVERLIGHT;WINDOWS_PHONE</DefineConstants>
+    <NoStdLib>true</NoStdLib>
+    <NoConfig>true</NoConfig>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\Command.cs">
+      <Link>Command.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\CommandHelper.cs">
+      <Link>Configuration\CommandHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\ConfigurationPacket.cs">
+      <Link>Configuration\ConfigurationPacket.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\ConfigurationPacketParser.cs">
+      <Link>Configuration\ConfigurationPacketParser.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\DroneConfiguration.cs">
+      <Link>Configuration\DroneConfiguration.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\IConfigurationItem.cs">
+      <Link>Configuration\IConfigurationItem.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\INetworkConfiguration.cs">
+      <Link>Configuration\INetworkConfiguration.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\Native\ARDRONE_ANIMATION.cs">
+      <Link>Configuration\Native\ARDRONE_ANIMATION.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\Native\ARDRONE_CAMERA_DETECTION_TYPE.cs">
+      <Link>Configuration\Native\ARDRONE_CAMERA_DETECTION_TYPE.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\Native\ARDRONE_ENEMY_COLOR.cs">
+      <Link>Configuration\Native\ARDRONE_ENEMY_COLOR.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\Native\ARDRONE_LED_ANIMATION.cs">
+      <Link>Configuration\Native\ARDRONE_LED_ANIMATION.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\Native\ARDRONE_VIDEO_CHANNEL.cs">
+      <Link>Configuration\Native\ARDRONE_VIDEO_CHANNEL.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\Native\ARDRONE_VIDEO_CODEC.cs">
+      <Link>Configuration\Native\ARDRONE_VIDEO_CODEC.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\Native\USERBOX_CMD.cs">
+      <Link>Configuration\Native\USERBOX_CMD.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\ReadOnlyItem.cs">
+      <Link>Configuration\ReadOnlyItem.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\ReadWriteItem.cs">
+      <Link>Configuration\ReadWriteItem.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\Sections\ControlSection.cs">
+      <Link>Configuration\Sections\ControlSection.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\Sections\CustomSection.cs">
+      <Link>Configuration\Sections\CustomSection.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\Sections\DetectSection.cs">
+      <Link>Configuration\Sections\DetectSection.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\Sections\GeneralSection.cs">
+      <Link>Configuration\Sections\GeneralSection.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\Sections\GpsSection.cs">
+      <Link>Configuration\Sections\GpsSection.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\Sections\LedsSection.cs">
+      <Link>Configuration\Sections\LedsSection.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\Sections\NetworkSection.cs">
+      <Link>Configuration\Sections\NetworkSection.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\Sections\PicSection.cs">
+      <Link>Configuration\Sections\PicSection.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\Sections\SyslogSection.cs">
+      <Link>Configuration\Sections\SyslogSection.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\Sections\UserboxSection.cs">
+      <Link>Configuration\Sections\UserboxSection.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\Sections\VideoChannelType.cs">
+      <Link>Configuration\Sections\VideoChannelType.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\Sections\VideoSection.cs">
+      <Link>Configuration\Sections\VideoSection.cs</Link>
+    </Compile>
+    <Compile Include="..\ControlMode.cs">
+      <Link>ControlMode.cs</Link>
+    </Compile>
+    <Compile Include="..\DroneClient.cs">
+      <Link>DroneClient.cs</Link>
+    </Compile>
+    <Compile Include="..\Helpers\ConversionHelper.cs">
+      <Link>Helpers\ConversionHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Helpers\DisposableBase.cs">
+      <Link>Helpers\DisposableBase.cs</Link>
+    </Compile>
+    <Compile Include="..\Helpers\MathHelper.cs">
+      <Link>Helpers\MathHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\InputState.cs">
+      <Link>InputState.cs</Link>
+    </Compile>
+    <Compile Include="..\Input\IInputProvider.cs">
+      <Link>Input\IInputProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\Input\IJoystickControl.cs">
+      <Link>Input\IJoystickControl.cs</Link>
+    </Compile>
+    <Compile Include="..\Input\InputHelper.cs">
+      <Link>Input\InputHelper.cs</Link>
+    </Compile>
+    <Compile Include="..\Input\JoystickState.cs">
+      <Link>Input\JoystickState.cs</Link>
+    </Compile>
+    <Compile Include="..\Input\SoftJoystickProvider.cs">
+      <Link>Input\SoftJoystickProvider.cs</Link>
+    </Compile>
+    <Compile Include="..\Log.cs">
+      <Link>Log.cs</Link>
+    </Compile>
+    <Compile Include="..\Message.cs">
+      <Link>Message.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\CTRL_STATES.cs">
+      <Link>Navigation\Native\CTRL_STATES.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\def_ardrone_state_mask_t.cs">
+      <Link>Navigation\Native\def_ardrone_state_mask_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\FLYING_STATES.cs">
+      <Link>Navigation\Native\FLYING_STATES.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\navdata_option_t.cs">
+      <Link>Navigation\Native\navdata_option_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\navdata_t.cs">
+      <Link>Navigation\Native\navdata_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\navdata_tag_t.cs">
+      <Link>Navigation\Native\navdata_tag_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\Options\navdata_adc_data_frame_t.cs">
+      <Link>Navigation\Native\Options\navdata_adc_data_frame_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\Options\navdata_altitude_t.cs">
+      <Link>Navigation\Native\Options\navdata_altitude_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\Options\navdata_cks_t.cs">
+      <Link>Navigation\Native\Options\navdata_cks_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\Options\navdata_demo_t.cs">
+      <Link>Navigation\Native\Options\navdata_demo_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\Options\navdata_euler_angles_t.cs">
+      <Link>Navigation\Native\Options\navdata_euler_angles_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\Options\navdata_games_t.cs">
+      <Link>Navigation\Native\Options\navdata_games_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\Options\navdata_gyros_offsets_t.cs">
+      <Link>Navigation\Native\Options\navdata_gyros_offsets_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\Options\navdata_hdvideo_stream_t.cs">
+      <Link>Navigation\Native\Options\navdata_hdvideo_stream_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\Options\navdata_kalman_pressure_t.cs">
+      <Link>Navigation\Native\Options\navdata_kalman_pressure_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\Options\navdata_magneto_t.cs">
+      <Link>Navigation\Native\Options\navdata_magneto_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\Options\navdata_phys_measures_t.cs">
+      <Link>Navigation\Native\Options\navdata_phys_measures_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\Options\navdata_pressure_raw_t.cs">
+      <Link>Navigation\Native\Options\navdata_pressure_raw_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\Options\navdata_pwm_t.cs">
+      <Link>Navigation\Native\Options\navdata_pwm_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\Options\navdata_raw_measures_t.cs">
+      <Link>Navigation\Native\Options\navdata_raw_measures_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\Options\navdata_rc_references_t.cs">
+      <Link>Navigation\Native\Options\navdata_rc_references_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\Options\navdata_references_t.cs">
+      <Link>Navigation\Native\Options\navdata_references_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\Options\navdata_time_t.cs">
+      <Link>Navigation\Native\Options\navdata_time_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\Options\navdata_trackers_send_t.cs">
+      <Link>Navigation\Native\Options\navdata_trackers_send_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\Options\navdata_trims_t.cs">
+      <Link>Navigation\Native\Options\navdata_trims_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\Options\navdata_video_stream_t.cs">
+      <Link>Navigation\Native\Options\navdata_video_stream_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\Options\navdata_vision_detect_t.cs">
+      <Link>Navigation\Native\Options\navdata_vision_detect_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\Options\navdata_vision_of_t.cs">
+      <Link>Navigation\Native\Options\navdata_vision_of_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\Options\navdata_vision_perf_t.cs">
+      <Link>Navigation\Native\Options\navdata_vision_perf_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\Options\navdata_vision_raw_t.cs">
+      <Link>Navigation\Native\Options\navdata_vision_raw_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\Options\navdata_vision_t.cs">
+      <Link>Navigation\Native\Options\navdata_vision_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\Options\navdata_watchdog_t.cs">
+      <Link>Navigation\Native\Options\navdata_watchdog_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\Options\navdata_wifi_t.cs">
+      <Link>Navigation\Native\Options\navdata_wifi_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\Options\navdata_wind_speed_t.cs">
+      <Link>Navigation\Native\Options\navdata_wind_speed_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\Options\screen_point_t.cs">
+      <Link>Navigation\Native\Options\screen_point_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\Native\Options\velocities_t.cs">
+      <Link>Navigation\Native\Options\velocities_t.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\NavdataBag.cs">
+      <Link>Navigation\NavdataBag.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\NavdataBagParser.cs">
+      <Link>Navigation\NavdataBagParser.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\NavdataConverter.cs">
+      <Link>Navigation\NavdataConverter.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\NavigationData.cs">
+      <Link>Navigation\NavigationData.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\NavigationPacket.cs">
+      <Link>Navigation\NavigationPacket.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\NavigationPacketParser.cs">
+      <Link>Navigation\NavigationPacketParser.cs</Link>
+    </Compile>
+    <Compile Include="..\Navigation\NavigationState.cs">
+      <Link>Navigation\NavigationState.cs</Link>
+    </Compile>
+    <Compile Include="..\ProgressiveMode.cs">
+      <Link>ProgressiveMode.cs</Link>
+    </Compile>
+    <Compile Include="..\RefMode.cs">
+      <Link>RefMode.cs</Link>
+    </Compile>
+    <Compile Include="..\RequestedState.cs">
+      <Link>RequestedState.cs</Link>
+    </Compile>
+    <Compile Include="..\ViewModel\BaseViewModel.cs">
+      <Link>ViewModel\BaseViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\ViewModel\ConfigurationViewModel.cs">
+      <Link>ViewModel\ConfigurationViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\ViewModel\NavigationDataViewModel.cs">
+      <Link>ViewModel\NavigationDataViewModel.cs</Link>
+    </Compile>
+    <Compile Include="..\ViewModel\SmartDispatcher.cs">
+      <Link>ViewModel\SmartDispatcher.cs</Link>
+    </Compile>
+    <Compile Include="..\Workers\CommandWorker.cs">
+      <Link>Workers\CommandWorker.cs</Link>
+    </Compile>
+    <Compile Include="..\Workers\ConfigurationWorker.cs">
+      <Link>Workers\ConfigurationWorker.cs</Link>
+    </Compile>
+    <Compile Include="..\Workers\NavDataWorker.cs">
+      <Link>Workers\NavDataWorker.cs</Link>
+    </Compile>
+    <Compile Include="..\Workers\WatchdogWorker.cs">
+      <Link>Workers\WatchdogWorker.cs</Link>
+    </Compile>
+    <Compile Include="..\Workers\WorkerBase.cs">
+      <Link>Workers\WorkerBase.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Video\ARDroneStreamSource.cs" />
+    <Compile Include="Video\ARDroneVideoPacketStream.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ARDrone2VideoTcpWrapper\ARDrone2VideoTcpWrapper.vcxproj">
+      <Project>{84AB2B95-9703-46F4-8E25-86554DFA126F}</Project>
+      <Name>ARDrone2VideoTcpWrapper</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
+  <ProjectExtensions />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

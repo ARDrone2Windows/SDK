@@ -1,0 +1,13 @@
+﻿using System;
+
+namespace ARDrone2Client.Common.Configuration.Native
+{
+    public enum ARDRONE_ENEMY_COLOR
+    {
+        ARDRONE_ENEMY_COLOR_ORANGE_GREEN = 1,
+        ARDRONE_ENEMY_COLOR_ORANGE_YELLOW,
+        ARDRONE_ENEMY_COLOR_ORANGE_BLUE,
+        ARDRONE_ENEMY_COLOR_ARRACE_FINISH_LINE = 0x10,
+        ARDRONE_ENEMY_COLOR_ARRACE_DONUT = 0x11
+    }
+}

@@ -1,0 +1,411 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ARDrone2Video", "ARDrone2Video\ARDrone2Video.vcxproj", "{DBBB5103-4579-4889-AEBA-793C89745AF9}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ARDrone2VideoTcp", "ARDrone2VideoTcp\ARDrone2VideoTcp.vcxproj", "{97A6EF7B-47CB-44F5-9051-CFFA75847394}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workers", "Workers", "{7EDF6FF1-738D-4F34-832B-51EA85CB0DDA}"
+	ProjectSection(SolutionItems) = preProject
+		Workers\CommandWorker.cs = Workers\CommandWorker.cs
+		Workers\ConfigurationWorker.cs = Workers\ConfigurationWorker.cs
+		Workers\NavDataWorker.cs = Workers\NavDataWorker.cs
+		Workers\WatchdogWorker.cs = Workers\WatchdogWorker.cs
+		Workers\WorkerBase.cs = Workers\WorkerBase.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Client", "Client", "{DF2C239E-8B52-4715-8397-3BEE7DDC2E3A}"
+	ProjectSection(SolutionItems) = preProject
+		Command.cs = Command.cs
+		ControlMode.cs = ControlMode.cs
+		DroneClient.cs = DroneClient.cs
+		InputState.cs = InputState.cs
+		Log.cs = Log.cs
+		Message.cs = Message.cs
+		ProgressiveMode.cs = ProgressiveMode.cs
+		RefMode.cs = RefMode.cs
+		RequestedState.cs = RequestedState.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ViewModel", "ViewModel", "{6A1A1017-3785-47B4-9224-E5E892068D2D}"
+	ProjectSection(SolutionItems) = preProject
+		ViewModel\BaseViewModel.cs = ViewModel\BaseViewModel.cs
+		ViewModel\ConfigurationViewModel.cs = ViewModel\ConfigurationViewModel.cs
+		ViewModel\NavigationDataViewModel.cs = ViewModel\NavigationDataViewModel.cs
+		ViewModel\SmartDispatcher.cs = ViewModel\SmartDispatcher.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configuration", "{EA8B3A24-550D-4516-8387-8217E1897512}"
+	ProjectSection(SolutionItems) = preProject
+		Configuration\CommandHelper.cs = Configuration\CommandHelper.cs
+		Configuration\ConfigurationPacket.cs = Configuration\ConfigurationPacket.cs
+		Configuration\ConfigurationPacketParser.cs = Configuration\ConfigurationPacketParser.cs
+		Configuration\DroneConfiguration.cs = Configuration\DroneConfiguration.cs
+		Configuration\IConfigurationItem.cs = Configuration\IConfigurationItem.cs
+		Configuration\INetworkConfiguration.cs = Configuration\INetworkConfiguration.cs
+		Configuration\ReadOnlyItem.cs = Configuration\ReadOnlyItem.cs
+		Configuration\ReadWriteItem.cs = Configuration\ReadWriteItem.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Native", "Native", "{8983F79E-8140-403F-A1E3-74D0A1AC3807}"
+	ProjectSection(SolutionItems) = preProject
+		Configuration\Native\ARDRONE_ANIMATION.cs = Configuration\Native\ARDRONE_ANIMATION.cs
+		Configuration\Native\ARDRONE_CAMERA_DETECTION_TYPE.cs = Configuration\Native\ARDRONE_CAMERA_DETECTION_TYPE.cs
+		Configuration\Native\ARDRONE_ENEMY_COLOR.cs = Configuration\Native\ARDRONE_ENEMY_COLOR.cs
+		Configuration\Native\ARDRONE_LED_ANIMATION.cs = Configuration\Native\ARDRONE_LED_ANIMATION.cs
+		Configuration\Native\ARDRONE_VIDEO_CHANNEL.cs = Configuration\Native\ARDRONE_VIDEO_CHANNEL.cs
+		Configuration\Native\ARDRONE_VIDEO_CODEC.cs = Configuration\Native\ARDRONE_VIDEO_CODEC.cs
+		Configuration\Native\USERBOX_CMD.cs = Configuration\Native\USERBOX_CMD.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sections", "Sections", "{23CBF6E9-CA71-43A1-9776-F90391EA4C01}"
+	ProjectSection(SolutionItems) = preProject
+		Configuration\Sections\ControlSection.cs = Configuration\Sections\ControlSection.cs
+		Configuration\Sections\CustomSection.cs = Configuration\Sections\CustomSection.cs
+		Configuration\Sections\DetectSection.cs = Configuration\Sections\DetectSection.cs
+		Configuration\Sections\GeneralSection.cs = Configuration\Sections\GeneralSection.cs
+		Configuration\Sections\GpsSection.cs = Configuration\Sections\GpsSection.cs
+		Configuration\Sections\LedsSection.cs = Configuration\Sections\LedsSection.cs
+		Configuration\Sections\NetworkSection.cs = Configuration\Sections\NetworkSection.cs
+		Configuration\Sections\PicSection.cs = Configuration\Sections\PicSection.cs
+		Configuration\Sections\SyslogSection.cs = Configuration\Sections\SyslogSection.cs
+		Configuration\Sections\UserboxSection.cs = Configuration\Sections\UserboxSection.cs
+		Configuration\Sections\VideoChannelType.cs = Configuration\Sections\VideoChannelType.cs
+		Configuration\Sections\VideoSection.cs = Configuration\Sections\VideoSection.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Helpers", "Helpers", "{CBA8430D-E228-41EC-B69E-7F62CEF5C7A8}"
+	ProjectSection(SolutionItems) = preProject
+		Helpers\ConversionHelper.cs = Helpers\ConversionHelper.cs
+		Helpers\DisposableBase.cs = Helpers\DisposableBase.cs
+		Helpers\MathHelper.cs = Helpers\MathHelper.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Input", "Input", "{22FE0304-8A90-4C86-A6A5-C654E1510F4E}"
+	ProjectSection(SolutionItems) = preProject
+		Input\IInputProvider.cs = Input\IInputProvider.cs
+		Input\IJoystickControl.cs = Input\IJoystickControl.cs
+		Input\InputHelper.cs = Input\InputHelper.cs
+		Input\JoystickState.cs = Input\JoystickState.cs
+		Input\SoftJoystickProvider.cs = Input\SoftJoystickProvider.cs
+		Input\XBox360JoystickProvider.cs = Input\XBox360JoystickProvider.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Navigation", "Navigation", "{070431B7-6B25-4773-AA1A-7D540138B9DE}"
+	ProjectSection(SolutionItems) = preProject
+		Navigation\NavdataBag.cs = Navigation\NavdataBag.cs
+		Navigation\NavdataBagParser.cs = Navigation\NavdataBagParser.cs
+		Navigation\NavdataConverter.cs = Navigation\NavdataConverter.cs
+		Navigation\NavigationData.cs = Navigation\NavigationData.cs
+		Navigation\NavigationPacket.cs = Navigation\NavigationPacket.cs
+		Navigation\NavigationPacketParser.cs = Navigation\NavigationPacketParser.cs
+		Navigation\NavigationState.cs = Navigation\NavigationState.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Native", "Native", "{072AE672-284A-446C-A48A-51D7F700A180}"
+	ProjectSection(SolutionItems) = preProject
+		Navigation\Native\CTRL_STATES.cs = Navigation\Native\CTRL_STATES.cs
+		Navigation\Native\def_ardrone_state_mask_t.cs = Navigation\Native\def_ardrone_state_mask_t.cs
+		Navigation\Native\FLYING_STATES.cs = Navigation\Native\FLYING_STATES.cs
+		Navigation\Native\navdata_option_t.cs = Navigation\Native\navdata_option_t.cs
+		Navigation\Native\navdata_t.cs = Navigation\Native\navdata_t.cs
+		Navigation\Native\navdata_tag_t.cs = Navigation\Native\navdata_tag_t.cs
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Options", "Options", "{ADBBF303-5184-47EC-BA8D-9470FCACF82F}"
+	ProjectSection(SolutionItems) = preProject
+		Navigation\Native\Options\navdata_adc_data_frame_t.cs = Navigation\Native\Options\navdata_adc_data_frame_t.cs
+		Navigation\Native\Options\navdata_altitude_t.cs = Navigation\Native\Options\navdata_altitude_t.cs
+		Navigation\Native\Options\navdata_cks_t.cs = Navigation\Native\Options\navdata_cks_t.cs
+		Navigation\Native\Options\navdata_demo_t.cs = Navigation\Native\Options\navdata_demo_t.cs
+		Navigation\Native\Options\navdata_euler_angles_t.cs = Navigation\Native\Options\navdata_euler_angles_t.cs
+		Navigation\Native\Options\navdata_games_t.cs = Navigation\Native\Options\navdata_games_t.cs
+		Navigation\Native\Options\navdata_gyros_offsets_t.cs = Navigation\Native\Options\navdata_gyros_offsets_t.cs
+		Navigation\Native\Options\navdata_hdvideo_stream_t.cs = Navigation\Native\Options\navdata_hdvideo_stream_t.cs
+		Navigation\Native\Options\navdata_kalman_pressure_t.cs = Navigation\Native\Options\navdata_kalman_pressure_t.cs
+		Navigation\Native\Options\navdata_magneto_t.cs = Navigation\Native\Options\navdata_magneto_t.cs
+		Navigation\Native\Options\navdata_phys_measures_t.cs = Navigation\Native\Options\navdata_phys_measures_t.cs
+		Navigation\Native\Options\navdata_pressure_raw_t.cs = Navigation\Native\Options\navdata_pressure_raw_t.cs
+		Navigation\Native\Options\navdata_pwm_t.cs = Navigation\Native\Options\navdata_pwm_t.cs
+		Navigation\Native\Options\navdata_raw_measures_t.cs = Navigation\Native\Options\navdata_raw_measures_t.cs
+		Navigation\Native\Options\navdata_rc_references_t.cs = Navigation\Native\Options\navdata_rc_references_t.cs
+		Navigation\Native\Options\navdata_references_t.cs = Navigation\Native\Options\navdata_references_t.cs
+		Navigation\Native\Options\navdata_time_t.cs = Navigation\Native\Options\navdata_time_t.cs
+		Navigation\Native\Options\navdata_trackers_send_t.cs = Navigation\Native\Options\navdata_trackers_send_t.cs
+		Navigation\Native\Options\navdata_trims_t.cs = Navigation\Native\Options\navdata_trims_t.cs
+		Navigation\Native\Options\navdata_video_stream_t.cs = Navigation\Native\Options\navdata_video_stream_t.cs
+		Navigation\Native\Options\navdata_vision_detect_t.cs = Navigation\Native\Options\navdata_vision_detect_t.cs
+		Navigation\Native\Options\navdata_vision_of_t.cs = Navigation\Native\Options\navdata_vision_of_t.cs
+		Navigation\Native\Options\navdata_vision_perf_t.cs = Navigation\Native\Options\navdata_vision_perf_t.cs
+		Navigation\Native\Options\navdata_vision_raw_t.cs = Navigation\Native\Options\navdata_vision_raw_t.cs
+		Navigation\Native\Options\navdata_vision_t.cs = Navigation\Native\Options\navdata_vision_t.cs
+		Navigation\Native\Options\navdata_watchdog_t.cs = Navigation\Native\Options\navdata_watchdog_t.cs
+		Navigation\Native\Options\navdata_wifi_t.cs = Navigation\Native\Options\navdata_wifi_t.cs
+		Navigation\Native\Options\navdata_wind_speed_t.cs = Navigation\Native\Options\navdata_wind_speed_t.cs
+		Navigation\Native\Options\screen_point_t.cs = Navigation\Native\Options\screen_point_t.cs
+		Navigation\Native\Options\velocities_t.cs = Navigation\Native\Options\velocities_t.cs
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ARDrone2VideoTcpWrapper", "ARDrone2VideoTcpWrapper\ARDrone2VideoTcpWrapper.vcxproj", "{84AB2B95-9703-46F4-8E25-86554DFA126F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ARDrone2VideoTcpWP8", "ARDrone2VideoTcp\ARDrone2VideoTcpWP8.vcxproj", "{7314D806-8890-44E9-A58A-4B4D755CFA87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARDrone2.Client.W8", "ARDrone2.Client.W8\ARDrone2.Client.W8.csproj", "{2DC53839-D75F-4A9D-92C4-B8427FD7C2D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARDrone2.Client.WP8", "ARDrone2.Client.WP8\ARDrone2.Client.WP8.csproj", "{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARDrone2.Sample.W8", "ARDrone2.Sample.W8\ARDrone2.Sample.W8.csproj", "{9F703993-D04C-49FE-B659-F96119CFE2C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ARDrone2.Sample.WP8", "ARDrone2.Sample.WP8\ARDrone2.Sample.WP8.csproj", "{9224B536-6BB7-4F8F-83D9-C38517FF899F}"
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 9
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://arfontai.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ARDrone2Video\\ARDrone2Video.vcxproj
+		SccProjectName1 = ARDrone2Video
+		SccLocalPath1 = ARDrone2Video
+		SccProjectUniqueName2 = ARDrone2VideoTcp\\ARDrone2VideoTcp.vcxproj
+		SccProjectName2 = ARDrone2VideoTcp
+		SccLocalPath2 = ARDrone2VideoTcp
+		SccProjectUniqueName3 = ARDrone2VideoTcp\\ARDrone2VideoTcpWP8.vcxproj
+		SccProjectName3 = ARDrone2VideoTcp
+		SccLocalPath3 = ARDrone2VideoTcp
+		SccProjectUniqueName4 = ARDrone2VideoTcpWrapper\\ARDrone2VideoTcpWrapper.vcxproj
+		SccProjectName4 = ARDrone2VideoTcpWrapper
+		SccLocalPath4 = ARDrone2VideoTcpWrapper
+		SccProjectUniqueName5 = ARDrone2.Client.W8\\ARDrone2.Client.W8.csproj
+		SccProjectName5 = ARDrone2.Client.W8
+		SccLocalPath5 = ARDrone2.Client.W8
+		SccProjectUniqueName6 = ARDrone2.Client.WP8\\ARDrone2.Client.WP8.csproj
+		SccProjectName6 = ARDrone2.Client.WP8
+		SccLocalPath6 = ARDrone2.Client.WP8
+		SccProjectUniqueName7 = ARDrone2.Sample.W8\\ARDrone2.Sample.W8.csproj
+		SccProjectName7 = ARDrone2.Sample.W8
+		SccLocalPath7 = ARDrone2.Sample.W8
+		SccProjectUniqueName8 = ARDrone2.Sample.WP8\\ARDrone2.Sample.WP8.csproj
+		SccProjectName8 = ARDrone2.Sample.WP8
+		SccLocalPath8 = ARDrone2.Sample.WP8
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|ARM = Debug|ARM
+		Debug|Mixed Platforms = Debug|Mixed Platforms
+		Debug|Win32 = Debug|Win32
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|ARM = Release|ARM
+		Release|Mixed Platforms = Release|Mixed Platforms
+		Release|Win32 = Release|Win32
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DBBB5103-4579-4889-AEBA-793C89745AF9}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{DBBB5103-4579-4889-AEBA-793C89745AF9}.Debug|ARM.ActiveCfg = Debug|ARM
+		{DBBB5103-4579-4889-AEBA-793C89745AF9}.Debug|ARM.Build.0 = Debug|ARM
+		{DBBB5103-4579-4889-AEBA-793C89745AF9}.Debug|Mixed Platforms.ActiveCfg = Release|Win32
+		{DBBB5103-4579-4889-AEBA-793C89745AF9}.Debug|Mixed Platforms.Build.0 = Release|Win32
+		{DBBB5103-4579-4889-AEBA-793C89745AF9}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DBBB5103-4579-4889-AEBA-793C89745AF9}.Debug|x64.ActiveCfg = Debug|x64
+		{DBBB5103-4579-4889-AEBA-793C89745AF9}.Debug|x64.Build.0 = Debug|x64
+		{DBBB5103-4579-4889-AEBA-793C89745AF9}.Debug|x86.ActiveCfg = Debug|Win32
+		{DBBB5103-4579-4889-AEBA-793C89745AF9}.Debug|x86.Build.0 = Debug|Win32
+		{DBBB5103-4579-4889-AEBA-793C89745AF9}.Release|Any CPU.ActiveCfg = Release|Win32
+		{DBBB5103-4579-4889-AEBA-793C89745AF9}.Release|ARM.ActiveCfg = Release|ARM
+		{DBBB5103-4579-4889-AEBA-793C89745AF9}.Release|ARM.Build.0 = Release|ARM
+		{DBBB5103-4579-4889-AEBA-793C89745AF9}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{DBBB5103-4579-4889-AEBA-793C89745AF9}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{DBBB5103-4579-4889-AEBA-793C89745AF9}.Release|Win32.ActiveCfg = Release|Win32
+		{DBBB5103-4579-4889-AEBA-793C89745AF9}.Release|Win32.Build.0 = Release|Win32
+		{DBBB5103-4579-4889-AEBA-793C89745AF9}.Release|x64.ActiveCfg = Release|x64
+		{DBBB5103-4579-4889-AEBA-793C89745AF9}.Release|x64.Build.0 = Release|x64
+		{DBBB5103-4579-4889-AEBA-793C89745AF9}.Release|x86.ActiveCfg = Release|Win32
+		{DBBB5103-4579-4889-AEBA-793C89745AF9}.Release|x86.Build.0 = Release|Win32
+		{97A6EF7B-47CB-44F5-9051-CFFA75847394}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{97A6EF7B-47CB-44F5-9051-CFFA75847394}.Debug|ARM.ActiveCfg = Debug|ARM
+		{97A6EF7B-47CB-44F5-9051-CFFA75847394}.Debug|ARM.Build.0 = Debug|ARM
+		{97A6EF7B-47CB-44F5-9051-CFFA75847394}.Debug|Mixed Platforms.ActiveCfg = Release|Win32
+		{97A6EF7B-47CB-44F5-9051-CFFA75847394}.Debug|Mixed Platforms.Build.0 = Release|Win32
+		{97A6EF7B-47CB-44F5-9051-CFFA75847394}.Debug|Win32.ActiveCfg = Debug|Win32
+		{97A6EF7B-47CB-44F5-9051-CFFA75847394}.Debug|x64.ActiveCfg = Debug|x64
+		{97A6EF7B-47CB-44F5-9051-CFFA75847394}.Debug|x64.Build.0 = Debug|x64
+		{97A6EF7B-47CB-44F5-9051-CFFA75847394}.Debug|x86.ActiveCfg = Debug|Win32
+		{97A6EF7B-47CB-44F5-9051-CFFA75847394}.Debug|x86.Build.0 = Debug|Win32
+		{97A6EF7B-47CB-44F5-9051-CFFA75847394}.Release|Any CPU.ActiveCfg = Release|Win32
+		{97A6EF7B-47CB-44F5-9051-CFFA75847394}.Release|ARM.ActiveCfg = Release|ARM
+		{97A6EF7B-47CB-44F5-9051-CFFA75847394}.Release|ARM.Build.0 = Release|ARM
+		{97A6EF7B-47CB-44F5-9051-CFFA75847394}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{97A6EF7B-47CB-44F5-9051-CFFA75847394}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{97A6EF7B-47CB-44F5-9051-CFFA75847394}.Release|Win32.ActiveCfg = Release|Win32
+		{97A6EF7B-47CB-44F5-9051-CFFA75847394}.Release|Win32.Build.0 = Release|Win32
+		{97A6EF7B-47CB-44F5-9051-CFFA75847394}.Release|x64.ActiveCfg = Release|x64
+		{97A6EF7B-47CB-44F5-9051-CFFA75847394}.Release|x64.Build.0 = Release|x64
+		{97A6EF7B-47CB-44F5-9051-CFFA75847394}.Release|x86.ActiveCfg = Release|Win32
+		{97A6EF7B-47CB-44F5-9051-CFFA75847394}.Release|x86.Build.0 = Release|Win32
+		{84AB2B95-9703-46F4-8E25-86554DFA126F}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{84AB2B95-9703-46F4-8E25-86554DFA126F}.Debug|ARM.ActiveCfg = Debug|ARM
+		{84AB2B95-9703-46F4-8E25-86554DFA126F}.Debug|ARM.Build.0 = Debug|ARM
+		{84AB2B95-9703-46F4-8E25-86554DFA126F}.Debug|Mixed Platforms.ActiveCfg = Release|ARM
+		{84AB2B95-9703-46F4-8E25-86554DFA126F}.Debug|Mixed Platforms.Build.0 = Release|ARM
+		{84AB2B95-9703-46F4-8E25-86554DFA126F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{84AB2B95-9703-46F4-8E25-86554DFA126F}.Debug|x64.ActiveCfg = Debug|Win32
+		{84AB2B95-9703-46F4-8E25-86554DFA126F}.Debug|x86.ActiveCfg = Debug|Win32
+		{84AB2B95-9703-46F4-8E25-86554DFA126F}.Debug|x86.Build.0 = Debug|Win32
+		{84AB2B95-9703-46F4-8E25-86554DFA126F}.Release|Any CPU.ActiveCfg = Release|Win32
+		{84AB2B95-9703-46F4-8E25-86554DFA126F}.Release|ARM.ActiveCfg = Release|ARM
+		{84AB2B95-9703-46F4-8E25-86554DFA126F}.Release|ARM.Build.0 = Release|ARM
+		{84AB2B95-9703-46F4-8E25-86554DFA126F}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{84AB2B95-9703-46F4-8E25-86554DFA126F}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{84AB2B95-9703-46F4-8E25-86554DFA126F}.Release|Win32.ActiveCfg = Release|Win32
+		{84AB2B95-9703-46F4-8E25-86554DFA126F}.Release|Win32.Build.0 = Release|Win32
+		{84AB2B95-9703-46F4-8E25-86554DFA126F}.Release|x64.ActiveCfg = Release|Win32
+		{84AB2B95-9703-46F4-8E25-86554DFA126F}.Release|x86.ActiveCfg = Release|Win32
+		{84AB2B95-9703-46F4-8E25-86554DFA126F}.Release|x86.Build.0 = Release|Win32
+		{7314D806-8890-44E9-A58A-4B4D755CFA87}.Debug|Any CPU.ActiveCfg = Debug|Win32
+		{7314D806-8890-44E9-A58A-4B4D755CFA87}.Debug|ARM.ActiveCfg = Debug|ARM
+		{7314D806-8890-44E9-A58A-4B4D755CFA87}.Debug|ARM.Build.0 = Debug|ARM
+		{7314D806-8890-44E9-A58A-4B4D755CFA87}.Debug|Mixed Platforms.ActiveCfg = Release|ARM
+		{7314D806-8890-44E9-A58A-4B4D755CFA87}.Debug|Mixed Platforms.Build.0 = Release|ARM
+		{7314D806-8890-44E9-A58A-4B4D755CFA87}.Debug|Win32.ActiveCfg = Debug|Win32
+		{7314D806-8890-44E9-A58A-4B4D755CFA87}.Debug|x64.ActiveCfg = Debug|Win32
+		{7314D806-8890-44E9-A58A-4B4D755CFA87}.Debug|x86.ActiveCfg = Debug|Win32
+		{7314D806-8890-44E9-A58A-4B4D755CFA87}.Debug|x86.Build.0 = Debug|Win32
+		{7314D806-8890-44E9-A58A-4B4D755CFA87}.Release|Any CPU.ActiveCfg = Release|Win32
+		{7314D806-8890-44E9-A58A-4B4D755CFA87}.Release|ARM.ActiveCfg = Release|ARM
+		{7314D806-8890-44E9-A58A-4B4D755CFA87}.Release|ARM.Build.0 = Release|ARM
+		{7314D806-8890-44E9-A58A-4B4D755CFA87}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{7314D806-8890-44E9-A58A-4B4D755CFA87}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{7314D806-8890-44E9-A58A-4B4D755CFA87}.Release|Win32.ActiveCfg = Release|Win32
+		{7314D806-8890-44E9-A58A-4B4D755CFA87}.Release|Win32.Build.0 = Release|Win32
+		{7314D806-8890-44E9-A58A-4B4D755CFA87}.Release|x64.ActiveCfg = Release|Win32
+		{7314D806-8890-44E9-A58A-4B4D755CFA87}.Release|x86.ActiveCfg = Release|Win32
+		{7314D806-8890-44E9-A58A-4B4D755CFA87}.Release|x86.Build.0 = Release|Win32
+		{2DC53839-D75F-4A9D-92C4-B8427FD7C2D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2DC53839-D75F-4A9D-92C4-B8427FD7C2D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2DC53839-D75F-4A9D-92C4-B8427FD7C2D3}.Debug|ARM.ActiveCfg = Debug|ARM
+		{2DC53839-D75F-4A9D-92C4-B8427FD7C2D3}.Debug|ARM.Build.0 = Debug|ARM
+		{2DC53839-D75F-4A9D-92C4-B8427FD7C2D3}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{2DC53839-D75F-4A9D-92C4-B8427FD7C2D3}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{2DC53839-D75F-4A9D-92C4-B8427FD7C2D3}.Debug|Win32.ActiveCfg = Debug|x86
+		{2DC53839-D75F-4A9D-92C4-B8427FD7C2D3}.Debug|Win32.Build.0 = Debug|x86
+		{2DC53839-D75F-4A9D-92C4-B8427FD7C2D3}.Debug|x64.ActiveCfg = Debug|x64
+		{2DC53839-D75F-4A9D-92C4-B8427FD7C2D3}.Debug|x64.Build.0 = Debug|x64
+		{2DC53839-D75F-4A9D-92C4-B8427FD7C2D3}.Debug|x86.ActiveCfg = Debug|x86
+		{2DC53839-D75F-4A9D-92C4-B8427FD7C2D3}.Debug|x86.Build.0 = Debug|x86
+		{2DC53839-D75F-4A9D-92C4-B8427FD7C2D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2DC53839-D75F-4A9D-92C4-B8427FD7C2D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2DC53839-D75F-4A9D-92C4-B8427FD7C2D3}.Release|ARM.ActiveCfg = Release|ARM
+		{2DC53839-D75F-4A9D-92C4-B8427FD7C2D3}.Release|ARM.Build.0 = Release|ARM
+		{2DC53839-D75F-4A9D-92C4-B8427FD7C2D3}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{2DC53839-D75F-4A9D-92C4-B8427FD7C2D3}.Release|Mixed Platforms.Build.0 = Release|x86
+		{2DC53839-D75F-4A9D-92C4-B8427FD7C2D3}.Release|Win32.ActiveCfg = Release|x86
+		{2DC53839-D75F-4A9D-92C4-B8427FD7C2D3}.Release|Win32.Build.0 = Release|x86
+		{2DC53839-D75F-4A9D-92C4-B8427FD7C2D3}.Release|x64.ActiveCfg = Release|x64
+		{2DC53839-D75F-4A9D-92C4-B8427FD7C2D3}.Release|x64.Build.0 = Release|x64
+		{2DC53839-D75F-4A9D-92C4-B8427FD7C2D3}.Release|x86.ActiveCfg = Release|x86
+		{2DC53839-D75F-4A9D-92C4-B8427FD7C2D3}.Release|x86.Build.0 = Release|x86
+		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Debug|ARM.ActiveCfg = Debug|ARM
+		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Debug|ARM.Build.0 = Debug|ARM
+		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Debug|Win32.ActiveCfg = Debug|x86
+		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Debug|Win32.Build.0 = Debug|x86
+		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Debug|x86.ActiveCfg = Debug|x86
+		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Debug|x86.Build.0 = Debug|x86
+		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Release|ARM.ActiveCfg = Release|ARM
+		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Release|ARM.Build.0 = Release|ARM
+		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Release|Mixed Platforms.Build.0 = Release|x86
+		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Release|Win32.ActiveCfg = Release|x86
+		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Release|Win32.Build.0 = Release|x86
+		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Release|x64.ActiveCfg = Release|Any CPU
+		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Release|x86.ActiveCfg = Release|x86
+		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Release|x86.Build.0 = Release|x86
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Debug|ARM.ActiveCfg = Debug|ARM
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Debug|ARM.Build.0 = Debug|ARM
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Debug|ARM.Deploy.0 = Debug|ARM
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Debug|Mixed Platforms.Deploy.0 = Debug|x86
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Debug|Win32.ActiveCfg = Debug|x86
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Debug|Win32.Build.0 = Debug|x86
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Debug|Win32.Deploy.0 = Debug|x86
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Debug|x64.ActiveCfg = Debug|x64
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Debug|x64.Build.0 = Debug|x64
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Debug|x64.Deploy.0 = Debug|x64
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Debug|x86.ActiveCfg = Debug|x86
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Debug|x86.Build.0 = Debug|x86
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Debug|x86.Deploy.0 = Debug|x86
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Release|ARM.ActiveCfg = Release|ARM
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Release|ARM.Build.0 = Release|ARM
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Release|ARM.Deploy.0 = Release|ARM
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Release|Mixed Platforms.Build.0 = Release|x86
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Release|Mixed Platforms.Deploy.0 = Release|x86
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Release|Win32.ActiveCfg = Release|x86
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Release|Win32.Build.0 = Release|x86
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Release|Win32.Deploy.0 = Release|x86
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Release|x64.ActiveCfg = Release|x64
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Release|x64.Build.0 = Release|x64
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Release|x64.Deploy.0 = Release|x64
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Release|x86.ActiveCfg = Release|x86
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Release|x86.Build.0 = Release|x86
+		{9F703993-D04C-49FE-B659-F96119CFE2C8}.Release|x86.Deploy.0 = Release|x86
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Debug|ARM.ActiveCfg = Debug|ARM
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Debug|ARM.Build.0 = Debug|ARM
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Debug|ARM.Deploy.0 = Debug|ARM
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Debug|Mixed Platforms.Deploy.0 = Debug|x86
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Debug|Win32.ActiveCfg = Debug|x86
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Debug|Win32.Build.0 = Debug|x86
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Debug|Win32.Deploy.0 = Debug|x86
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Debug|x86.ActiveCfg = Debug|x86
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Debug|x86.Build.0 = Debug|x86
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Debug|x86.Deploy.0 = Debug|x86
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Release|ARM.ActiveCfg = Release|ARM
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Release|ARM.Build.0 = Release|ARM
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Release|ARM.Deploy.0 = Release|ARM
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Release|Mixed Platforms.Build.0 = Release|x86
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Release|Mixed Platforms.Deploy.0 = Release|x86
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Release|Win32.ActiveCfg = Release|x86
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Release|Win32.Build.0 = Release|x86
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Release|Win32.Deploy.0 = Release|x86
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Release|x64.ActiveCfg = Release|Any CPU
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Release|x86.ActiveCfg = Release|x86
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Release|x86.Build.0 = Release|x86
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Release|x86.Deploy.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8983F79E-8140-403F-A1E3-74D0A1AC3807} = {EA8B3A24-550D-4516-8387-8217E1897512}
+		{23CBF6E9-CA71-43A1-9776-F90391EA4C01} = {EA8B3A24-550D-4516-8387-8217E1897512}
+		{072AE672-284A-446C-A48A-51D7F700A180} = {070431B7-6B25-4773-AA1A-7D540138B9DE}
+		{ADBBF303-5184-47EC-BA8D-9470FCACF82F} = {072AE672-284A-446C-A48A-51D7F700A180}
+	EndGlobalSection
+EndGlobal

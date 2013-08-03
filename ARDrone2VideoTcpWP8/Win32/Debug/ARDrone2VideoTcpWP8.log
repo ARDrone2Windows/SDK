@@ -1,0 +1,23 @@
+﻿Build started 01/08/2013 18:33:13.
+     1>Project "C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARDrone2VideoTcp\ARDrone2VideoTcpWP8.vcxproj" on node 4 (Rebuild target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\CL.exe /c /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /ZI /ZW /nologo /W1 /WX- /Od /Oy- /D _LIB /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yc"pch.h" /Fp"C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARDrone2VideoTcpWP8\Win32\Debug\ARDrone2VideoTcpWP8.pch" /Fo"C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARDrone2VideoTcpWP8\Win32\Debug\\" /Fd"C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARDrone2VideoTcpWP8\Win32\Debug\vc110.pdb" /Gd /TP /FU"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib\platform.winmd" /FU"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata\Windows.winmd" /analyze- /errorReport:prompt pch.cpp
+         pch.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\CL.exe /c /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /ZI /ZW /nologo /W1 /WX- /Od /Oy- /D _LIB /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm- /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"pch.h" /Fp"C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARDrone2VideoTcpWP8\Win32\Debug\ARDrone2VideoTcpWP8.pch" /Fo"C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARDrone2VideoTcpWP8\Win32\Debug\\" /Fd"C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARDrone2VideoTcpWP8\Win32\Debug\vc110.pdb" /Gd /TP /FU"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib\platform.winmd" /FU"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata\Windows.winmd" /analyze- /errorReport:prompt ARBuffer.cpp ARDroneTcpClient.cpp ARStream.cpp NativeBuffer.cpp
+         ARBuffer.cpp
+         ARDroneTcpClient.cpp
+         ARStream.cpp
+         NativeBuffer.cpp
+         Generating Code...
+       Lib:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\Lib.exe /OUT:"C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARDrone2VideoTcpWP8\Win32\Debug\ARDrone2VideoTcpWP8.lib" /NOLOGO /ignore:4264 C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARDrone2VideoTcpWP8\Win32\Debug\ARBuffer.obj
+         C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARDrone2VideoTcpWP8\Win32\Debug\ARDroneTcpClient.obj
+         C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARDrone2VideoTcpWP8\Win32\Debug\ARStream.obj
+         C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARDrone2VideoTcpWP8\Win32\Debug\NativeBuffer.obj
+         C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARDrone2VideoTcpWP8\Win32\Debug\pch.obj
+         ARDrone2VideoTcpWP8.vcxproj -> C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARDrone2VideoTcpWP8\Win32\Debug\ARDrone2VideoTcpWP8.lib
+     1>Done Building Project "C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARDrone2VideoTcp\ARDrone2VideoTcpWP8.vcxproj" (Rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:08.62

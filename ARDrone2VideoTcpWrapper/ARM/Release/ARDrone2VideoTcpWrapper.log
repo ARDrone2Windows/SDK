@@ -1,0 +1,22 @@
+﻿Build started 31/07/2013 17:49:22.
+     1>Project "C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARDrone2VideoTcpWrapper\ARDrone2VideoTcpWrapper.vcxproj" on node 3 (Rebuild target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe /c /IC:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARDrone2VideoTcpWrapper\ /I"Generated Files\\" /IARM\Release\ /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /ZW /ZW:nostdlib /nologo /W3 /WX- /sdl /MP /O2 /Oi /Oy- /GL /D _WINRT_DLL /D NDEBUG /D _WINDLL /D _UNICODE /D UNICODE /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yc"pch.h" /Fp"ARM\Release\ARDrone2VideoTcpWrapper.pch" /Fo"ARM\Release\\" /Fd"ARM\Release\vc110.pdb" /Gd /TP /FU"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib\arm\platform.winmd" /FU"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata\Windows.winmd" /analyze- /errorReport:prompt pch.cpp
+         pch.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\CL.exe /c /IC:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARDrone2VideoTcpWrapper\ /I"Generated Files\\" /IARM\Release\ /AI"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata" /Zi /ZW /ZW:nostdlib /nologo /W3 /WX- /sdl /MP /O2 /Oi /Oy- /GL /D _WINRT_DLL /D NDEBUG /D _WINDLL /D _UNICODE /D UNICODE /D WINAPI_FAMILY=WINAPI_FAMILY_PHONE_APP /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Yu"pch.h" /Fp"ARM\Release\ARDrone2VideoTcpWrapper.pch" /Fo"ARM\Release\\" /Fd"ARM\Release\vc110.pdb" /Gd /TP /FU"C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\lib\arm\platform.winmd" /FU"C:\Program Files (x86)\Windows Phone Kits\8.0\Windows Metadata\Windows.winmd" /analyze- /errorReport:prompt ARDroneTcpClientWrapper.cpp VideoPacketWrapper.cpp
+         ARDroneTcpClientWrapper.cpp
+         VideoPacketWrapper.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\WPSDK\WP80\bin\x86_arm\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARM\Release\ARDrone2VideoTcpWrapper\ARDrone2VideoTcpWrapper.dll" /NOLOGO WindowsPhoneCore.lib RuntimeObject.lib PhoneAppModelHost.lib /NODEFAULTLIB:ole32.lib /MANIFEST:NO /DEBUG /PDB:"C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARM\Release\ARDrone2VideoTcpWrapper\ARDrone2VideoTcpWrapper.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /WINMD /WINMDFILE:"C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARM\Release\ARDrone2VideoTcpWrapper\ARDrone2VideoTcpWrapper.winmd" /DYNAMICBASE /NXCOMPAT /MACHINE:ARM /DLL ARM\Release\ARDroneTcpClientWrapper.obj
+         ARM\Release\pch.obj
+         ARM\Release\VideoPacketWrapper.obj
+         C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARM\Release\ARDrone2VideoTcpWP8\ARDrone2VideoTcpWP8.lib
+            Creating library C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARM\Release\ARDrone2VideoTcpWrapper\ARDrone2VideoTcpWrapper.lib and object C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARM\Release\ARDrone2VideoTcpWrapper\ARDrone2VideoTcpWrapper.exp
+         Generating code
+         Finished generating code
+         ARDrone2VideoTcpWrapper.vcxproj -> C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARM\Release\ARDrone2VideoTcpWrapper\ARDrone2VideoTcpWrapper.dll
+     1>Done Building Project "C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARDrone2VideoTcpWrapper\ARDrone2VideoTcpWrapper.vcxproj" (Rebuild target(s)).
+
+Build succeeded.
+
+Time Elapsed 00:00:12.07

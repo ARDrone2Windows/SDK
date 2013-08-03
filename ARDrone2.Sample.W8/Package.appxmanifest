@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Package xmlns="http://schemas.microsoft.com/appx/2010/manifest">
+  <Identity Name="3a8460b9-7ac2-4be0-8f28-ed6fd0858ba7" Publisher="CN=arfontai" Version="1.0.0.12" />
+  <Properties>
+    <DisplayName>ARDrone2.Sample</DisplayName>
+    <PublisherDisplayName>arfontai</PublisherDisplayName>
+    <Logo>Assets\StoreLogo.png</Logo>
+  </Properties>
+  <Prerequisites>
+    <OSMinVersion>6.2.1</OSMinVersion>
+    <OSMaxVersionTested>6.2.1</OSMaxVersionTested>
+  </Prerequisites>
+  <Resources>
+    <Resource Language="x-generate" />
+  </Resources>
+  <Applications>
+    <Application Id="App" Executable="$targetnametoken$.exe" EntryPoint="ARDrone2.Sample.App">
+      <VisualElements DisplayName="ARDrone2 Sample App" Logo="Assets\Logo.png" SmallLogo="Assets\SmallLogo.png" Description="ARDrone2 Sample App" ForegroundText="light" BackgroundColor="#464646">
+        <DefaultTile ShowName="logoOnly" />
+        <SplashScreen Image="Assets\SplashScreen.png" BackgroundColor="#FFFFFF" />
+        <InitialRotationPreference>
+          <Rotation Preference="landscape" />
+          <Rotation Preference="landscapeFlipped" />
+        </InitialRotationPreference>
+      </VisualElements>
+    </Application>
+  </Applications>
+  <Capabilities>
+    <Capability Name="privateNetworkClientServer" />
+    <Capability Name="internetClient" />
+  </Capabilities>
+  <Extensions>
+    <Extension Category="windows.activatableClass.inProcessServer">
+      <InProcessServer>
+        <Path>ARDrone2Video.dll</Path>
+        <ActivatableClass ActivatableClassId="ARDrone2Video.ARDroneSchemeHandler" ThreadingModel="both" />
+      </InProcessServer>
+    </Extension>
+  </Extensions>
+</Package>

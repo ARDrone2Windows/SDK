@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <index root="\" startIndexAt="obj\x86\Debug\SharpDX\Resources.resfiles">
+    <default>
+      <qualifier name="language" value="en-us" />
+    </default>
+    <indexer-config type="RESW" convertDotsToSlashes="false" />
+    <indexer-config type="RESJSON" />
+    <indexer-config type="RESFILES" qualifierDelimiter="." />
+  </index>
+</resources>
