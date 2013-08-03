@@ -5,3 +5,10 @@ C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARDrone2Client.WP8\Bi
 C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARDrone2Client.WP8\obj\x86\Debug\ARDrone2.Client.WP8.dll
 C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARDrone2Client.WP8\obj\x86\Debug\ARDrone2.Client.WP8.pdb
 C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARDrone2Client.WP8\obj\x86\Debug\ARDrone2.Client.WP8.csprojResolveAssemblyReference.cache
+C:\Users\aldanvy\Documents\Git\ARDroneSDK\ARDrone2.Client.WP8\obj\x86\Debug\ARDrone2.Client.WP8.csprojResolveAssemblyReference.cache
+C:\Users\aldanvy\Documents\Git\ARDroneSDK\ARDrone2.Client.WP8\obj\x86\Debug\ARDrone2.Client.WP8.dll
+C:\Users\aldanvy\Documents\Git\ARDroneSDK\ARDrone2.Client.WP8\obj\x86\Debug\ARDrone2.Client.WP8.pdb
+C:\Users\aldanvy\Documents\Git\ARDroneSDK\ARDrone2.Client.WP8\Bin\x86\Debug\ARDrone2.Client.WP8.dll
+C:\Users\aldanvy\Documents\Git\ARDroneSDK\ARDrone2.Client.WP8\Bin\x86\Debug\ARDrone2.Client.WP8.pdb
+C:\Users\aldanvy\Documents\Git\ARDroneSDK\ARDrone2.Client.WP8\Bin\x86\Debug\ARDrone2VideoTcpWrapper.winmd
+C:\Users\aldanvy\Documents\Git\ARDroneSDK\ARDrone2.Client.WP8\Bin\x86\Debug\ARDrone2VideoTcpWrapper.pdb
