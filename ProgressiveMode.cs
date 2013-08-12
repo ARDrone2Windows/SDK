@@ -5,8 +5,8 @@ namespace ARDrone2Client.Common
     public enum ProgressiveMode
     {
         Hovering = 0,
-        Progressive = 1,
-        CombinedYaw = 1 << 2 | Progressive,
-        AbsoluteControl = 1 << 3 | Progressive
+        Progressive = 1 << 0,
+        CombinedYaw = 1 << 1 | Progressive,
+        AbsoluteControl = 1 << 2 | Progressive
     }
 }
