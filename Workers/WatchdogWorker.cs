@@ -27,8 +27,11 @@ namespace ARDrone2Client.Common.Workers
         }
         public override void Stop()
         {
-            _Timer.Cancel();
-            _Timer = null;
+            if (_Timer != null)
+            {
+                _Timer.Cancel();
+                _Timer = null;
+            }
             base.Stop();
         }
 

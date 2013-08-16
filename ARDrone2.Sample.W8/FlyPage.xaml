@@ -42,8 +42,8 @@
         <!--<StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,10,0">-->
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,0,10,0" Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
-            <Button x:Name="TakePicture" Content="Take a Picture" Click="TakePicture_Click" Width="140" />
-            <Button x:Name="ResetEmergency" Content="Reset Emergency" Click="ResetEmergency_Click" Width="140" />
+            <Button x:Name="TakePictureButton" Content="Take a Picture" Click="TakePicture_Click" Width="140" />
+            <Button x:Name="ResetEmergencyButton" Content="Reset Emergency" Click="ResetEmergency_Click" Width="140" />
             <Button x:Name="ConfigurationButton" Content="Configuration" Click="Configuration_Click" Width="140" />
             <Button x:Name="IndoorOutdoorButton" Content="Indoor" Click="SwitchIndoorOutdoor_Click" Width="140" />
             <Button x:Name="SwitchVideoChannelButton" Content="Switch video" Click="SwitchVideoChannel_Click" Width="140" />

@@ -52,9 +52,18 @@ namespace ARDrone2.Sample
             _Timer.Start();
         }
 
-        void _Timer_Tick(object sender, object e)
+        private async void _Timer_Tick(object sender, object e)
         {
             UpdateDisplay();
+
+            if (!_droneClient.IsActive)
+            {
+                await _droneClient.ConnectAsync();
+                if (!_droneClient.IsActive)
+                {
+                    await Task.Delay(5000);
+                }
+            }
         }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)
@@ -74,10 +83,17 @@ namespace ARDrone2.Sample
             var active = _droneClient.IsActive;
             TakeOffLandButton.IsEnabled = active;
             TakeOffLandButton.Content = _droneClient.IsFlying ? "Land" : "Take off";
+
             SwitchVideoChannelButton.IsEnabled = active;
             ConfigurationButton.IsEnabled = active;
-            ResetEmergency.IsEnabled = active;
+            ResetEmergencyButton.IsEnabled = active;
             IndoorOutdoorButton.IsEnabled = active;
+            TakePictureButton.IsEnabled = active;
+            PlayAnimationButton.IsEnabled = active;
+            PlayLedAnimationButton.IsEnabled = active;
+            StartVideoRecordingButton.IsEnabled = active;
+            StopVideoRecordingButton.IsEnabled = active;
+
             //InputState.Text = _droneClient.InputState.ToString();
         }
 

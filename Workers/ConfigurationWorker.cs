@@ -57,9 +57,9 @@ namespace ARDrone2Client.Common.Workers
         {
             Streams.DataReader reader = null;
 
-            while (true)
+            try
             {
-                try
+                while (true)
                 {
                     if (socket == null)
                     {
@@ -100,10 +100,11 @@ namespace ARDrone2Client.Common.Workers
                     //socket.Dispose();
                     await Task.Delay(500);
                 }
-                catch (Exception e)
-                {
-                    Debug.WriteLine(e.ToString());
-                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(e.ToString());
+                Stop();
             }
         }
 
