@@ -42,15 +42,16 @@
         <!--<StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,0,10,0">-->
         <StackPanel Grid.Row="0" Grid.ColumnSpan="2" HorizontalAlignment="Right" Margin="0,0,10,0" Orientation="Vertical">
             <StackPanel Orientation="Horizontal">
-            <Button x:Name="TakePictureButton" Content="Take a Picture" Click="TakePicture_Click" Width="140" />
-            <Button x:Name="ResetEmergencyButton" Content="Reset Emergency" Click="ResetEmergency_Click" Width="140" />
-            <Button x:Name="ConfigurationButton" Content="Configuration" Click="Configuration_Click" Width="140" />
-            <Button x:Name="IndoorOutdoorButton" Content="Indoor" Click="SwitchIndoorOutdoor_Click" Width="140" />
-            <Button x:Name="SwitchVideoChannelButton" Content="Switch video" Click="SwitchVideoChannel_Click" Width="140" />
+                <Button x:Name="EmergencyButton" Content="Emergency" Click="Emergency_Click" Width="140" />
+                <Button x:Name="ResetEmergencyButton" Content="Reset Emergency" Click="ResetEmergency_Click" Width="140" />
+                <Button x:Name="ConfigurationButton" Content="Configuration" Click="Configuration_Click" Width="140" />
+                <Button x:Name="IndoorOutdoorButton" Content="Indoor" Click="SwitchIndoorOutdoor_Click" Width="140" />
+                <Button x:Name="SwitchVideoChannelButton" Content="Switch video" Click="SwitchVideoChannel_Click" Width="140" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <Button x:Name="PlayAnimationButton" Content="Animation" Click="PlayAnimationButton_Click" VerticalAlignment="Bottom" Width="140" />
                 <Button x:Name="PlayLedAnimationButton" Content="LED Animation" Click="PlayLedAnimationButton_Click" Width="140" />
+                <Button x:Name="TakePictureButton" Content="Take a Picture" Click="TakePicture_Click" Width="140" />
                 <Button x:Name="StartVideoRecordingButton" Content="Start Rec" Click="StartVideoRecordingButton_Click" Width="140" />
                 <Button x:Name="StopVideoRecordingButton" Content="Stop Rec" Click="StopVideoRecordingButton_Click" Width="140" />
             </StackPanel>

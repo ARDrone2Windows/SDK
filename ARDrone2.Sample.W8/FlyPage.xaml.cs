@@ -196,6 +196,12 @@ namespace ARDrone2.Sample
             Frame.Navigate(typeof(ConfigurationPage));
         }
 
+        private void Emergency_Click(object sender, RoutedEventArgs e)
+        {
+            _droneClient.Emergency();
+            UpdateDisplay();
+        }
+
         private void ResetEmergency_Click(object sender, RoutedEventArgs e)
         {
             _droneClient.ResetEmergency();

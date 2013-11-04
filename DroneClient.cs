@@ -409,7 +409,7 @@ namespace ARDrone2Client.Common
 
         public async void StopRecordingVideo()
         {
-            _configuration.Video.Codec = VideoCodecType.H264_720P;
+            _configuration.Video.Codec = VideoCodecType.H264_360P;
             _configuration.Userbox.Command = new UserboxCommand(UserboxCommandType.Stop);
             await SendConfiguration();
 
@@ -452,7 +452,7 @@ namespace ARDrone2Client.Common
         public async void SetDefaultConfiguration()
         {
             _configuration.General.NavdataDemo = true;
-            _configuration.Video.Codec = VideoCodecType.H264_720P;
+            _configuration.Video.Codec = VideoCodecType.H264_360P;
 
             await SendConfiguration();
             await Log.Instance.WriteLineAsync("DroneClient:SetDefaultConfiguration");

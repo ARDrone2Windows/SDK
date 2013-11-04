@@ -161,26 +161,18 @@ namespace ARDrone2Client.Common.Workers
             switch (DroneClient.RequestedState)
             {
                 case RequestedState.Emergency:
-                    if (state.HasFlag(NavigationState.Emergency))
-                    {
-                        DroneClient.RequestedState = RequestedState.None;
-                    }
-                    else
+                    if (state.HasFlag(NavigationState.Flying))
                     {
                         _HighPriorityCommandQueue.Enqueue(Command.Ref(RefMode.Emergency));
                     }
-                    break;
-                case RequestedState.ResetEmergency:
-                    if (state.HasFlag(NavigationState.Emergency))
-                    {
-                        _NormalPriorityCommandQueue.Enqueue(Command.Ref(RefMode.ResetEmergency));
-                        DroneClient.RequestedState = RequestedState.None;
-                    }
                     else
                     {
-                        _NormalPriorityCommandQueue.Enqueue(Command.Ref(RefMode.Emergency));
                         DroneClient.RequestedState = RequestedState.None;
                     }
+                    break;
+                case RequestedState.ResetEmergency:
+                    _NormalPriorityCommandQueue.Enqueue(Command.Ref(RefMode.Emergency));
+                    DroneClient.RequestedState = RequestedState.None;
                     break;
                 case RequestedState.Land:
                     if (state.HasFlag(NavigationState.Landed))
