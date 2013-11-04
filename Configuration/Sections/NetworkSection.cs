@@ -1,14 +1,43 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 
 namespace ARDrone2Client.Common.Configuration.Sections
 {
-    [StructLayout(LayoutKind.Sequential)]
-    public class NetworkSection
+    public class NetworkSection : SectionBase
     {
-        public readonly ReadWriteItem<string> SsidSinglePlayer = new ReadWriteItem<string>("network:ssid_single_player");
-        public readonly ReadWriteItem<string> SsidMultiPlayer = new ReadWriteItem<string>("network:ssid_multi_player");
-        public readonly ReadWriteItem<int> WifiMode = new ReadWriteItem<int>("network:wifi_mode");
-        public readonly ReadWriteItem<int> WifiRate = new ReadWriteItem<int>("network:wifi_rate");
-        public readonly ReadWriteItem<string> OwnerMac = new ReadWriteItem<string>("network:owner_mac");
+        public NetworkSection(DroneConfiguration configuration)
+            : base(configuration, "network")
+        {
+        }
+
+        public String SsidSinglePlayer
+        {
+            get { return GetString("ssid_single_player"); }
+            set { Set("ssid_single_player", value); }
+        }
+
+        public String SsidMultiPlayer
+        {
+            get { return GetString("ssid_multi_player"); }
+            set { Set("ssid_multi_player", value); }
+        }
+
+        public Int32 WifiMode
+        {
+            get { return GetInt32("wifi_mode"); }
+            set { Set("wifi_mode", value); }
+        }
+
+        public Int32 WifiRate
+        {
+            get { return GetInt32("wifi_rate"); }
+            set { Set("wifi_rate", value); }
+        }
+
+        public String OwnerMac
+        {
+            get { return GetString("owner_mac"); }
+            set { Set("owner_mac", value); }
+        }
     }
 }

@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.21005.1
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ARDrone2Video", "ARDrone2Video\ARDrone2Video.vcxproj", "{DBBB5103-4579-4889-AEBA-793C89745AF9}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ARDrone2VideoTcp", "ARDrone2VideoTcp\ARDrone2VideoTcp.vcxproj", "{97A6EF7B-47CB-44F5-9051-CFFA75847394}"
@@ -41,10 +43,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configuration", "Configurat
 		Configuration\ConfigurationPacket.cs = Configuration\ConfigurationPacket.cs
 		Configuration\ConfigurationPacketParser.cs = Configuration\ConfigurationPacketParser.cs
 		Configuration\DroneConfiguration.cs = Configuration\DroneConfiguration.cs
+		Configuration\FlightAnimation.cs = Configuration\FlightAnimation.cs
+		Configuration\FlightAnimationType.cs = Configuration\FlightAnimationType.cs
 		Configuration\IConfigurationItem.cs = Configuration\IConfigurationItem.cs
 		Configuration\INetworkConfiguration.cs = Configuration\INetworkConfiguration.cs
+		Configuration\NavdataOptions.cs = Configuration\NavdataOptions.cs
 		Configuration\ReadOnlyItem.cs = Configuration\ReadOnlyItem.cs
 		Configuration\ReadWriteItem.cs = Configuration\ReadWriteItem.cs
+		Configuration\UserboxCommand.cs = Configuration\UserboxCommand.cs
+		Configuration\UserboxCommandType.cs = Configuration\UserboxCommandType.cs
+		Configuration\VideoBitrateControlMode.cs = Configuration\VideoBitrateControlMode.cs
+		Configuration\VideoCodecType.cs = Configuration\VideoCodecType.cs
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Native", "Native", "{8983F79E-8140-403F-A1E3-74D0A1AC3807}"
@@ -68,6 +77,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sections", "Sections", "{23
 		Configuration\Sections\LedsSection.cs = Configuration\Sections\LedsSection.cs
 		Configuration\Sections\NetworkSection.cs = Configuration\Sections\NetworkSection.cs
 		Configuration\Sections\PicSection.cs = Configuration\Sections\PicSection.cs
+		Configuration\Sections\SectionBase.cs = Configuration\Sections\SectionBase.cs
 		Configuration\Sections\SyslogSection.cs = Configuration\Sections\SyslogSection.cs
 		Configuration\Sections\UserboxSection.cs = Configuration\Sections\UserboxSection.cs
 		Configuration\Sections\VideoChannelType.cs = Configuration\Sections\VideoChannelType.cs
@@ -289,8 +299,8 @@ Global
 		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Debug|ARM.ActiveCfg = Debug|ARM
 		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Debug|ARM.Build.0 = Debug|ARM
-		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Debug|Mixed Platforms.ActiveCfg = Debug|ARM
+		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Debug|Mixed Platforms.Build.0 = Debug|ARM
 		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Debug|Win32.ActiveCfg = Debug|x86
 		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Debug|Win32.Build.0 = Debug|x86
 		{1FA3CAFD-96DA-40A7-A70E-5E14A6AC896A}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -349,9 +359,9 @@ Global
 		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Debug|ARM.ActiveCfg = Debug|ARM
 		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Debug|ARM.Build.0 = Debug|ARM
 		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Debug|ARM.Deploy.0 = Debug|ARM
-		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Debug|Mixed Platforms.Deploy.0 = Debug|x86
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Debug|Mixed Platforms.ActiveCfg = Debug|ARM
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Debug|Mixed Platforms.Build.0 = Debug|ARM
+		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Debug|Mixed Platforms.Deploy.0 = Debug|ARM
 		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Debug|Win32.ActiveCfg = Debug|x86
 		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Debug|Win32.Build.0 = Debug|x86
 		{9224B536-6BB7-4F8F-83D9-C38517FF899F}.Debug|Win32.Deploy.0 = Debug|x86

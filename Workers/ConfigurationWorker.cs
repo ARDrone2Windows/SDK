@@ -137,7 +137,6 @@ namespace ARDrone2Client.Common.Workers
             {
                 if (_DroneClient.RequestedState == RequestedState.GetConfiguration)
                     _DroneClient.RequestedState = RequestedState.None;
-                ConfigurationViewModelHelper.UpdateConfigurationSections(_DroneClient.ConfigurationSectionsViewModel, _DroneClient.Configuration);
             }
         }
         internal bool UpdateConfiguration(ConfigurationPacket packet)
@@ -163,15 +162,14 @@ namespace ARDrone2Client.Common.Workers
             if (match.Success)
             {
                 string key = match.Groups["key"].Value;
-                IConfigurationItem item;
-                if (_DroneClient.Configuration.Items.TryGetValue(key, out item))
-                {
-                    string value = match.Groups["value"].Value;
-                    if (item.TryUpdate(value))
-                    {
-                        result = true;
-                    }
-                }
+                string value = match.Groups["value"].Value;
+
+                if (_DroneClient.Configuration.Items.ContainsKey(key))
+                    _DroneClient.Configuration.Items[key] = value;
+                else
+                    _DroneClient.Configuration.Items.Add(key, value);
+
+                result = true;
             }
             return result;
         }
@@ -181,7 +179,6 @@ namespace ARDrone2Client.Common.Workers
             {
                 if (_DroneClient.RequestedState == RequestedState.GetConfiguration)
                     _DroneClient.RequestedState = RequestedState.None;
-                ConfigurationViewModelHelper.UpdateConfigurationSections(_DroneClient.ConfigurationSectionsViewModel, _DroneClient.Configuration);
             }
         }
     }

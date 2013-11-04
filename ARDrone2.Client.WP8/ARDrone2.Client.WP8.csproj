@@ -103,6 +103,12 @@
     <Compile Include="..\Configuration\DroneConfiguration.cs">
       <Link>Configuration\DroneConfiguration.cs</Link>
     </Compile>
+    <Compile Include="..\Configuration\FlightAnimation.cs">
+      <Link>Configuration\FlightAnimation.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\FlightAnimationType.cs">
+      <Link>Configuration\FlightAnimationType.cs</Link>
+    </Compile>
     <Compile Include="..\Configuration\IConfigurationItem.cs">
       <Link>Configuration\IConfigurationItem.cs</Link>
     </Compile>
@@ -129,6 +135,9 @@
     </Compile>
     <Compile Include="..\Configuration\Native\USERBOX_CMD.cs">
       <Link>Configuration\Native\USERBOX_CMD.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\NavdataOptions.cs">
+      <Link>Configuration\NavdataOptions.cs</Link>
     </Compile>
     <Compile Include="..\Configuration\ReadOnlyItem.cs">
       <Link>Configuration\ReadOnlyItem.cs</Link>
@@ -160,6 +169,9 @@
     <Compile Include="..\Configuration\Sections\PicSection.cs">
       <Link>Configuration\Sections\PicSection.cs</Link>
     </Compile>
+    <Compile Include="..\Configuration\Sections\SectionBase.cs">
+      <Link>Configuration\Sections\SectionBase.cs</Link>
+    </Compile>
     <Compile Include="..\Configuration\Sections\SyslogSection.cs">
       <Link>Configuration\Sections\SyslogSection.cs</Link>
     </Compile>
@@ -171,6 +183,18 @@
     </Compile>
     <Compile Include="..\Configuration\Sections\VideoSection.cs">
       <Link>Configuration\Sections\VideoSection.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\UserboxCommand.cs">
+      <Link>Configuration\UserboxCommand.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\UserboxCommandType.cs">
+      <Link>Configuration\UserboxCommandType.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\VideoBitrateControlMode.cs">
+      <Link>Configuration\VideoBitrateControlMode.cs</Link>
+    </Compile>
+    <Compile Include="..\Configuration\VideoCodecType.cs">
+      <Link>Configuration\VideoCodecType.cs</Link>
     </Compile>
     <Compile Include="..\ControlMode.cs">
       <Link>ControlMode.cs</Link>
@@ -351,9 +375,6 @@
     </Compile>
     <Compile Include="..\ViewModel\BaseViewModel.cs">
       <Link>ViewModel\BaseViewModel.cs</Link>
-    </Compile>
-    <Compile Include="..\ViewModel\ConfigurationViewModel.cs">
-      <Link>ViewModel\ConfigurationViewModel.cs</Link>
     </Compile>
     <Compile Include="..\ViewModel\NavigationDataViewModel.cs">
       <Link>ViewModel\NavigationDataViewModel.cs</Link>

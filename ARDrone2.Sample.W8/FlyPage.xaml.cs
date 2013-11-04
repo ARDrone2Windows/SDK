@@ -29,23 +29,18 @@ namespace ARDrone2.Sample
         public FlyPage()
         {
             this.InitializeComponent();
-            //if (Application.Current.Resources.ContainsKey("DroneClient"))
-            //{
-            //    _droneClient = (DroneClient)Application.Current.Resources["DroneClient"];
-            //}
-            //else
-            //{
-            //    _droneClient = new DroneClient();
-            //}
+
             _droneClient = DroneClient.Instance;
+            this.DataContext = _droneClient;
+            this.DefaultViewModel["Messages"] = _droneClient.Messages;
+
             //Register joysticks
             if (_droneClient.InputProviders.Count == 0)
             {
                 _droneClient.InputProviders.Add(new XBox360JoystickProvider(_droneClient));
                 _droneClient.InputProviders.Add(new SoftJoystickProvider(_droneClient, RollPitchJoystick, YawGazJoystick));
             }
-            this.DataContext = _droneClient;
-            this.DefaultViewModel["Messages"] = _droneClient.Messages;
+            
             _Timer = new DispatcherTimer();
             _Timer.Tick += _Timer_Tick;
             _Timer.Interval = new TimeSpan(0, 0, 0, 0, 500);
@@ -77,7 +72,7 @@ namespace ARDrone2.Sample
         
         private void UpdateDisplay()
         {
-            int altitudeMax = _droneClient.Configuration.Control.altitude_max.Value;
+            int altitudeMax = _droneClient.Configuration.Control.AltitudeMax;
             AltitudeSlider.Maximum = altitudeMax / 1000;
             AltitudeSlider.StepFrequency = AltitudeSlider.Maximum / 100;
             var active = _droneClient.IsActive;
@@ -215,7 +210,7 @@ namespace ARDrone2.Sample
 
         private void PlayAnimationButton_Click(object sender, RoutedEventArgs e)
         {
-            _droneClient.PlayAnimation(ARDRONE_ANIMATION.ARDRONE_ANIMATION_FLIP_LEFT);
+            _droneClient.PlayAnimation(FlightAnimationType.FlipLeft);
             UpdateDisplay();
         }
 

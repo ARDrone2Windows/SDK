@@ -25,6 +25,8 @@ namespace ARDrone2Client.Common
 {
     public class DroneClient : DisposableBase
     {
+        private const int AckControlAndWaitForConfirmationTimeout = 1000;
+        
         private string _ApplicationId = "a1b2c3d4";
         public string ApplicationId
         {
@@ -103,15 +105,6 @@ namespace ARDrone2Client.Common
             }
         }
 
-        private List<ConfigurationSectionViewModel> _ConfigurationSectionsViewModel;
-        public List<ConfigurationSectionViewModel> ConfigurationSectionsViewModel
-        {
-            get
-            {
-                return _ConfigurationSectionsViewModel;
-            }
-        }
-
         // Messages
         private ObservableCollection<Message> _Messages = new ObservableCollection<Message>();
         public ObservableCollection<Message> Messages
@@ -157,7 +150,6 @@ namespace ARDrone2Client.Common
         {
             _NavigationDataViewModel = new ViewModel.NavigationDataViewModel();
             _configuration = new DroneConfiguration();
-            _ConfigurationSectionsViewModel = ConfigurationViewModelHelper.InitializeConfigurationSections(_configuration);
 
             _CommandWorker = new CommandWorker(this);
             _NavDataWorker = new NavDataWorker(this);
@@ -299,8 +291,10 @@ namespace ARDrone2Client.Common
                     return false;
                 }
                 SendMessageToUI("Connected with the Drone successfully");
-                InitConfiguration();
-                //SetIndoorConfiguration();
+
+                await InitMultiConfiguration();
+                SetDefaultConfiguration();
+
                 RequestConfiguration();
                 SendMessageToUI("Configuration sent to the Drone successfully");
                 return true;
@@ -393,58 +387,41 @@ namespace ARDrone2Client.Common
 
         public async void TakePicture()
         {
-            int delay = 0;
-            int numberOfBurst = 0;
-            string pictureDate = string.Format("{0:yyyyMMdd_HHmmss}", DateTime.Now);
-            string pictureCommandString = string.Format("{0},{1},{2},{3}", (int)USERBOX_CMD.USERBOX_CMD_SCREENSHOT, delay, numberOfBurst, pictureDate);
+            _configuration.Userbox.Command = new UserboxCommand(UserboxCommandType.Screenshot, 0, 0, DateTime.Now);
+            await SendConfiguration();
 
-            lock (_SyncRoot)
-            {
-                var pictureCommand = _configuration.Userbox.UserboxCmd.Set(pictureCommandString).ToCommand();
-                _CommandWorker.EnqueueConfigCommand(pictureCommand);
-            }
-            await Log.Instance.WriteLineAsync("DroneClient:TakePicture");
+            await Log.Instance.WriteLineAsync("DroneClient:PictureTaken");
             SendMessageToUI("Picture taken successfully");
         }
 
         public async void StartRecordingVideo()
         {
-            string videoDate = string.Format("{0:yyyyMMdd_HHmmss}", DateTime.Now);
-            string videoCommandString = string.Format("{0},{1}", (int)USERBOX_CMD.USERBOX_CMD_START, videoDate);
+            _configuration.Video.Codec = VideoCodecType.MP4_360P_H264_720P;
+          
+            //If you want to store your video on USB
+            _configuration.Video.OnUsb = true;
+            _configuration.Userbox.Command = new UserboxCommand(UserboxCommandType.Start, DateTime.Now);
+            await SendConfiguration();
 
-            lock (_SyncRoot)
-            {
-                var videoCommand = _configuration.Userbox.UserboxCmd.Set(videoCommandString).ToCommand();
-                _CommandWorker.EnqueueConfigCommand(videoCommand);
-            }
             await Log.Instance.WriteLineAsync("DroneClient:StartVideoRecording");
             SendMessageToUI("Video recording started successfully");
         }
 
         public async void StopRecordingVideo()
         {
-            string videoCommandString = string.Format("{0}", (int)USERBOX_CMD.USERBOX_CMD_STOP);
+            _configuration.Video.Codec = VideoCodecType.H264_720P;
+            _configuration.Userbox.Command = new UserboxCommand(UserboxCommandType.Stop);
+            await SendConfiguration();
 
-            lock (_SyncRoot)
-            {
-                var videoCommand = _configuration.Userbox.UserboxCmd.Set(videoCommandString).ToCommand();
-                _CommandWorker.EnqueueConfigCommand(videoCommand);
-            }
             await Log.Instance.WriteLineAsync("DroneClient:StopVideoRecording");
             SendMessageToUI("Video recording stopted successfully");
         }
 
-        public async void PlayAnimation(ARDRONE_ANIMATION animation)
+        public async void PlayAnimation(FlightAnimationType animationType)
         {
-            int animationNumber = (int)animation;
-            int duration = 2;
-            string animCommandString = string.Format("{0},{1}", animationNumber, duration);
+            _configuration.Control.FlightAnimation = new FlightAnimation(animationType, 2);
+            await SendConfiguration();
 
-            lock (_SyncRoot)
-            {
-                var animationCommand = _configuration.Control.flight_anim.Set(animCommandString).ToCommand();
-                _CommandWorker.EnqueueConfigCommand(animationCommand);
-            }
             await Log.Instance.WriteLineAsync("DroneClient:PlayAnimation");
             SendMessageToUI("Animation executed successfully");
         }
@@ -454,63 +431,163 @@ namespace ARDrone2Client.Common
             int ledAnimationNumber = (int)ARDRONE_LED_ANIMATION.ARDRONE_LED_ANIMATION_BLINK_ORANGE;
             float frequency = 2.0f; // in Hz.
             int duration = 2;       // in s.
-            string ledAnimCommandString = string.Format("{0},{1},{2}", ledAnimationNumber, ConversionHelper.ToInt(frequency), duration);
 
-            lock (_SyncRoot)
-            {
-                var animationCommand = _configuration.Leds.Animation.Set(ledAnimCommandString).ToCommand();
-                _CommandWorker.EnqueueConfigCommand(animationCommand);
-            }
+            _configuration.Leds.Animation = string.Format("{0},{1},{2}", ledAnimationNumber, ConversionHelper.ToInt(frequency), duration);
+            await SendConfiguration();
+
             await Log.Instance.WriteLineAsync("DroneClient:PlayLedAnimation");
-            SendMessageToUI("Animation executed successfully");
+            SendMessageToUI("Led animation executed successfully");
         }
 
 
         public async void SwitchVideoChannel()
         {
-            var vc = _configuration.Video.Channel.Value == VideoChannelType.Horizontal ? VideoChannelType.Vertical : VideoChannelType.Horizontal;
-            lock (_SyncRoot)
-            {
-                //_CommandWorker.EnqueueConfigCommand(Command.ConfigIds(ApplicationId, UserId, SessionId));
-                var switchVideo = _configuration.Video.Channel.Set(vc).ToCommand();
-                _CommandWorker.EnqueueConfigCommand(switchVideo);
-            }
+            _configuration.Video.Channel = 
+                _configuration.Video.Channel == VideoChannelType.Horizontal ? VideoChannelType.Vertical : VideoChannelType.Horizontal;
+
+            await SendConfiguration();
             await Log.Instance.WriteLineAsync("DroneClient:SwitchVideoChannel");
         }
 
-        private async void InitConfiguration()
+        public async void SetDefaultConfiguration()
         {
-            //SetConfiguration(_configuration.Custom.ApplicationId.Set(ApplicationId).ToCommand());
-            //SetConfiguration(_configuration.Custom.ProfileId.Set(UserId).ToCommand());
-            //SetConfiguration(_configuration.Custom.SessionId.Set(SessionId).ToCommand());
-            await Log.Instance.WriteLineAsync("DroneClient:InitConfiguration");
+            _configuration.General.NavdataDemo = true;
+            _configuration.Video.Codec = VideoCodecType.H264_720P;
+
+            await SendConfiguration();
+            await Log.Instance.WriteLineAsync("DroneClient:SetDefaultConfiguration");
         }
 
         public async void SetOutdoorConfiguration()
         {
-            SetConfiguration(_configuration.Control.outdoor.Set(true).ToCommand());
-            SetConfiguration(_configuration.Control.flight_without_shell.Set(true).ToCommand());
-            SetConfiguration(_configuration.Control.altitude_max.Set(15000).ToCommand());
-            //SetConfiguration(_configuration.Control.euler_angle_max.Set(0.25f).ToCommand());
+            _configuration.Control.Outdoor = true;
+            _configuration.Control.FlightWithoutShell = true;
+            _configuration.Control.AltitudeMax = 15000;
+            
+            //_configuration.Control.EulerAngleMax = 0.25f;
+
+            await SendConfiguration();
             await Log.Instance.WriteLineAsync("DroneClient:SetOutdoorConfiguration");
         }
 
         public async void SetIndoorConfiguration()
         {
-            SetConfiguration(_configuration.Control.outdoor.Set(false).ToCommand());
-            SetConfiguration(_configuration.Control.flight_without_shell.Set(false).ToCommand());
-            SetConfiguration(_configuration.Control.altitude_max.Set(3000).ToCommand());
-            //SetConfiguration(_configuration.Control.euler_angle_max.Set(0.25f).ToCommand());
+            _configuration.Control.Outdoor = false;
+            _configuration.Control.FlightWithoutShell = false;
+            _configuration.Control.AltitudeMax = 3000;
 
-            //TODO gérer une commande AT*CONFIG_IDS avant d'envoyer la commande dessous
-            //SetConfiguration(_configuration.Video.Codec.Set((int)ARDRONE_VIDEO_CODEC.ARDRONE_VIDEO_CODEC_UVLC).ToCommand());
+            //configuration.General.NavdataOptions = NavdataOptions.All;
+
+            //configuration.Video.BitrateCtrlMode = VideoBitrateControlMode.Dynamic;
+            //configuration.Video.Bitrate = 1000;
+            //configuration.Video.MaxBitrate = 2000;
+
+            // record video to usb
+            //configuration.Video.OnUsb = true;
+            // usage of MP4_360P_H264_720P codec is a requariment for video recording to usb
+            //configuration.Video.Codec = VideoCodecType.MP4_360P_H264_720P;
+            // start
+            //configuration.Userbox.Command = new UserboxCommand(UserboxCommandType.Start);
+            // stop
+            //configuration.Userbox.Command = new UserboxCommand(UserboxCommandType.Stop);
+
+            await SendConfiguration();
             await Log.Instance.WriteLineAsync("DroneClient:SetIndoorConfiguration");
         }
 
-        public void SetConfiguration(string command)
+        private async Task InitMultiConfiguration()
         {
-            _CommandWorker.EnqueueConfigCommand(command);
+            // set new session, application and profile
+            await AckControlAndWaitForConfirmation(); // wait for the control confirmation
+
+            _configuration.Custom.SessionId = DroneConfiguration.NewId();
+            SendChanges(_configuration);
+
+            await AckControlAndWaitForConfirmation();
+
+            _configuration.Custom.ProfileId = DroneConfiguration.NewId();
+            SendChanges(_configuration);
+
+            await AckControlAndWaitForConfirmation();
+
+            _configuration.Custom.ApplicationId = DroneConfiguration.NewId();
+            SendChanges(_configuration);
+
+            await AckControlAndWaitForConfirmation();
         }
+
+        public async Task SendConfiguration()
+        {
+            DroneConfiguration configuration = _configuration;
+
+            if (string.IsNullOrEmpty(configuration.Custom.SessionId) ||
+                configuration.Custom.SessionId == "00000000")
+            {
+                await InitMultiConfiguration();
+            }
+
+            //send all changes in one pice
+            SendChanges(configuration);
+        }
+
+        public void SendChanges(DroneConfiguration configuration)
+        {
+            KeyValuePair<string, string> item;
+
+            while (configuration.Changes.Count > 0)
+            {
+                lock (_SyncRoot)
+                {
+                    if (configuration.Changes.Count > 0)
+                        item = configuration.Changes.Dequeue();
+                }
+                if (!string.IsNullOrEmpty(item.Key))
+                {
+                    if (string.IsNullOrEmpty(configuration.Custom.SessionId) == false &&
+                        string.IsNullOrEmpty(configuration.Custom.ProfileId) == false &&
+                        string.IsNullOrEmpty(configuration.Custom.ApplicationId) == false)
+                        SendConfigCommand(Command.ConfigIds(configuration.Custom.SessionId, configuration.Custom.ProfileId, configuration.Custom.ApplicationId));
+
+                    SendConfigCommand(Command.Config(item.Key, item.Value));
+                }
+            }
+        }
+
+
+        public void SendConfigCommand(string configurationCommand)
+        {
+            _CommandWorker.EnqueueConfigCommand(configurationCommand);
+        }
+
+        public async Task<bool> AckControlAndWaitForConfirmation()
+        {
+            Stopwatch swTimeout = Stopwatch.StartNew();
+
+            try
+            {
+                bool ackControlSent = false;
+                while (swTimeout.ElapsedMilliseconds < AckControlAndWaitForConfirmationTimeout)
+                {
+                    if (NavigationData.Masks.HasFlag(def_ardrone_state_mask_t.ARDRONE_COMMAND_MASK))
+                    {
+                        SendConfigCommand(Command.Control(ControlMode.AckControlMode));
+                        ackControlSent = true;
+                    }
+
+                    if (ackControlSent && NavigationData.Masks.HasFlag(def_ardrone_state_mask_t.ARDRONE_COMMAND_MASK) == false)
+                    {
+                        return true;
+                    }
+                    await Task.Delay(5);
+                }
+                return false;
+            }
+            finally
+            {
+                //await Log.Instance.WriteLineAsync(string.Format("AckCommand done in {0} ms.", swTimeout.ElapsedMilliseconds));
+            }
+        }
+
         public void PostCommand(string command)
         {
             _CommandWorker.PostCommand(command);

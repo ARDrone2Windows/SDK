@@ -40,19 +40,15 @@ namespace ARDrone2.Sample.WP8
             InitializeComponent();
 
             _droneClient = DroneClient.Instance;
-            _droneClient.Messages.CollectionChanged += Messages_CollectionChanged;
-
             this.DataContext = _droneClient;
+            _droneClient.Messages.CollectionChanged += Messages_CollectionChanged;
+            
+            mediaElem.SetSource(new ARDroneStreamSource("192.168.1.1"));
          }
 
         void mediaElem_CurrentStateChanged(object sender, RoutedEventArgs e)
         {
             Debug.WriteLine(mediaElem.CurrentState);
-        }
-
-        private void OnLoaded(object sender, RoutedEventArgs e)
-        {
-            mediaElem.SetSource(new ARDroneStreamSource("192.168.1.1"));
         }
 
         protected async override void OnNavigatedTo(NavigationEventArgs e)

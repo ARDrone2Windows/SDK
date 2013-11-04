@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Windows.System.Threading;
 
-using ARDrone2Client.Common.Configuration.Native;
+using ARDrone2Client.Common.Configuration;
 using ARDrone2Client.Common.Navigation;
 
 namespace ARDrone2Client.Common.Input
@@ -124,19 +124,19 @@ namespace ARDrone2Client.Common.Input
             }
             if (buttons.HasFlag(GamepadButtonFlags.DPadLeft))
             {
-                DroneClient.PlayAnimation(ARDRONE_ANIMATION.ARDRONE_ANIMATION_FLIP_LEFT);
+                DroneClient.PlayAnimation(FlightAnimationType.FlipLeft);
             }
             if (buttons.HasFlag(GamepadButtonFlags.DPadUp))
             {
-                DroneClient.PlayAnimation(ARDRONE_ANIMATION.ARDRONE_ANIMATION_FLIP_AHEAD);
+                DroneClient.PlayAnimation(FlightAnimationType.FlipAhead);
             }
             if (buttons.HasFlag(GamepadButtonFlags.DPadRight))
             {
-                DroneClient.PlayAnimation(ARDRONE_ANIMATION.ARDRONE_ANIMATION_FLIP_RIGHT);
+                DroneClient.PlayAnimation(FlightAnimationType.FlipRight);
             }
             if (buttons.HasFlag(GamepadButtonFlags.DPadDown))
             {
-                DroneClient.PlayAnimation(ARDRONE_ANIMATION.ARDRONE_ANIMATION_FLIP_BEHIND);
+                DroneClient.PlayAnimation(FlightAnimationType.FlipBehind);
             }
 
             _ControllerPreviousState = _ControllerState;

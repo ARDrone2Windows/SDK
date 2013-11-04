@@ -20,19 +20,12 @@ namespace ARDrone2Client.Common.Configuration
                     if (match.Success)
                     {
                         string key = match.Groups["key"].Value;
-                        IConfigurationItem item;
-                        if (configuration.Items.TryGetValue(key, out item))
-                        {
-                            string value = match.Groups["value"].Value;
-                            if (item.TryUpdate(value))
-                            {
-                                updated = true;
-                            }
-                        }
+                        string value = match.Groups["value"].Value;
+
+                        if (configuration.Items.ContainsKey(key))
+                            configuration.Items[key] = value;
                         else
-                        {
-                            //Trace.TraceWarning("Configuration key {0} is not supported by parser. Original line: {1}", key, line);
-                        }
+                            configuration.Items.Add(key, value);
                     }
                 }
             }
@@ -58,15 +51,14 @@ namespace ARDrone2Client.Common.Configuration
             if (match.Success)
             {
                 string key = match.Groups["key"].Value;
-                IConfigurationItem item;
-                if (configuration.Items.TryGetValue(key, out item))
-                {
-                    string value = match.Groups["value"].Value;
-                    if (item.TryUpdate(value))
-                    {
-                        result = true;
-                    }
-                }
+                string value = match.Groups["value"].Value;
+
+                if (configuration.Items.ContainsKey(key))
+                    configuration.Items[key] = value;
+                else
+                    configuration.Items.Add(key, value);
+                
+                result = true;
             }
             return result;
         }

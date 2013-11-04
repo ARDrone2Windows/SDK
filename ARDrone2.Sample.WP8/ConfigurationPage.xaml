@@ -20,16 +20,28 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
+        <StackPanel x:Name="OKPanel" Visibility="Collapsed" Background="Green" HorizontalAlignment="Center" Height="30" Margin="0" VerticalAlignment="Top" Width="500">
+            <TextBlock Text="Configuration sent successfully" Style="{StaticResource PhoneTextNormalStyle}"/>
+        </StackPanel>
+
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="AR.Drone sample" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="page name" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="Configuration" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="24,0,24,0">
+            <TextBlock FontWeight="SemiBold" Text="Altitude MAX" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0"/>
 
+            <Slider x:Name="AltitudeMax" IsEnabled="True" Minimum="0" Maximum="100" Margin="0,40,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Width="400" SmallChange="1"/>
+            <TextBlock x:Name="AltitudeMaxValue" Text="{Binding ElementName=AltitudeMax, Path=Value}" Margin="0,80,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <TextBlock x:Name="AltitudeMaxValueUnit" Text="meters" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,80,0,0"/>
         </Grid>
     </Grid>
-
+    <phone:PhoneApplicationPage.ApplicationBar>
+        <shell:ApplicationBar IsVisible="True" IsMenuEnabled="True">
+            <shell:ApplicationBarIconButton x:Name="send_button" Click="send_button_Click" IconUri="/Images/appbar.arrow.left.right.png" Text="Send config"></shell:ApplicationBarIconButton>
+        </shell:ApplicationBar>
+    </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>

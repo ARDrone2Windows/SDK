@@ -1,10 +1,19 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 
 namespace ARDrone2Client.Common.Configuration.Sections
 {
-    [StructLayout(LayoutKind.Sequential)]
-    public class UserboxSection
+    public class UserboxSection : SectionBase
     {
-        public readonly ReadWriteItem<string> UserboxCmd = new ReadWriteItem<string>("userbox:userbox_cmd");
+        public UserboxSection(DroneConfiguration configuration)
+            : base(configuration, "userbox")
+        {
+        }
+
+        public UserboxCommand Command
+        {
+            get { return GetUserboxCommand("userbox_cmd"); }
+            set { Set("userbox_cmd", value); }
+        }
     }
 }

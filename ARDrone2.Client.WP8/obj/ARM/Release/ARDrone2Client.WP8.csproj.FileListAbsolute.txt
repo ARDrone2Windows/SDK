@@ -1,7 +1,0 @@
-C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARDrone2Client.WP8\obj\ARM\Release\ARDrone2Client.WP8.csprojResolveAssemblyReference.cache
-C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARDrone2Client.WP8\Bin\ARM\Release\ARDrone2Client.WP8.dll
-C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARDrone2Client.WP8\Bin\ARM\Release\ARDrone2Client.WP8.pdb
-C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARDrone2Client.WP8\Bin\ARM\Release\ARDrone2VideoTcpWrapper.winmd
-C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARDrone2Client.WP8\Bin\ARM\Release\ARDrone2VideoTcpWrapper.pdb
-C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARDrone2Client.WP8\obj\ARM\Release\ARDrone2Client.WP8.dll
-C:\Users\aldanvy\Documents\VSProjects\AR.Drone\AR.Drone2.0\ARDrone2Client.WP8\obj\ARM\Release\ARDrone2Client.WP8.pdb

@@ -1,12 +1,28 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 
 namespace ARDrone2Client.Common.Configuration.Sections
 {
-    [StructLayout(LayoutKind.Sequential)]
-    public class GpsSection
+    public class GpsSection : SectionBase
     {
-        public readonly ReadOnlyItem<double> Latitude = new ReadOnlyItem<double>("gps:latitude");
-        public readonly ReadOnlyItem<double> Longitude = new ReadOnlyItem<double>("gps:longitude");
-        public readonly ReadOnlyItem<double> Altitude = new ReadOnlyItem<double>("gps:altitude");
+        public GpsSection(DroneConfiguration configuration)
+            : base(configuration, "gps")
+        {
+        }
+
+        public Double Latitude
+        {
+            get { return GetDouble("latitude"); }
+        }
+
+        public Double Longitude
+        {
+            get { return GetDouble("longitude"); }
+        }
+
+        public Double Altitude
+        {
+            get { return GetDouble("altitude"); }
+        }
     }
 }

@@ -1,10 +1,19 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 
 namespace ARDrone2Client.Common.Configuration.Sections
 {
-    [StructLayout(LayoutKind.Sequential)]
-    public class LedsSection
+    public class LedsSection : SectionBase
     {
-        public readonly ReadWriteItem<string> Animation = new ReadWriteItem<string>("leds:leds_anim");
+        public LedsSection(DroneConfiguration configuration)
+            : base(configuration, "leds")
+        {
+        }
+
+        public String Animation
+        {
+            get { return GetString("leds_anim"); }
+            set { Set("leds_anim", value); }
+        }
     }
 }

@@ -22,13 +22,14 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <Grid Grid.Row="0" Margin="0,10,0,10">
-            <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="SemiBold" Text="Battery" Width="80"  Margin="25,0,0,0"/>
-            <TextBlock x:Name="DroneBattery" HorizontalAlignment="Left" VerticalAlignment="Top" Width="50" Text="{Binding NavigationDataViewModel.BatteryPercentage}" Margin="105,0,0,0"/>
+            <TextBlock HorizontalAlignment="Left" FontWeight="SemiBold" Text="Battery" Width="80"  Margin="25,0,0,0"/>
+            <TextBlock HorizontalAlignment="Left" FontWeight="Normal" Text="{Binding NavigationDataViewModel.BatteryPercentage}" Width="50"  Margin="105,0,0,0"/>
 
             <TextBlock HorizontalAlignment="Left" VerticalAlignment="Top" FontWeight="SemiBold"  Text="Drone state"  Margin="180,0,0,0"/>
             <TextBlock x:Name="DroneStatus" HorizontalAlignment="Left" VerticalAlignment="Top" Text="{Binding NavigationDataViewModel.State}" Margin="300,0,0,0"/>
 
             <TextBlock x:Name="TextRecognizer" Text="Voice: unknown" HorizontalAlignment="Right" VerticalAlignment="Bottom" Foreground="Red" FontSize="16" FontWeight="Bold" Margin="0,0,25,0"/>
+            <TextBlock HorizontalAlignment="Left" FontWeight="SemiBold" Text="Battery" Width="80"  Margin="25,0,0,0"/>
         </Grid>
 
         <!--ContentPanel - place additional content here-->

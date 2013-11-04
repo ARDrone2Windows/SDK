@@ -108,20 +108,20 @@ namespace ARDrone2Client.Common.Workers
                     _DroneClient.PostCommand(Command.Watchdog());
                 }
 
-                if (navigationData.Masks.HasFlag(def_ardrone_state_mask_t.ARDRONE_COMMAND_MASK))
-                {
-                    if (consecutiveCommandMask >= 5)
-                    {
-                        _DroneClient.FlushConfigCommands();
-                        consecutiveCommandMask = 0;
-                    }
-                    else
-                        consecutiveCommandMask++;
-                }
-                else
-                {
-                    consecutiveCommandMask = 0;
-                }
+                //if (navigationData.Masks.HasFlag(def_ardrone_state_mask_t.ARDRONE_COMMAND_MASK))
+                //{
+                //    if (consecutiveCommandMask >= 5)
+                //    {
+                //        _DroneClient.FlushConfigCommands();
+                //        consecutiveCommandMask = 0;
+                //    }
+                //    else
+                //        consecutiveCommandMask++;
+                //}
+                //else
+                //{
+                //    consecutiveCommandMask = 0;
+                //}
                 //TODO gérer les autres MASKS (LOW Battery, Too much wind) pour la gestion d'alertes
 
             }

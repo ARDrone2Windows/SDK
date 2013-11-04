@@ -1,12 +1,30 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 
 namespace ARDrone2Client.Common.Configuration.Sections
 {
-    [StructLayout(LayoutKind.Sequential)]
-    public class PicSection
+    public class PicSection : SectionBase
     {
-        public readonly ReadWriteItem<int> UltrasoundFreq = new ReadWriteItem<int>("pic:ultrasound_freq");
-        public readonly ReadWriteItem<int> UltrasoundWatchdog = new ReadWriteItem<int>("pic:ultrasound_watchdog");
-        public readonly ReadOnlyItem<int> Version = new ReadOnlyItem<int>("pic:pic_version");
+        public PicSection(DroneConfiguration configuration)
+            : base(configuration, "pic")
+        {
+        }
+
+        public Int32 UltrasoundFreq
+        {
+            get { return GetInt32("ultrasound_freq"); }
+            set { Set("ultrasound_freq", value); }
+        }
+
+        public Int32 UltrasoundWatchdog
+        {
+            get { return GetInt32("ultrasound_watchdog"); }
+            set { Set("ultrasound_watchdog", value); }
+        }
+
+        public Int32 Version
+        {
+            get { return GetInt32("pic_version"); }
+        }
     }
 }

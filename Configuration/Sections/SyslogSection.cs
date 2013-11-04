@@ -1,12 +1,31 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 
 namespace ARDrone2Client.Common.Configuration.Sections
 {
-    [StructLayout(LayoutKind.Sequential)]
-    public class SyslogSection
+    public class SyslogSection : SectionBase
     {
-        public readonly ReadWriteItem<int> Output = new ReadWriteItem<int>("syslog:output");
-        public readonly ReadWriteItem<int> MaxSize = new ReadWriteItem<int>("syslog:max_size");
-        public readonly ReadWriteItem<int> NbFiles = new ReadWriteItem<int>("syslog:nb_files");
+        public SyslogSection(DroneConfiguration configuration)
+            : base(configuration, "syslog")
+        {
+        }
+
+        public Int32 Output
+        {
+            get { return GetInt32("output"); }
+            set { Set("output", value); }
+        }
+
+        public Int32 MaxSize
+        {
+            get { return GetInt32("max_size"); }
+            set { Set("max_size", value); }
+        }
+
+        public Int32 NbFiles
+        {
+            get { return GetInt32("nb_files"); }
+            set { Set("nb_files", value); }
+        }
     }
 }

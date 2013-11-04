@@ -1,6 +1,0 @@
-﻿<Deployment xmlns="http://schemas.microsoft.com/client/2007/deployment" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" EntryPointAssembly="ARDrone2.WP8Sample" EntryPointType="ARDrone2.WP8Sample.App" RuntimeVersion="4.7.50308.0">
-  <Deployment.Parts>
-    <AssemblyPart x:Name="ARDrone2.WP8Sample" Source="ARDrone2.WP8Sample.dll" />
-    <AssemblyPart x:Name="ARDrone2Client.WP8" Source="ARDrone2Client.WP8.dll" />
-  </Deployment.Parts>
-</Deployment>

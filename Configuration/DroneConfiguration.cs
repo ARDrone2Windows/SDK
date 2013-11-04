@@ -1,77 +1,81 @@
 ﻿using System;
-using System.Reflection;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Text.RegularExpressions;
+
 using ARDrone2Client.Common.Configuration.Sections;
 
 namespace ARDrone2Client.Common.Configuration
 {
     public class DroneConfiguration : INetworkConfiguration
     {
-        public readonly ControlSection Control;
-        public readonly CustomSection Custom;
-        public readonly DetectSection Detect;
+        private static readonly Regex ReKeyValue = new Regex(@"(?<key>\w+:\w+) = (?<value>.*)");
+
+        private readonly Dictionary<string, string> _items;
+        private readonly Queue<KeyValuePair<string, string>> _changes;
+
         public readonly GeneralSection General;
-        public readonly GpsSection Gps;
-        public readonly LedsSection Leds;
+        public readonly ControlSection Control;
         public readonly NetworkSection Network;
         public readonly PicSection Pic;
+        public readonly VideoSection Video;
+        public readonly LedsSection Leds;
+        public readonly DetectSection Detect;
         public readonly SyslogSection Syslog;
         public readonly UserboxSection Userbox;
-        public readonly VideoSection Video;
-
-        private readonly Dictionary<string, IConfigurationItem> _items;
+        public readonly GpsSection Gps;
+        public readonly CustomSection Custom;
 
         public DroneConfiguration()
         {
+            _items = new Dictionary<string, string>();
+            _changes = new Queue<KeyValuePair<string, string>>();
+            
             DroneHostname = "192.168.1.1";
 
-            General = new GeneralSection();
-            Control = new ControlSection();
-            Network = new NetworkSection();
-            Pic = new PicSection();
-            Video = new VideoSection();
-            Leds = new LedsSection();
-            Detect = new DetectSection();
-            Syslog = new SyslogSection();
-            Userbox = new UserboxSection();
-            Gps = new GpsSection();
-            Custom = new CustomSection();
-
-            _items = GetItems(General)
-                .Concat(GetItems(Control))
-                .Concat(GetItems(Network))
-                .Concat(GetItems(Pic))
-                .Concat(GetItems(Video))
-                .Concat(GetItems(Leds))
-                .Concat(GetItems(Detect))
-                .Concat(GetItems(Syslog))
-                .Concat(GetItems(Userbox))
-                .Concat(GetItems(Gps))
-                .Concat(GetItems(Custom))
-                .ToDictionary(x => x.Key);
+            General = new GeneralSection(this);
+            Control = new ControlSection(this);
+            Network = new NetworkSection(this);
+            Pic = new PicSection(this);
+            Video = new VideoSection(this);
+            Leds = new LedsSection(this);
+            Detect = new DetectSection(this);
+            Syslog = new SyslogSection(this);
+            Userbox = new UserboxSection(this);
+            Gps = new GpsSection(this);
+            Custom = new CustomSection(this);
         }
 
-        public Dictionary<string, IConfigurationItem> Items
+        public Dictionary<string, string> Items
         {
             get { return _items; }
         }
 
+        public Queue<KeyValuePair<string, string>> Changes
+        {
+            get { return _changes; }
+        }
+
         public string DroneHostname { get; set; }
 
-        private static IEnumerable<IConfigurationItem> GetItems(object section)
+        public static DroneConfiguration Parse(string input)
         {
-            Type type = section.GetType();
+            var configuration = new DroneConfiguration();
 
-            //IEnumerable<IConfigurationItem> items =
-            //    type.GetFields()
-            //        .Where(x => typeof (IConfigurationItem).IsAssignableFrom(x.FieldType))
-            //        .Select(x => (IConfigurationItem) x.GetValue(section));
-            IEnumerable<IConfigurationItem> items =
-                type.GetTypeInfo().DeclaredFields
-                    .Where(x => typeof(IConfigurationItem).GetTypeInfo().IsAssignableFrom(x.FieldType.GetTypeInfo()))
-                    .Select(x => (IConfigurationItem)x.GetValue(section));
-                        return items;
-         }
+            MatchCollection matches = ReKeyValue.Matches(input);
+            foreach (Match match in matches)
+            {
+                string key = match.Groups["key"].Value;
+                string value = match.Groups["value"].Value;
+                configuration._items.Add(key, value);
+            }
+            return configuration;
+        }
+
+        public static string NewId()
+        {
+            return Guid.NewGuid().ToString("N").Substring(0, 8);
+        }
     }
 }

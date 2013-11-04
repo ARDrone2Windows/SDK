@@ -1,24 +1,99 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
 
 namespace ARDrone2Client.Common.Configuration.Sections
 {
-    [StructLayout(LayoutKind.Sequential)]
-    public class VideoSection
+    public class VideoSection : SectionBase
     {
-        public readonly ReadOnlyItem<int> CamifFps = new ReadOnlyItem<int>("video:camif_fps");
-        public readonly ReadOnlyItem<int> CodecFps = new ReadOnlyItem<int>("video:codec_fps");
-        public readonly ReadOnlyItem<int> CamifBuffers = new ReadOnlyItem<int>("video:camif_buffers");
-        public readonly ReadOnlyItem<int> Trackers = new ReadOnlyItem<int>("video:num_trackers");
-        public readonly ReadWriteItem<int> Codec = new ReadWriteItem<int>("video:video_codec");
-        public readonly ReadOnlyItem<int> Slices = new ReadOnlyItem<int>("video:video_slices");
-        public readonly ReadOnlyItem<int> LiveSocket = new ReadOnlyItem<int>("video:video_live_socket");
-        public readonly ReadOnlyItem<int> StorageSpace = new ReadOnlyItem<int>("video:video_storage_space");
-        public readonly ReadOnlyItem<int> Bitrate = new ReadOnlyItem<int>("video:bitrate");
-        public readonly ReadOnlyItem<int> MaxBitrate = new ReadOnlyItem<int>("video:max_bitrate");
-        public readonly ReadOnlyItem<int> BitrateCtrlMode = new ReadOnlyItem<int>("video:bitrate_ctrl_mode");
-        public readonly ReadOnlyItem<int> BitrateStorage = new ReadOnlyItem<int>("video:bitrate_storage");
-        public readonly ReadWriteItem<VideoChannelType> Channel = new ReadWriteItem<VideoChannelType>("video:video_channel");
-        public readonly ReadWriteItem<bool> OnUsb = new ReadWriteItem<bool>("video:video_on_usb");
-        public readonly ReadWriteItem<int> FileIndex = new ReadWriteItem<int>("video:video_file_index");
+        public VideoSection(DroneConfiguration configuration)
+            : base(configuration, "video")
+        {
+        }
+
+        public Int32 CamifFps
+        {
+            get { return GetInt32("camif_fps"); }
+        }
+
+        public Int32 CodecFps
+        {
+            get { return GetInt32("codec_fps"); }
+            set { Set("codec_fps", value); }
+        }
+
+        public Int32 CamifBuffers
+        {
+            get { return GetInt32("camif_buffers"); }
+        }
+
+        public Int32 Trackers
+        {
+            get { return GetInt32("num_trackers"); }
+        }
+
+        public VideoCodecType Codec
+        {
+            get { return GetEnum<VideoCodecType>("video_codec"); }
+            set { SetEnum<VideoCodecType>("video_codec", value); }
+        }
+
+        public Int32 Slices
+        {
+            get { return GetInt32("video_slices"); }
+            set { Set("video_slices", value); }
+        }
+
+        public Int32 LiveSocket
+        {
+            get { return GetInt32("video_live_socket"); }
+            set { Set("video_live_socket", value); }
+        }
+
+        public Int32 StorageSpace
+        {
+            get { return GetInt32("video_storage_space"); }
+        }
+
+        public Int32 Bitrate
+        {
+            get { return GetInt32("bitrate"); }
+            set { Set("bitrate", value); }
+        }
+
+        public Int32 MaxBitrate
+        {
+            get { return GetInt32("max_bitrate"); }
+            set { Set("max_bitrate", value); }
+        }
+
+        public VideoBitrateControlMode BitrateCtrlMode
+        {
+            get { return GetEnum<VideoBitrateControlMode>("bitrate_ctrl_mode"); }
+            set { SetEnum<VideoBitrateControlMode>("bitrate_ctrl_mode", value); }
+        }
+
+        public Int32 BitrateStorage
+        {
+            get { return GetInt32("bitrate_storage"); }
+            set { Set("bitrate_storage", value); }
+        }
+
+        public VideoChannelType Channel
+        {
+            get { return GetEnum<VideoChannelType>("video_channel"); }
+            set { SetEnum<VideoChannelType>("video_channel", value); }
+        }
+
+        public Boolean OnUsb
+        {
+            get { return GetBoolean("video_on_usb"); }
+            set { Set("video_on_usb", value); }
+        }
+
+        public Int32 FileIndex
+        {
+            get { return GetInt32("video_file_index"); }
+            set { Set("video_file_index", value); }
+        }
     }
 }

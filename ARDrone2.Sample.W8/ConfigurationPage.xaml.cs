@@ -42,22 +42,23 @@ namespace ARDrone2.Sample
         /// property is typically used to configure the page.</param>
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-                CollectionViewSource source = new CollectionViewSource();
-                source.Source = _droneClient.ConfigurationSectionsViewModel;
-                source.IsSourceGrouped = true;
-                source.ItemsPath = new PropertyPath("ConfigItems");
-                configItems.SetBinding(GridView.ItemsSourceProperty, new Binding() { Source = source });
-                int altitudeMax = _droneClient.Configuration.Control.altitude_max.Value;
+                //CollectionViewSource source = new CollectionViewSource();
+                //source.Source = _droneClient.ConfigurationSectionsViewModel;
+                //source.IsSourceGrouped = true;
+                //source.ItemsPath = new PropertyPath("ConfigItems");
+                //configItems.SetBinding(GridView.ItemsSourceProperty, new Binding() { Source = source });
+                
+                int altitudeMax = _droneClient.Configuration.Control.AltitudeMax;
                 AltitudeMax.Maximum = 100;
                 AltitudeMax.Value = altitudeMax / 1000;
                 AltitudeMax.StepFrequency = Math.Round(AltitudeMax.Maximum / 100, 1);
             }
 
-        private void AltitudeMax_PointerReleased(object sender, PointerRoutedEventArgs e)
+        private async void AltitudeMax_PointerReleased(object sender, PointerRoutedEventArgs e)
         {
             int newValue = (int)AltitudeMax.Value * 1000;
-            Debug.WriteLine("newvalue" + newValue.ToString());
-            _droneClient.SetConfiguration(_droneClient.Configuration.Control.altitude_max.Set(newValue).ToCommand());
+            _droneClient.Configuration.Control.AltitudeMax = newValue;
+            await _droneClient.SendConfiguration();
         }
     }
 }

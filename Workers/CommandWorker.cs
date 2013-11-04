@@ -107,7 +107,7 @@ namespace ARDrone2Client.Common.Workers
         internal void EnqueueConfigCommand(string command)
         {
             _ConfigCommandList.Enqueue(command);
-            Debug.WriteLine("EnqueueConfigCommand=" + command);
+            //Debug.WriteLine("EnqueueConfigCommand=" + command);
         }
 
         internal void FlushConfigCommands()
@@ -203,31 +203,30 @@ namespace ARDrone2Client.Common.Workers
                     }
                     break;
                 case RequestedState.Initialize:
-                    //TODO Check if Unkown is the right state
                     if (state.HasFlag(NavigationState.Unknown) || state.HasFlag(NavigationState.Landed))
                     {
-                        //if never received at least one Navdata message fome the AR.Drone
-                        if (!state.HasFlag(NavigationState.Command))
-                        {
-                            //Step 1                            
-                            _NormalPriorityCommandQueue.Enqueue(DroneClient.Configuration.General.NavdataDemo.Set(true).ToCommand());
-                            DroneClient.SendMessageToUI("Trying to initialize Drone connection - Step 1");
-                        }
-                        else
-                        {
-                            //Step 2    
-                            if (!isInitialized)
-                            {
-                                DroneClient.SendMessageToUI("Trying to initialize Drone connection - Step 2");
-                                _NormalPriorityCommandQueue.Enqueue(Command.Control(ControlMode.AckControlMode));
-                                isInitialized = true;
-                            }
-                            //Step 3
-                            else
-                            {
+                        ////if never received at least one Navdata message fome the AR.Drone
+                        //if (!state.HasFlag(NavigationState.Command))
+                        //{
+                        //    //Step 1                            
+                        //    _NormalPriorityCommandQueue.Enqueue(DroneClient.Configuration.General.NavdataDemo.Set(true).ToCommand());
+                        //    DroneClient.SendMessageToUI("Trying to initialize Drone connection - Step 1");
+                        //}
+                        //else
+                        //{
+                        //    //Step 2    
+                        //    if (!isInitialized)
+                        //    {
+                        //        DroneClient.SendMessageToUI("Trying to initialize Drone connection - Step 2");
+                        //        _NormalPriorityCommandQueue.Enqueue(Command.Control(ControlMode.AckControlMode));
+                        //        isInitialized = true;
+                        //    }
+                        //    //Step 3
+                        //    else
+                        //    {
                                 DroneClient.RequestedState = RequestedState.None;
-                            }
-                        }
+                        //    }
+                        //}
                     }
                     break;
                 case RequestedState.GetConfiguration:
@@ -260,7 +259,7 @@ namespace ARDrone2Client.Common.Workers
             }
             if (buffer.Length == 0)
                 return;
-            //TODO améliorer le code pour gérer la fermeture prématurée du socket
+
             try
             {
                 // We send the command
@@ -274,9 +273,6 @@ namespace ARDrone2Client.Common.Workers
                 Debug.WriteLine(ex.Message);
             }
 
-            //A faire en cas state data bootstrap
-            //TODO regarder si c'est vraiment nécessaire
-            // envoyer ProgressiveCommand(ProgressiveMode.Hovering, 0, 0, 0, 0) semble suffisant
             if (false != true)
             {
                 // We send a keep alive command
