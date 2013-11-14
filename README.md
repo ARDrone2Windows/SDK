@@ -5,6 +5,8 @@ You will find in this place all the materials let to your disposal, to participa
 -  If you are from France email us at Ardrone2windows@microsoft.com more details [here (french)](http://www.anthonyvirapin.com/concours-parrot-microsoft/)
 -  If you are from Central or Eastern Europe go straight ahead to http://fly.promorc.com/, you will find all the information you need to know over there.
 
+<!--<img src="https://github.com/ARDrone2Windows/SDK/blob/master/Images/FreeFlight.png?raw=true" />-->
+
 ### Content
 In this first version of our SDK you will find
 - Core components to control the drone from WIndows 8 or Windows Phone 8.
