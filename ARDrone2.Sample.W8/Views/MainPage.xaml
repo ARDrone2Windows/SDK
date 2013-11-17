@@ -1,0 +1,377 @@
+﻿<Page x:Class="ARDrone2.Sample.MainPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:local="using:AR.Drone2.Sample.W8"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:helpers="using:AR.Drone2.Sample.W8.Helpers"
+      xmlns:ctrls="using:AR.Drone2.Sample.W8.Controls"
+      mc:Ignorable="d"
+      x:Name="pageRoot"
+      NavigationCacheMode="Disabled"
+      DataContext="{Binding MainPageViewModel, Source={StaticResource ViewModelLocator}}"
+      d:DataContext="{d:DesignData /SampleData/MainPageViewModelSampleData1.xaml}">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="Fill"
+                        ImageSource="ms-appx:///Assets/Background.jpg" />
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="130" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <Button x:Name="backButton"
+                Click="GoBack"
+                IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}"
+                Style="{StaticResource BackButtonStyle}"
+                FontSize="64"
+                Width="Auto"
+                Height="Auto"
+                Margin="36,1,36,0"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left" />
+
+        <Grid VerticalAlignment="Center"
+              Margin="120,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Image Grid.Column="1"
+                   HorizontalAlignment="Left"
+                   Source="/Assets/MainLogo.png"
+                   Margin="-15,0,0,0"
+                   Stretch="None" />
+            <TextBlock HorizontalAlignment="Left"
+                               TextWrapping="Wrap"
+                               Text="beta"
+                               VerticalAlignment="Center"
+                               FontSize="30"
+                               Margin="548,25,0,10"
+                               FontFamily="Segoe UI"
+                               FontWeight="Bold" Grid.Column="1" />
+
+            <Image x:Name="imgConnection"
+                   Visibility="Collapsed"
+                   Grid.Column="2"
+                   HorizontalAlignment="Center"
+                   Source="/Assets/Ok.png"
+                   Margin="0,0,40,0"
+                   Height="50" />
+
+            <ProgressRing x:Name="progressConnection"
+                          Grid.Column="2"
+                          Foreground="{StaticResource ParrotBrush}"
+                          HorizontalAlignment="Center"
+                          IsActive="True"
+                          Margin="0,0,40,0"
+                          Height="50"
+                          Width="50" />
+        </Grid>
+        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                      HorizontalScrollMode="Enabled"
+                      Grid.Row="1"
+                      VerticalAlignment="Stretch"
+                      VerticalScrollBarVisibility="Disabled"
+                      VerticalScrollMode="Disabled">
+            <Grid Style="{StaticResource LayoutRootStyle}"
+                  Background="{x:Null}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Column="1"
+                            Orientation="Horizontal">
+
+                    <Image Source="ms-appx:///Assets/graph-titre1.png"
+                           Stretch="None" />
+
+                    <TextBlock HorizontalAlignment="Left"
+                               TextWrapping="Wrap"
+                               Text="My Flight"
+                               VerticalAlignment="Center"
+                               FontSize="30"
+                               Margin="10,0,0,0"
+                               FontFamily="Segoe UI"
+                               FontWeight="Bold" />
+                </StackPanel>
+                <Grid HorizontalAlignment="Left"
+                      VerticalAlignment="Top"
+                      Margin="0"
+                      Grid.Row="2"
+                      Grid.Column="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Button Style="{StaticResource EmptyButtonStyle}"
+                            Padding="0"
+                            BorderThickness="0"
+                            Click="GoToPilotagePageButton_OnClick"
+                            Margin="0,0,3,0">
+                        <ctrls:LiveTileControl Width="250"
+                                               Height="250">
+                            <ctrls:LiveTileControl.FrontContent>
+                                <Grid>
+                                    <Rectangle Fill="Gray"
+                                               Opacity="0.6" />
+                                    <Image Source="/Assets/Aeroplane.png"
+                                           Stretch="None"
+                                           Width="150" />
+                                </Grid>
+                            </ctrls:LiveTileControl.FrontContent>
+                            <ctrls:LiveTileControl.BackContent>
+                                <Border Background="Gray">
+                                    <TextBlock Text="FLYING"
+                                               Foreground="White"
+                                               Style="{StaticResource PageHeaderTextStyle}"
+                                               HorizontalAlignment="Right"
+                                               VerticalAlignment="Bottom"
+                                               FontSize="32"
+                                               Height="60"
+                                               Margin="15,0,15,0"
+                                               FontWeight="Bold" />
+                                </Border>
+
+                            </ctrls:LiveTileControl.BackContent>
+                        </ctrls:LiveTileControl>
+
+                    </Button>
+                    <Button Style="{StaticResource EmptyButtonStyle}"
+                            Grid.Column="1"
+                            Padding="0"
+                            BorderThickness="0"
+                            Click="OnConfigTapped"
+                            Margin="3,0,0,0">
+                        <ctrls:LiveTileControl Width="250"
+                                               Height="250">
+                            <ctrls:LiveTileControl.FrontContent>
+                                <Grid>
+                                    <Rectangle Width="250"
+                                               Height="250"
+                                               Fill="Gray"
+                                               Opacity="0.6" />
+                                    <Image Source="/Assets/Settings.png"
+                                           Stretch="None"
+                                           Width="150" />
+                                </Grid>
+                            </ctrls:LiveTileControl.FrontContent>
+                            <ctrls:LiveTileControl.BackContent>
+                                <Border Background="Gray">
+
+                                    <TextBlock Text="PARAMETERS"
+                                               Foreground="White"
+                                               Style="{StaticResource PageHeaderTextStyle}"
+                                               HorizontalAlignment="Right"
+                                               VerticalAlignment="Bottom"
+                                               FontSize="32"
+                                               Height="60"
+                                               Margin="15,0,15,0"
+                                               FontWeight="Bold" />
+                                </Border>
+                            </ctrls:LiveTileControl.BackContent>
+                        </ctrls:LiveTileControl>
+                    </Button>
+                    <StackPanel Grid.Row="1"
+                                Margin="0,30,0,0"
+                                Grid.ColumnSpan="2">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="ms-appx:///Assets/graph-titre1.png"
+                                   Stretch="None" />
+
+                            <TextBlock HorizontalAlignment="Left"
+                                       TextWrapping="Wrap"
+                                       Text="Informations"
+                                       VerticalAlignment="Center"
+                                       FontSize="30"
+                                       Margin="10,0,0,0"
+                                       FontFamily="Segoe UI"
+                                       FontWeight="Bold" />
+                        </StackPanel>
+                        <Button Style="{StaticResource EmptyButtonStyle}"
+                            BorderThickness="0"
+                                Margin="0,6,0,0" Height="185">
+                            <Grid>
+                                <Rectangle Fill="Gray"
+                                       Opacity="0.6" />
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="/Assets/Sun.png"
+                                           Stretch="None" Margin="10,0,0,0" />
+
+                                    <TextBlock Text="SUNNY"
+                                           Foreground="White"
+                                           Style="{StaticResource PageHeaderTextStyle}"
+                                               HorizontalAlignment="Right"
+                                           VerticalAlignment="Center"
+                                           FontSize="29.333"
+                                           RenderTransformOrigin="0.5,0.5"
+                                           Grid.Row="1"
+                                               Margin="0,-15,0,0">
+                                        <TextBlock.RenderTransform>
+                                            <CompositeTransform />
+                                        </TextBlock.RenderTransform>
+                                    </TextBlock>
+                                    <Image Source="/Assets/Direction.png"
+                                       RenderTransformOrigin="0.5,0.5"
+                                       Grid.Column="1"
+                                       UseLayoutRounding="False"
+                                       d:LayoutRounding="Auto"
+                                       Margin="0,0,0,11"
+                                       Stretch="None">
+                                        <Image.RenderTransform>
+                                            <CompositeTransform Rotation="45" />
+                                        </Image.RenderTransform>
+                                    </Image>
+                                    <TextBlock Text="N-E"
+                                           Foreground="White"
+                                           Style="{StaticResource PageHeaderTextStyle}"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontSize="29.333"
+                                           Grid.Column="1"
+                                           RenderTransformOrigin="0.5,0.5"
+                                           Grid.Row="1"
+                                               Margin="0,-15,0,0">
+                                        <TextBlock.RenderTransform>
+                                            <CompositeTransform />
+                                        </TextBlock.RenderTransform>
+                                    </TextBlock>
+                                    <Image Source="ms-appx:///Assets/ico-vent.png"
+                                       Grid.Column="2"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       Stretch="None" />
+                                    <TextBlock Text="5 KM/H"
+                                           Foreground="White"
+                                           Style="{StaticResource PageHeaderTextStyle}"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"
+                                           FontSize="29.333"
+                                           Grid.Column="2"
+                                           RenderTransformOrigin="0.5,0.5"
+                                               Margin="0,-15,0,0"
+                                           Grid.Row="1">
+                                        <TextBlock.RenderTransform>
+                                            <CompositeTransform />
+                                        </TextBlock.RenderTransform>
+                                    </TextBlock>
+                                </Grid>
+                            </Grid>
+                        </Button>
+
+                    </StackPanel>
+                </Grid>
+                <StackPanel Grid.Column="3"
+                            Orientation="Horizontal">
+                    <Image Source="ms-appx:///Assets/graph-titre2.png"
+                           Stretch="None" />
+                    <TextBlock HorizontalAlignment="Left"
+                               TextWrapping="Wrap"
+                               Text="Last flights"
+                               VerticalAlignment="Center"
+                               FontSize="30"
+                               Margin="10,0,0,0"
+                               FontFamily="Segoe UI"
+                               FontWeight="Bold" />
+                </StackPanel>
+                <ListView Grid.RowSpan="2"
+                          Grid.Row="1"
+                          Grid.Column="3"
+                          SelectionMode="None"
+                          IsSwipeEnabled="false"
+                          IsItemClickEnabled="True"
+                          ScrollViewer.HorizontalScrollMode="Disabled"
+                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                          ScrollViewer.VerticalScrollMode="Disabled"
+                          ItemsSource="{Binding Flights}"
+                          VerticalAlignment="Top"
+                          HorizontalContentAlignment="Stretch"
+                          VerticalContentAlignment="Stretch"
+                          ItemContainerStyle="{StaticResource ListViewLightItemStyle}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Button Style="{StaticResource EmptyButtonStyle}"
+                                    Width="270"
+                                    Height="160"
+                                    Click="GoToFlightPageOnClick">
+                                <ctrls:FlipControl IsHitTestVisible="False">
+                                    <ctrls:FlipControl.MainView>
+                                        <Grid>
+                                            <Image Source="{Binding Pictures[0].Source}"
+                                                   Stretch="UniformToFill" />
+                                        </Grid>
+                                    </ctrls:FlipControl.MainView>
+                                    <ctrls:FlipControl.AlternateView>
+                                        <Grid Background="LightGray"
+                                              Opacity="0.7"
+                                              VerticalAlignment="Stretch">
+                                            <StackPanel VerticalAlignment="Top"
+                                                        HorizontalAlignment="Left"
+                                                        Margin="10,10,0,0">
+                                                <TextBlock>
+                                                    <Run Text="DURATION" />
+                                                    <Run Text="{Binding Duration}" />
+                                                </TextBlock>
+                                                <TextBlock>
+                                                    <Run Text="ALTITUDE MIN" />
+                                                    <Run Text="{Binding AltitudeMin}" />
+                                                </TextBlock>
+                                                <TextBlock>
+                                                    <Run Text="ALTITUDE MAX" />
+                                                    <Run Text="{Binding AltitudeMax}" />
+                                                </TextBlock>
+                                            </StackPanel>
+                                            <TextBlock Text="{Binding Name}"
+                                                       Foreground="#CCFF4C00"
+                                                       FontWeight="Bold"
+                                                       HorizontalAlignment="Right"
+                                                       VerticalAlignment="Bottom"
+                                                       FontSize="20"
+                                                       Height="60"
+                                                       Margin="0,0,10,-20" />
+                                        </Grid>
+                                    </ctrls:FlipControl.AlternateView>
+                                </ctrls:FlipControl>
+                            </Button>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapGrid Orientation="Vertical"
+                                      Margin="0, 0, 110, 0">
+                                <WrapGrid.ChildrenTransitions>
+                                    <TransitionCollection>
+                                        <EntranceThemeTransition />
+                                    </TransitionCollection>
+                                </WrapGrid.ChildrenTransitions>
+                            </WrapGrid>
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                </ListView>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
+</Page>

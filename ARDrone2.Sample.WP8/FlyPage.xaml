@@ -6,6 +6,7 @@
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:Input="clr-namespace:ARDrone2Client.WP8.Input;assembly=ARDrone2.Client.WP8"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -35,7 +36,14 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <MediaElement x:Name="mediaElem" BufferingTime="00:00:00.100" />
-            <Button Name="TakeOffButton" IsEnabled="False" Content="Take off" HorizontalAlignment="Center" Margin="10,0,0,0" VerticalAlignment="Bottom" Click="Button_Click"/>
+            <Button x:Name="FlatTrimButton" IsEnabled="False" Content="Flat Trim" HorizontalAlignment="Left" Margin="0,0,0,0" VerticalAlignment="Top" Click="FlatTrim_Click"/>
+            <Button x:Name="ResetEmergencyButton" IsEnabled="False" Content="Emergency" HorizontalAlignment="Left" Margin="135,0,0,0" VerticalAlignment="Top" Click="ResetEmergency_Click"/>
+            <Button x:Name="TakePictureButton" IsEnabled="False" Content="Picture" HorizontalAlignment="Left" Margin="300,0,0,0" VerticalAlignment="Top" Click="Picture_Click"/>
+            <Button x:Name="RecordVideoButton" IsEnabled="False" Content="Rec" HorizontalAlignment="Left" Margin="420,0,0,0" VerticalAlignment="Top" Click="Video_Click"/>
+            <Button x:Name="FlipButton" IsEnabled="False" Content="Flip" HorizontalAlignment="Left" Margin="530,0,0,0" VerticalAlignment="Top" Click="Flip_Click"/>
+            <Button x:Name="TakeOffButton" IsEnabled="False" Content="Take off" HorizontalAlignment="Center" Margin="10,0,0,0" VerticalAlignment="Bottom" Click="TakeOff_Click"/>
+            <Input:JoystickControl x:Name="RollPitchJoystick" Height="150" Width="150" HorizontalAlignment="Left" Margin="25,0,0,25" VerticalAlignment="Bottom"/>
+            <Input:JoystickControl x:Name="YawGazJoystick" Height="150" Width="150" HorizontalAlignment="Right" Margin="0,0,25,25" VerticalAlignment="Bottom"/>
         </Grid>
     </Grid>
 

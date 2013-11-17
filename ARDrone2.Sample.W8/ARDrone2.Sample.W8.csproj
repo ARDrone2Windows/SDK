@@ -20,6 +20,8 @@
     <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
     <AppxPackageDir>C:\Tmp\</AppxPackageDir>
     <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -114,7 +116,7 @@
     </ProjectReference>
     <ProjectReference Include="..\ARDrone2Video\ARDrone2Video.vcxproj">
       <Project>{dbbb5103-4579-4889-aeba-793c89745af9}</Project>
-      <Name>ARDrone2Video %28Visual Studio 2012%29</Name>
+      <Name>ARDrone2Video</Name>
       <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
@@ -126,15 +128,31 @@
     <Compile Include="Common\BooleanNegationConverter.cs" />
     <Compile Include="Common\BooleanToVisibilityConverter.cs" />
     <Compile Include="Common\LayoutAwarePage.cs" />
+    <Compile Include="Common\RelayCommand.cs" />
     <Compile Include="Common\RichTextColumns.cs" />
     <Compile Include="Common\SuspensionManager.cs" />
-    <Compile Include="ConfigurationPage.xaml.cs">
+    <Compile Include="Controls\BatteryGauge.xaml.cs">
+      <DependentUpon>BatteryGauge.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\ClipToBoundControl.cs" />
+    <Compile Include="Controls\FlipControl.cs" />
+    <Compile Include="Controls\LiveTileControl.cs" />
+    <Compile Include="ViewModelLocator.cs" />
+    <Compile Include="Views\FlightPageViewModel.cs" />
+    <Compile Include="Model\FlightData.cs" />
+    <Compile Include="Model\FlightPictureData.cs" />
+    <Compile Include="Model\FlightVideoData.cs" />
+    <Compile Include="Views\ConfigurationPage.xaml.cs">
       <DependentUpon>ConfigurationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="FlyPage.xaml.cs">
-      <DependentUpon>FlyPage.xaml</DependentUpon>
+    <Compile Include="Views\FlightPage.xaml.cs">
+      <DependentUpon>FlightPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MainPage.xaml.cs">
+    <Compile Include="Views\PilotagePage.xaml.cs">
+      <DependentUpon>PilotagePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainPageViewModel.cs" />
+    <Compile Include="Views\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -144,12 +162,60 @@
       <SubType>Designer</SubType>
     </AppxManifest>
     <None Include="AR.Drone2.Sample_TemporaryKey.pfx" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Assets\Aeroplane.png" />
+    <Content Include="Assets\AltitudeMax.png" />
+    <Content Include="Assets\Background.jpg" />
+    <Content Include="Assets\Direction.png" />
+    <Content Include="Assets\Earth.png" />
+    <Content Include="Assets\graph-titre1.png" />
+    <Content Include="Assets\graph-titre2.png" />
+    <Content Include="Assets\History.png" />
+    <Content Include="Assets\Hotspots.png" />
+    <Content Include="Assets\ico-direction.png" />
+    <Content Include="Assets\ico-soleil.png" />
+    <Content Include="Assets\ico-vent-Bas.png" />
+    <Content Include="Assets\ico-vent-Haut.png" />
+    <Content Include="Assets\ico-vent.png" />
+    <Content Include="Assets\Ko.png" />
     <Content Include="Assets\Logo.png" />
+    <Content Include="Assets\MainLogo.png" />
+    <Content Include="Assets\Membres.png" />
+    <Content Include="Assets\Ok.png" />
+    <Content Include="Assets\Parrot\barre_bas.png" />
+    <Content Include="Assets\Parrot\barre_haut.png" />
+    <Content Include="Assets\Parrot\btn_emergency_normal.png" />
+    <Content Include="Assets\Parrot\btn_emergency_pressed.png" />
+    <Content Include="Assets\Parrot\btn_landing.png" />
+    <Content Include="Assets\Parrot\btn_landing_pressed.png" />
+    <Content Include="Assets\Parrot\btn_take_off_normal.png" />
+    <Content Include="Assets\Parrot\btn_take_off_pressed.png" />
+    <Content Include="Assets\Parrot\ff2.0_transparent_line_horizontal.png" />
+    <Content Include="Assets\Parrot\ff2.0_updater_ok.png" />
+    <Content Include="Assets\Pays.png" />
+    <Content Include="Assets\Photos.png" />
+    <Content Include="Assets\Play.png" />
+    <Content Include="Assets\Plus.png" />
+    <Content Include="Assets\Samples\Graphique.jpg" />
+    <Content Include="Assets\Samples\Image1.png" />
+    <Content Include="Assets\Samples\Image2.png" />
+    <Content Include="Assets\Samples\Image3.png" />
+    <Content Include="Assets\Samples\Video1.png" />
+    <Content Include="Assets\Samples\Video2.png" />
+    <Content Include="Assets\Samples\Video3.png" />
+    <Content Include="Assets\Settings.png" />
     <Content Include="Assets\SmallLogo.png" />
     <Content Include="Assets\SplashScreen.png" />
     <Content Include="Assets\StoreLogo.png" />
+    <Content Include="Assets\Strength.png" />
+    <Content Include="Assets\Sun.png" />
+    <Content Include="Assets\TempsVolTotal.png" />
+    <Content Include="Assets\Videos.png" />
+    <Content Include="Assets\VitesseMax.png" />
+    <Content Include="Assets\Vols.png" />
+    <Content Include="Assets\Weather.png" />
     <Content Include="Common\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -161,23 +227,45 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="ConfigurationPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="FlyPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MainPage.xaml">
+    <Page Include="Controls\BatteryGauge.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Themes\Generic.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Page>
+    <Page Include="Views\ConfigurationPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\FlightPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PilotagePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <DesignData Include="SampleData\MainPageViewModelSampleData1.xaml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="WinRTXamlToolkit">
+      <HintPath>..\packages\WinRTXamlToolkit.1.5.3.8\lib\netcore45\WinRTXamlToolkit.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\WindowsXaml\v$(VisualStudioVersion)\Microsoft.Windows.UI.Xaml.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

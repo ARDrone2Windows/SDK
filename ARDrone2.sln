@@ -32,7 +32,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ViewModel", "ViewModel", "{6A1A1017-3785-47B4-9224-E5E892068D2D}"
 	ProjectSection(SolutionItems) = preProject
 		ViewModel\BaseViewModel.cs = ViewModel\BaseViewModel.cs
-		ViewModel\ConfigurationViewModel.cs = ViewModel\ConfigurationViewModel.cs
 		ViewModel\NavigationDataViewModel.cs = ViewModel\NavigationDataViewModel.cs
 		ViewModel\SmartDispatcher.cs = ViewModel\SmartDispatcher.cs
 	EndProjectSection
@@ -175,7 +174,44 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{FE7226
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FTP", "FTP", "{C1FF26C8-A77E-4813-8CA9-4697531BA7E1}"
+	ProjectSection(SolutionItems) = preProject
+		FTP\FTPClient.cs = FTP\FTPClient.cs
+		FTP\FtpException.cs = FTP\FtpException.cs
+		FTP\FtpResponse.cs = FTP\FtpResponse.cs
+	EndProjectSection
+EndProject
 Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 9
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://infinitesquare.visualstudio.com/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = ARDrone2.Client.W8\\ARDrone2.Client.W8.csproj
+		SccProjectName1 = ARDrone2.Client.W8
+		SccLocalPath1 = ARDrone2.Client.W8
+		SccProjectUniqueName2 = ARDrone2.Client.WP8\\ARDrone2.Client.WP8.csproj
+		SccProjectName2 = ARDrone2.Client.WP8
+		SccLocalPath2 = ARDrone2.Client.WP8
+		SccProjectUniqueName3 = ARDrone2.Sample.W8\\ARDrone2.Sample.W8.csproj
+		SccProjectName3 = ARDrone2.Sample.W8
+		SccLocalPath3 = ARDrone2.Sample.W8
+		SccProjectUniqueName4 = ARDrone2.Sample.WP8\\ARDrone2.Sample.WP8.csproj
+		SccProjectName4 = ARDrone2.Sample.WP8
+		SccLocalPath4 = ARDrone2.Sample.WP8
+		SccProjectUniqueName5 = ARDrone2Video\\ARDrone2Video.vcxproj
+		SccProjectName5 = ARDrone2Video
+		SccLocalPath5 = ARDrone2Video
+		SccProjectUniqueName6 = ARDrone2VideoTcp\\ARDrone2VideoTcp.vcxproj
+		SccProjectName6 = ARDrone2VideoTcp
+		SccLocalPath6 = ARDrone2VideoTcp
+		SccProjectUniqueName7 = ARDrone2VideoTcp\\ARDrone2VideoTcpWP8.vcxproj
+		SccProjectName7 = ARDrone2VideoTcp
+		SccLocalPath7 = ARDrone2VideoTcp
+		SccProjectUniqueName8 = ARDrone2VideoTcpWrapper\\ARDrone2VideoTcpWrapper.vcxproj
+		SccProjectName8 = ARDrone2VideoTcpWrapper
+		SccLocalPath8 = ARDrone2VideoTcpWrapper
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|ARM = Debug|ARM

@@ -1,0 +1,1284 @@
+﻿<common:LayoutAwarePage x:Class="AR.Drone2.Sample.W8.Views.PilotagePage"
+                        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                        xmlns:common="using:ARDrone2.Sample.Common"
+                        xmlns:input="using:ARDrone2Client.Windows.Input"
+                        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                        xmlns:controls="using:AR.Drone2.Sample.W8.Controls"
+                        xmlns:viewModel="using:ARDrone2Client.Windows.ViewModel"
+                        mc:Ignorable="d"
+                        d:DesignHeight="768"
+                        d:DesignWidth="1366"
+                        Loaded="Page_OnLoaded">
+    <Page.Resources>
+        <viewModel:StringToFloatConverter x:Key="StringToFloatConverter" />
+        <CollectionViewSource x:Name="MessagesSource"
+                              Source="{Binding Messages}" />
+        <Style TargetType="Button">
+            <Setter Property="Background"
+                    Value="Transparent" />
+            <Setter Property="Foreground"
+                    Value="{StaticResource ButtonForegroundThemeBrush}" />
+            <Setter Property="BorderBrush"
+                    Value="{StaticResource ButtonBorderThemeBrush}" />
+            <Setter Property="BorderThickness"
+                    Value="{StaticResource ButtonBorderThemeThickness}" />
+            <Setter Property="Padding"
+                    Value="5,0" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Center" />
+            <Setter Property="VerticalAlignment"
+                    Value="Stretch" />
+            <Setter Property="FontFamily"
+                    Value="{StaticResource ContentControlThemeFontFamily}" />
+            <Setter Property="FontWeight"
+                    Value="SemiBold" />
+            <Setter Property="FontSize"
+                    Value="{StaticResource ControlContentThemeFontSize}" />
+            <Setter Property="VerticalContentAlignment"
+                    Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment"
+                    Value="Stretch" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+                                                                           Storyboard.TargetName="Border">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource ButtonPointerOverBackgroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                           Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource ButtonPointerOverForegroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+                                                                           Storyboard.TargetName="Border">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource ButtonPressedBackgroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                           Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource ButtonPressedForegroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity"
+                                                                           Storyboard.TargetName="Border">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="0.5" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="FocusStates">
+                                    <VisualState x:Name="Focused">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0"
+                                                             To="1"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             Storyboard.TargetName="FocusVisualWhite" />
+                                            <DoubleAnimation Duration="0"
+                                                             To="1"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             Storyboard.TargetName="FocusVisualBlack" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Unfocused" />
+                                    <VisualState x:Name="PointerFocused" />
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border x:Name="Border"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    Background="{TemplateBinding Background}"
+                                    Margin="0"
+                                    Padding="0">
+                                <ContentPresenter x:Name="ContentPresenter"
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                  ContentTransitions="{TemplateBinding ContentTransitions}"
+                                                  Content="{TemplateBinding Content}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                            </Border>
+                            <Rectangle x:Name="FocusVisualWhite"
+                                       IsHitTestVisible="False"
+                                       Opacity="0"
+                                       StrokeDashOffset="1.5"
+                                       StrokeEndLineCap="Square"
+                                       Stroke="{StaticResource FocusVisualWhiteStrokeThemeBrush}"
+                                       StrokeDashArray="1,1" />
+                            <Rectangle x:Name="FocusVisualBlack"
+                                       IsHitTestVisible="False"
+                                       Opacity="0"
+                                       StrokeDashOffset="0.5"
+                                       StrokeEndLineCap="Square"
+                                       Stroke="{StaticResource FocusVisualBlackStrokeThemeBrush}"
+                                       StrokeDashArray="1,1" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="TextBlockSymbol"
+               TargetType="TextBlock">
+            <Setter Property="FontSize"
+                    Value="35" />
+            <Setter Property="FontFamily"
+                    Value="segoe ui symbol" />
+            <Setter Property="Foreground"
+                    Value="{StaticResource ParrotBrush}" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+        </Style>
+        <Style x:Key="ImageButtonStyle"
+               TargetType="Button">
+            <Setter Property="Background"
+                    Value="Transparent" />
+            <Setter Property="Foreground"
+                    Value="{StaticResource ButtonForegroundThemeBrush}" />
+            <Setter Property="BorderBrush"
+                    Value="{StaticResource ButtonBorderThemeBrush}" />
+            <Setter Property="BorderThickness"
+                    Value="{StaticResource ButtonBorderThemeThickness}" />
+            <Setter Property="Padding"
+                    Value="12,4,12,4" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Left" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="FontFamily"
+                    Value="{StaticResource ContentControlThemeFontFamily}" />
+            <Setter Property="FontWeight"
+                    Value="SemiBold" />
+            <Setter Property="FontSize"
+                    Value="{StaticResource ControlContentThemeFontSize}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity"
+                                                                           Storyboard.TargetName="Border">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="0.9" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity"
+                                                                           Storyboard.TargetName="Border">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="0.7" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Opacity"
+                                                                           Storyboard.TargetName="Border">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="0.5" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="FocusStates">
+                                    <VisualState x:Name="Focused">
+                                        <Storyboard>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Unfocused" />
+                                    <VisualState x:Name="PointerFocused" />
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border x:Name="Border"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    Background="{TemplateBinding Background}"
+                                    Margin="0">
+                                <ContentPresenter x:Name="ContentPresenter"
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                  ContentTransitions="{TemplateBinding ContentTransitions}"
+                                                  Content="{TemplateBinding Content}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="OneStyle"
+               TargetType="TextBlock">
+            <Setter Property="VerticalAlignment"
+                    Value="Top" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Right" />
+            <Setter Property="TextAlignment"
+                    Value="Right" />
+            <Setter Property="Foreground"
+                    Value="Black" />
+            <Setter Property="FontWeight"
+                    Value="Bold" />
+            <Setter Property="FontSize"
+                    Value="20" />
+            <Setter Property="Margin"
+                    Value="10" />
+        </Style>
+        <Style x:Key="TwoStyle"
+               TargetType="TextBlock"
+               BasedOn="{StaticResource OneStyle}">
+            <Setter Property="Margin"
+                    Value="0,0,10,0" />
+            <Setter Property="VerticalAlignment"
+                    Value="Bottom" />
+            <Setter Property="Foreground"
+                    Value="{StaticResource ParrotBrush}" />
+        </Style>
+        <Style x:Key="ThreeStyle"
+               TargetType="Slider">
+            <Setter Property="IsEnabled"
+                    Value="False" />
+            <Setter Property="Margin"
+                    Value="10,0" />
+            <Setter Property="Height"
+                    Value="40" />
+            <Setter Property="VerticalAlignment"
+                    Value="Top" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Stretch" />
+        </Style>
+        <Style x:Key="FourStyle"
+               TargetType="Button">
+            <Setter Property="FontSize"
+                    Value="20" />
+            <Setter Property="FontWeight"
+                    Value="Bold" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Left" />
+            <Setter Property="Margin"
+                    Value="10" />
+            <Setter Property="Width"
+                    Value="200" />
+            <Setter Property="BorderThickness"
+                    Value="2" />
+            <Setter Property="BorderBrush"
+                    Value="Black" />
+        </Style>
+
+        <SolidColorBrush x:Key="Green"
+                         Color="#276800" />
+        <SolidColorBrush x:Key="Red"
+                         Color="#bd0a0a" />
+        <SolidColorBrush x:Key="Gray"
+                         Color="#4f4f4f" />
+        <SolidColorBrush x:Key="ButtonBrush"
+                         Color="White" />
+        <Style TargetType="ToggleButton">
+            <Setter Property="Background"
+                    Value="{StaticResource ToggleButtonBackgroundThemeBrush}" />
+            <Setter Property="Foreground"
+                    Value="{StaticResource ToggleButtonForegroundThemeBrush}" />
+            <Setter Property="BorderBrush"
+                    Value="{StaticResource ToggleButtonBorderThemeBrush}" />
+            <Setter Property="BorderThickness"
+                    Value="{StaticResource ToggleButtonBorderThemeThickness}" />
+            <Setter Property="Padding"
+                    Value="12,4,12,5" />
+            <Setter Property="HorizontalAlignment"
+                    Value="Left" />
+            <Setter Property="VerticalAlignment"
+                    Value="Center" />
+            <Setter Property="FontFamily"
+                    Value="{StaticResource ContentControlThemeFontFamily}" />
+            <Setter Property="FontWeight"
+                    Value="SemiBold" />
+            <Setter Property="FontSize"
+                    Value="{StaticResource ControlContentThemeFontSize}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Grid>
+                            <VisualStateManager.VisualStateGroups>
+                                <VisualStateGroup x:Name="CommonStates">
+                                    <VisualState x:Name="Normal" />
+                                    <VisualState x:Name="PointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+                                                                           Storyboard.TargetName="Border">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource ToggleButtonPointerOverBackgroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Pressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+                                                                           Storyboard.TargetName="Border">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource ToggleButtonPressedBackgroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                           Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource ToggleButtonPressedForegroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Disabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush"
+                                                                           Storyboard.TargetName="Border">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource ToggleButtonDisabledBorderThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                           Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource ToggleButtonDisabledForegroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Checked">
+                                        <Storyboard>
+                                            <!--<ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+                                                                           Storyboard.TargetName="Border">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource ToggleButtonCheckedBackgroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush"
+                                                                           Storyboard.TargetName="Border">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource ToggleButtonCheckedBorderThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>-->
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                           Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource ParrotBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="CheckedPointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+                                                                           Storyboard.TargetName="Border">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource ToggleButtonCheckedPointerOverBackgroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush"
+                                                                           Storyboard.TargetName="Border">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource ToggleButtonCheckedPointerOverBorderThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                           Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource ToggleButtonCheckedForegroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="CheckedPressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+                                                                           Storyboard.TargetName="Border">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource ToggleButtonCheckedPressedBackgroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush"
+                                                                           Storyboard.TargetName="Border">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource ToggleButtonCheckedPressedBorderThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                           Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource ToggleButtonCheckedPressedForegroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="CheckedDisabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+                                                                           Storyboard.TargetName="Border">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource ToggleButtonCheckedDisabledBackgroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush"
+                                                                           Storyboard.TargetName="Border">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource ToggleButtonDisabledBorderThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                           Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource ToggleButtonCheckedDisabledForegroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Indeterminate" />
+                                    <VisualState x:Name="IndeterminatePointerOver">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+                                                                           Storyboard.TargetName="Border">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource ToggleButtonPointerOverBackgroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="IndeterminatePressed">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Background"
+                                                                           Storyboard.TargetName="Border">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource ToggleButtonPressedBackgroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                           Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource ToggleButtonPressedForegroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="IndeterminateDisabled">
+                                        <Storyboard>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="BorderBrush"
+                                                                           Storyboard.TargetName="Border">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource ToggleButtonDisabledBorderThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                           Storyboard.TargetName="ContentPresenter">
+                                                <DiscreteObjectKeyFrame KeyTime="0"
+                                                                        Value="{StaticResource ToggleButtonDisabledForegroundThemeBrush}" />
+                                            </ObjectAnimationUsingKeyFrames>
+                                        </Storyboard>
+                                    </VisualState>
+                                </VisualStateGroup>
+                                <VisualStateGroup x:Name="FocusStates">
+                                    <VisualState x:Name="Focused">
+                                        <Storyboard>
+                                            <DoubleAnimation Duration="0"
+                                                             To="1"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             Storyboard.TargetName="FocusVisualWhite" />
+                                            <DoubleAnimation Duration="0"
+                                                             To="1"
+                                                             Storyboard.TargetProperty="Opacity"
+                                                             Storyboard.TargetName="FocusVisualBlack" />
+                                        </Storyboard>
+                                    </VisualState>
+                                    <VisualState x:Name="Unfocused" />
+                                    <VisualState x:Name="PointerFocused" />
+                                </VisualStateGroup>
+                            </VisualStateManager.VisualStateGroups>
+                            <Border x:Name="Border"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    Background="{TemplateBinding Background}"
+                                    Margin="3">
+                                <ContentPresenter x:Name="ContentPresenter"
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                  ContentTransitions="{TemplateBinding ContentTransitions}"
+                                                  Content="{TemplateBinding Content}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  Margin="{TemplateBinding Padding}"
+                                                  Foreground="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Foreground, Mode=TwoWay}"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                            </Border>
+                            <Rectangle x:Name="FocusVisualWhite"
+                                       IsHitTestVisible="False"
+                                       Opacity="0"
+                                       StrokeDashOffset="1.5"
+                                       StrokeEndLineCap="Square"
+                                       Stroke="{StaticResource FocusVisualWhiteStrokeThemeBrush}"
+                                       StrokeDashArray="1,1" />
+                            <Rectangle x:Name="FocusVisualBlack"
+                                       IsHitTestVisible="False"
+                                       Opacity="0"
+                                       StrokeDashOffset="0.5"
+                                       StrokeEndLineCap="Square"
+                                       Stroke="{StaticResource FocusVisualBlackStrokeThemeBrush}"
+                                       StrokeDashArray="1,1" />
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Page.Resources>
+
+    <Grid Background="#292929">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="0" />
+        </Grid.RowDefinitions>
+        <MediaElement x:Name="ArDroneMediaElem"
+                      RealTimePlayback="True"
+                      Grid.Row="0"
+                      Grid.RowSpan="3"
+                      Margin="0,100,0,0"
+                      VerticalAlignment="Stretch"
+                      HorizontalAlignment="Stretch" />
+
+        <Grid Grid.Row="0"
+              Background="{StaticResource Gray}">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <!--<Image Grid.Row="1"
+                   Source="/Assets/Parrot/barre_haut.png"
+                   Stretch="Fill" />-->
+            <Rectangle Grid.Row="0"
+                       Fill="WhiteSmoke" />
+            <Rectangle Grid.Row="0"
+                       Height="3"
+                       VerticalAlignment="Bottom"
+                       HorizontalAlignment="Stretch"
+                       Fill="{StaticResource ParrotBrush}">
+                <!--<Rectangle.Fill>
+                    <LinearGradientBrush EndPoint="0.5,1"
+                                         StartPoint="0.5,0">
+                        <LinearGradientBrush.RelativeTransform>
+                            <CompositeTransform CenterY="0.5"
+                                                CenterX="0.5"
+                                                Rotation="90" />
+                        </LinearGradientBrush.RelativeTransform>
+                        <GradientStop />
+                        <GradientStop Offset="1" />
+                        <GradientStop Color="White"
+                                      Offset="0.5" />
+                        <GradientStop Color="White"
+                                      Offset="0.3" />
+                        <GradientStop Color="White"
+                                      Offset="0.7" />
+                    </LinearGradientBrush>
+                </Rectangle.Fill>-->
+            </Rectangle>
+            <TextBlock Grid.Row="0"
+                       Text="{Binding NavigationDataViewModel.State}"
+                       TextAlignment="Center"
+                       FontSize="30"
+                       VerticalAlignment="Center"
+                       Foreground="{StaticResource Red}"
+                       Margin="180,0,180,0"
+                       Style="{StaticResource PageSubheaderTextStyle}" />
+            <Button Grid.Row="0"
+                    FontSize="45"
+                    Click="GoBack"
+                    Foreground="{StaticResource ParrotBrush}"
+                    Style="{StaticResource ParrotBackButtonStyle}"
+                    VerticalAlignment="Center"
+                    Padding="30,-10,0,0"
+                    Width="80"
+                    Margin="0" />
+            <StackPanel Grid.Row="0"
+                        Background="{StaticResource ParrotBrush}"
+                        HorizontalAlignment="Right"
+                        Orientation="Horizontal">
+                <Button IsHitTestVisible="False">
+                    <TextBlock Text="&#xE1E9;"
+                               FontSize="30"
+                               Style="{StaticResource TextBlockSymbol}"
+                               Foreground="White" />
+                </Button>
+                <controls:BatteryGauge Width="50"
+                                       BorderThickness="2"
+                                       VerticalAlignment="Center"
+                                       Margin="10"
+                                       TestValue="{Binding NavigationDataViewModel.BatteryPercentage, Converter={StaticResource StringToFloatConverter}}"
+                                       MaxValue="100"
+                                       Height="50"
+                                       Foreground="White" />
+                <TextBlock FontWeight="Bold"
+                           Foreground="White"
+                           Width="60"
+                           FontSize="21"
+                           VerticalAlignment="Center"
+                           Margin="0,0,0,12"
+                           Style="{StaticResource PageSubheaderTextStyle}">
+                    <Run Text="{Binding NavigationDataViewModel.BatteryPercentage}" />
+                    <Run Text="%" />
+                </TextBlock>
+            </StackPanel>
+            <StackPanel Grid.Row="1"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Left"
+                        Margin="100,0,0,0">
+
+                <Button Click="Configuration_Click"
+                        Margin="20,0">
+                    <TextBlock Text="&#xE115;"
+                               Foreground="{StaticResource ButtonBrush}"
+                               Style="{StaticResource TextBlockSymbol}" />
+                </Button>
+
+                <ToggleButton x:Name="FlyInfoToggleButton"
+                              Width="60"
+                              Margin="20,0"
+                              Padding="0"
+                              BorderThickness="0"
+                              Foreground="{StaticResource ButtonBrush}"
+                              Click="ToggleLiveInfoGridButton_OnClick">
+                    <Path Fill="{Binding ElementName=FlyInfoToggleButton, Path=Foreground}"
+                          Margin="6"
+                          Stretch="Uniform"
+                          Data="F1M693.82,578.902C693.873,578.739,693.913,578.579,693.933,578.42L694.762,574.894 691.033,575.593C690.915,575.607,690.796,575.627,690.676,575.658L690.507,575.691 690.525,575.708C690.077,575.854,689.63,576.109,689.206,576.532L679.104,586.635 655.954,580.516 652.096,584.377 671.174,594.424 663.456,602.14 657.459,601.403 654.406,604.455 661.213,608.034 664.792,614.841 667.842,611.787 667.142,605.824 674.855,598.107 684.691,617.061 688.549,613.201 682.691,590.523 693.005,580.19C693.39,579.804,693.636,579.403,693.788,579.003L693.795,579.011 693.82,578.902z" />
+                </ToggleButton>
+                <ToggleButton x:Name="MessageToggleButton"
+                              Width="60"
+                              Margin="20,0"
+                              Padding="0"
+                              BorderThickness="0"
+                              Foreground="{StaticResource ButtonBrush}"
+                              Click="ToggleLiveMessageGridButton_OnClick">
+                    <Path Fill="{Binding ElementName=MessageToggleButton, Path=Foreground}"
+                          Margin="6"
+                          Stretch="Uniform"
+                          Data="M32.440571,26.0842C32.482071,27.51,32.500374,30.050999,32.500374,33.709198L32.452271,36.999199C32.452271,37.659401 32.562874,38.105698 32.784275,38.330299 33.001678,38.553898 33.362385,38.702301 33.861088,38.769699 34.430096,38.842999 34.714001,39.007 34.714001,39.259998 34.714001,39.5383 34.489998,39.674999 34.043293,39.674999 33.833691,39.674999 33.457485,39.6604 32.930077,39.627197 31.807665,39.556801 30.69825,39.521698 29.596737,39.521698 29.05633,39.521698 28.504225,39.549 27.944317,39.604698 27.609613,39.6506 27.38051,39.674999 27.258209,39.674999 26.809004,39.674999 26.585001,39.5383 26.585001,39.259998 26.585001,38.994301 26.876604,38.8391 27.466511,38.7873 28.256821,38.715 28.695625,38.455299 28.785528,38.002201 28.880529,37.5471 28.92223,36.628098 28.92223,35.241398 28.92223,33.447498 28.896229,31.800999 28.838827,30.296099 28.782827,28.7932 28.674826,27.935699 28.525124,27.721899 28.370022,27.5061 27.976818,27.363501 27.33231,27.291201 26.832304,27.2414 26.585001,27.096899 26.585001,26.8479 26.585001,26.603701 26.835003,26.4641 27.34671,26.424L27.672215,26.3869z M30.026342,18.715C30.622749,18.715 31.142357,18.931801 31.578461,19.358601 32.010765,19.7883 32.223068,20.306801 32.223068,20.916201 32.223068,21.518801 32.010765,22.0383 31.578461,22.4709 31.142357,22.9055 30.622749,23.117399 30.026342,23.117399 29.411835,23.117399 28.892328,22.9055 28.466524,22.4709 28.039417,22.0383 27.821915,21.518801 27.821915,20.916201 27.821915,20.306801 28.039417,19.7883 28.466524,19.358601 28.892328,18.931801 29.411835,18.715 30.026342,18.715z M5.2010002,14.814L5.2010002,43.576 56.098,43.576 56.098,14.814z M29.868601,3.8870001C28.0261,3.8870001 26.534,5.3791943 26.534,7.2209892 26.534,9.0588846 28.0261,10.553999 29.868601,10.553999 31.7085,10.553999 33.202,9.0588846 33.202,7.2209892 33.202,5.3791943 31.7085,3.8870001 29.868601,3.8870001z M19.200201,3.8870001C17.359056,3.8870001 15.867001,5.3791943 15.867001,7.2209892 15.867001,9.0588846 17.359056,10.553999 19.200201,10.553999 21.041346,10.553999 22.536001,9.0588846 22.536001,7.2209892 22.536001,5.3791943 21.041346,3.8870001 19.200201,3.8870001z M8.5339956,3.8870001C6.6929898,3.8870001 5.2010002,5.3791947 5.2010002,7.2209892 5.2010002,9.0588856 6.6929898,10.554 8.5339956,10.554 10.374949,10.554 11.867,9.0588856 11.867,7.2209892 11.867,5.3791947 10.374949,3.8870001 8.5339956,3.8870001z M0,0L64,0 64,48.796001 0,48.796001z" />
+                </ToggleButton>
+            </StackPanel>
+            <StackPanel Grid.Row="1"
+                        Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        Margin="0,0,60,0">
+
+                <Button x:Name="ResetEmergencyButton"
+                        Margin="0,0,90,0"
+                        Click="ResetEmergency_Click">
+                    <TextBlock Text="&#xE149;"
+                               Style="{StaticResource TextBlockSymbol}"
+                               Foreground="{StaticResource ButtonBrush}"
+                               RenderTransformOrigin="0.5,0.5">
+                        <TextBlock.RenderTransform>
+                            <CompositeTransform ScaleX="-1"
+                                                Rotation="-90" />
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
+                </Button>
+                <Button x:Name="SwitchVideoChannelButton"
+                        Margin="0,0,50,0"
+                        Click="SwitchVideoChannel_Click">
+                    <TextBlock Text="&#xE117;"
+                               FontSize="30"
+                               Foreground="{StaticResource ButtonBrush}"
+                               Style="{StaticResource TextBlockSymbol}" />
+                </Button>
+                <Button x:Name="StartVideoRecordingButton"
+                        IsEnabled="True"
+                        Click="StartVideoRecordingButton_Click">
+                    <TextBlock Style="{StaticResource TextBlockSymbol}"
+                               FontSize="25"
+                               VerticalAlignment="Top"
+                               Margin="0,6,0,0">
+                        <Run Text="&#xE0A3;"
+                             Foreground="{StaticResource ButtonBrush}" />
+                        <Run Text="       REC"
+                             Foreground="{StaticResource ButtonBrush}" />
+                    </TextBlock>
+                </Button>
+                <Button x:Name="StopVideoRecordingButton"
+                        BorderThickness="0"
+                        VerticalAlignment="Center"
+                        Visibility="Collapsed"
+                        Click="StopVideoRecordingButton_Click">
+                    <TextBlock Style="{StaticResource TextBlockSymbol}"
+                               FontSize="30"
+                               VerticalAlignment="Top"
+                               Margin="0,3,0,0">
+                        <Run Text="&#xE0A3;"
+                             Foreground="{StaticResource Red}" />
+                        <Run Text="       STOP"
+                             Foreground="{StaticResource Red}" />
+                    </TextBlock>
+                </Button>
+                <Button x:Name="TakePictureButton"
+                        Margin="50,0,0,0"
+                        Click="TakePicture_Click">
+                    <TextBlock Text="&#xE114;"
+                               Foreground="{StaticResource ButtonBrush}"
+                               Style="{StaticResource TextBlockSymbol}" />
+                </Button>
+            </StackPanel>
+        </Grid>
+
+        <Popup x:Name="LiveInfoGrid"
+               Grid.Row="0"
+               Grid.RowSpan="3"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Top"
+               VerticalOffset="100"
+               HorizontalOffset="0">
+            <Popup.ChildTransitions>
+                <TransitionCollection>
+                    <PaneThemeTransition Edge="Left" />
+                </TransitionCollection>
+            </Popup.ChildTransitions>
+            <Grid Width="300">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.Background>
+                    <SolidColorBrush Color="White"
+                                     Opacity="0.7" />
+                </Grid.Background>
+                <Rectangle Grid.Column="1" Grid.Row="0">
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="White" Opacity="0.7"/>
+                    </Rectangle.Fill>
+                </Rectangle>
+                <TextBlock Grid.Row="0"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="2"
+                           VerticalAlignment="Bottom"
+                           HorizontalAlignment="Right"
+                           TextAlignment="Center"
+                           FontSize="20"
+                           Foreground="Black"
+                           Text="Navigation data"
+                           RenderTransformOrigin="0,1">
+                    <TextBlock.RenderTransform>
+                        <CompositeTransform Rotation="-90"
+                                            TranslateX="135" TranslateY="-50" />
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+                <Grid Grid.Row="0"
+                      Grid.Column="0"
+                      Height="235">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60" />
+                        <ColumnDefinition Width="90" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="10" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="55" />
+                        <RowDefinition Height="55" />
+                        <RowDefinition Height="55" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <!--<Rectangle Fill="Violet" Grid.Column="0" Grid.Row="0" Grid.RowSpan="5"/>-->
+                    <TextBlock Grid.Row="0"
+                               Grid.RowSpan="5"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="4"
+                               FontSize="18"
+                               Text="ALTITUDE"
+                               VerticalAlignment="Bottom"
+                               HorizontalAlignment="Left"
+                               Style="{StaticResource OneStyle}"
+                               RenderTransformOrigin="0,1">
+                        <TextBlock.RenderTransform>
+                            <CompositeTransform Rotation="-90"
+                                                TranslateX="25"
+                                                TranslateY="-36"/>
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
+                    <Slider Grid.Row="1"
+                            Grid.RowSpan="3"
+                            Grid.Column="0"
+                            Value="{Binding NavigationDataViewModel.Altitude, Converter={StaticResource StringToFloatConverter}}"
+                            Style="{StaticResource ThreeStyle}"
+                            Minimum="0"
+                            Maximum="10000"
+                            StepFrequency="100"
+                            VerticalAlignment="Stretch"
+                            HorizontalAlignment="Right"
+                            Margin="0,10"
+                            Width="30"
+                            Height="NaN"
+                            Orientation="Vertical" />
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="0"
+                               Grid.ColumnSpan="4"
+                               Text="{Binding NavigationDataViewModel.Altitude}"
+                               FontSize="18"
+                               Margin="14,0,0,0"
+                               HorizontalAlignment="Left"
+                               Style="{StaticResource TwoStyle}" />
+                    <!--Text="{Binding NavigationDataViewModel.Altitude}"-->
+
+                    <TextBlock Grid.Row="1"
+                               Grid.Column="1"
+                               Text="YAW"
+                               Style="{StaticResource OneStyle}" />
+                    <TextBlock Grid.Row="1"
+                               Grid.Column="1"
+                               Style="{StaticResource TwoStyle}"
+                               Text="{Binding NavigationDataViewModel.Yaw}" />
+                    <Slider Grid.Row="1"
+                            Grid.Column="2"
+                            Value="{Binding NavigationDataViewModel.Yaw, Converter={StaticResource StringToFloatConverter}}"
+                            Style="{StaticResource ThreeStyle}"
+                            Minimum="-3.1415"
+                            Maximum="3.1415"
+                            StepFrequency=".01" />
+
+                    <TextBlock Grid.Row="2"
+                               Grid.Column="1"
+                               Style="{StaticResource OneStyle}"
+                               Text="PITCH" />
+                    <TextBlock Grid.Row="2"
+                               Grid.Column="1"
+                               Style="{StaticResource TwoStyle}"
+                               Text="{Binding NavigationDataViewModel.Pitch}" />
+                    <Slider Grid.Row="2"
+                            Grid.Column="2"
+                            Value="{Binding NavigationDataViewModel.Pitch, Converter={StaticResource StringToFloatConverter}}"
+                            Minimum="-3.1415"
+                            Maximum="3.1415"
+                            StepFrequency=".01"
+                            Style="{StaticResource ThreeStyle}" />
+
+                    <TextBlock Grid.Row="3"
+                               Grid.Column="1"
+                               Text="ROLL"
+                               Style="{StaticResource OneStyle}" />
+                    <Slider Grid.Row="3"
+                            Grid.Column="2"
+                            Value="{Binding NavigationDataViewModel.Roll, Converter={StaticResource StringToFloatConverter}}"
+                            Minimum="-3.1415"
+                            Maximum="3.1415"
+                            StepFrequency=".01"
+                            Style="{StaticResource ThreeStyle}" />
+                    <TextBlock Grid.Row="3"
+                               Grid.Column="1"
+                               Text="{Binding NavigationDataViewModel.Roll}"
+                               Style="{StaticResource TwoStyle}" />
+
+                </Grid>
+            </Grid>
+        </Popup>
+        <Popup x:Name="LiveMessageGrid"
+               Grid.Row="0"
+               Grid.RowSpan="3"
+               HorizontalAlignment="Left"
+               VerticalAlignment="Bottom"
+               VerticalOffset="-240"
+               HorizontalOffset="0"
+               IsHitTestVisible="False">
+            <Popup.ChildTransitions>
+                <TransitionCollection>
+                    <PaneThemeTransition Edge="Bottom" />
+                </TransitionCollection>
+            </Popup.ChildTransitions>
+            <Grid Width="300"
+                  Height="240">
+                <Grid.Background>
+                    <SolidColorBrush Color="White"
+                                     Opacity="0.7" />
+                </Grid.Background>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                </Grid.ColumnDefinitions>
+                <Rectangle Grid.Column="1">
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="White"
+                                         Opacity="0.8" />
+                    </Rectangle.Fill>
+                </Rectangle>
+                <TextBlock Grid.Row="0"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="2"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           TextAlignment="Center"
+                           FontSize="20"
+                           Foreground="Black"
+                           Text="AR.Drone feedback"
+                           RenderTransformOrigin="0,1">
+                    <TextBlock.RenderTransform>
+                        <CompositeTransform Rotation="-90"
+                                            TranslateX="228"
+                                            TranslateY="52"/>
+                    </TextBlock.RenderTransform>
+                </TextBlock>
+                <ListView Grid.Column="0"
+                          HorizontalAlignment="Stretch"
+                          ItemsSource="{Binding Source={StaticResource MessagesSource}}"
+                          SelectionMode="None"
+                          ItemTemplate="{StaticResource MessageItem}"
+                          VerticalAlignment="Stretch"
+                          BorderBrush="White"
+                          IsHitTestVisible="False"
+                          IsItemClickEnabled="False"
+                          IsSwipeEnabled="False">
+                    <ListView.ItemContainerStyle>
+                        <Style TargetType="ListViewItem">
+                            <Setter Property="HorizontalContentAlignment"
+                                    Value="Stretch" />
+                        </Style>
+                    </ListView.ItemContainerStyle>
+                </ListView>
+            </Grid>
+        </Popup>
+        <Popup x:Name="VideoRecordingMessageGrid"
+               Grid.Row="1"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               IsHitTestVisible="False">
+            <Popup.ChildTransitions>
+                <TransitionCollection>
+                    <PaneThemeTransition Edge="Bottom" />
+                </TransitionCollection>
+            </Popup.ChildTransitions>
+            <Grid Width="600"
+                  Height="200">
+                <Grid.Background>
+                    <SolidColorBrush Color="White"
+                                     Opacity="0.7" />
+                </Grid.Background>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Grid.Row="0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"
+                           TextAlignment="Center"
+                           FontSize="20"
+                           Foreground="Black"
+                           FontWeight="Bold"
+                           Text="Video recording"
+                           RenderTransformOrigin="0,1">
+                </TextBlock>
+                <TextBlock Grid.Row="1"
+                           Margin="10,10,0,0"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left"
+                           TextAlignment="Left"
+                           FontSize="20"
+                           Foreground="Black"
+                           Text="No live video during recording">
+                </TextBlock>
+            </Grid>
+        </Popup>
+
+        <Grid x:Name="JoystickGrid"
+              Grid.Row="1">
+            <input:JoystickControl x:Name="YawGazJoystick"
+                                   BorderElipseColor="Red"
+                                   StickColor="Black"
+                                   Margin="0,0,80,80"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Bottom"
+                                   Height="200"
+                                   Width="200" />
+            <input:JoystickControl x:Name="RollPitchJoystick"
+                                   BorderElipseColor="Green"
+                                   StickColor="Black"
+                                   Margin="80,0,0,80"
+                                   HorizontalAlignment="Left"
+                                   VerticalAlignment="Bottom"
+                                   Height="200"
+                                   Width="200" />
+        </Grid>
+
+        <Grid Grid.Row="1"
+              VerticalAlignment="Bottom"
+              HorizontalAlignment="Center">
+
+            <Button x:Name="TakeOffLandButton"
+                    IsEnabled="False"
+                    VerticalAlignment="Bottom"
+                    BorderThickness="0"
+                    Padding="0"
+                    Margin="0,0,0,0"
+                    HorizontalAlignment="Center"
+                    Click="TakeOffLandButton_Click"
+                    Style="{StaticResource ImageButtonStyle}">
+                <!--<Image x:Name="TakeOffLandImage"
+                       Source="/Assets/Parrot/btn_take_off_normal.png"
+                       Stretch="None" />-->
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="50" />
+                    </Grid.ColumnDefinitions>
+                    <Polygon Grid.Column="0"
+                             Fill="{StaticResource Green}"
+                             StrokeThickness="0"
+                             Points="0,62 50,0 50,62 0,62" />
+                    <Rectangle Grid.Column="1"
+                               Fill="{StaticResource Green}"
+                               HorizontalAlignment="Stretch"
+                               VerticalAlignment="Stretch"
+                               StrokeThickness="0" />
+                    <Rectangle Fill="{StaticResource ParrotBrush}"
+                               Grid.Column="1"
+                               Height="3"
+                               VerticalAlignment="Top" />
+                    <Polygon  Grid.Column="2"
+                              Fill="{StaticResource Green}"
+                              StrokeThickness="0"
+                              Points="0,0 50,62 0,62 0,0" />
+                    <Line Grid.Column="0"
+                          X1="50"
+                          Y1="0"
+                          X2="1"
+                          Y2="60"
+                          Stroke="{StaticResource ParrotBrush}"
+                          StrokeThickness="3" />
+                    <Line Grid.Column="2"
+                          X1="0"
+                          Y1="0"
+                          X2="50"
+                          Y2="60"
+                          Stroke="{StaticResource ParrotBrush}"
+                          StrokeThickness="3" />
+                    <TextBlock x:Name="TakeOffLandingTextBlock"
+                               Grid.Column="1"
+                               TextAlignment="Center"
+                               VerticalAlignment="Center"
+                               Foreground="White"
+                               FontSize="30"
+                               Padding="50,0">TAKE OFF</TextBlock>
+                </Grid>
+            </Button>
+        </Grid>
+
+        <Button x:Name="EmergencyButton"
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Top"
+                BorderThickness="0"
+                Padding="0"
+                Margin="50"
+                Width="300"
+                Height="60"
+                Click="Emergency_Click"
+                VerticalContentAlignment="Stretch"
+                HorizontalContentAlignment="Stretch"
+                Style="{StaticResource ImageButtonStyle}">
+            <!--<Image Source="/Assets/Parrot/btn_emergency_normal.png"
+                   Stretch="None" />-->
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="50" />
+                </Grid.ColumnDefinitions>
+                <Polygon Grid.Column="0"
+                         Fill="{StaticResource Red}"
+                         StrokeThickness="0"
+                         Points="1,0 50,0 50,60 1,0" />
+                <Rectangle Grid.Column="1"
+                           Fill="{StaticResource Red}"
+                           HorizontalAlignment="Stretch"
+                           VerticalAlignment="Stretch"
+                           StrokeThickness="0" />
+                <Rectangle Fill="{StaticResource ParrotBrush}"
+                           Grid.Column="1"
+                           Height="3"
+                           VerticalAlignment="Bottom" />
+                <Polygon  Grid.Column="2"
+                          Fill="{StaticResource Red}"
+                          StrokeThickness="0"
+                          Points="0,0 50,0 0,60 0,0" />
+                <Line Grid.Column="0"
+                      X1="1"
+                      Y1="-1"
+                      X2="50"
+                      Y2="60"
+                      Stroke="{StaticResource ParrotBrush}"
+                      StrokeThickness="3" />
+                <Line Grid.Column="2"
+                      X1="0"
+                      Y1="60"
+                      X2="50"
+                      Y2="-2"
+                      Stroke="{StaticResource ParrotBrush}"
+                      StrokeThickness="3" />
+                <TextBlock Grid.Column="1"
+                           TextAlignment="Center"
+                           VerticalAlignment="Center"
+                           Foreground="White"
+                           FontSize="30">EMERGENCY</TextBlock>
+            </Grid>
+        </Button>
+
+        <Popup x:Name="ParametersGrid"
+               Grid.Row="0"
+               Grid.RowSpan="3"
+               HorizontalAlignment="Right"
+               HorizontalOffset="-340"
+               VerticalOffset="100"
+               IsLightDismissEnabled="True">
+            <Popup.ChildTransitions>
+                <TransitionCollection>
+                    <PaneThemeTransition />
+                </TransitionCollection>
+            </Popup.ChildTransitions>
+            <Grid Width="340">
+                <Grid.Background>
+                    <SolidColorBrush Color="White"
+                                     Opacity="0.7" />
+                </Grid.Background>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Rectangle>
+                    <Rectangle.Fill>
+                        <SolidColorBrush Color="White"
+                                         Opacity="0.8" />
+                    </Rectangle.Fill>
+                </Rectangle>
+                <Grid Grid.Column="0" Grid.ColumnSpan="2">
+                    <TextBlock VerticalAlignment="Center"
+                               HorizontalAlignment="Left"
+                               Margin="10,0,0,0"
+                               TextAlignment="Left"
+                               FontSize="20"
+                               Foreground="Black"
+                               Text="Flight parameters" RenderTransformOrigin="0,1">
+                        <TextBlock.RenderTransform>
+                            <CompositeTransform Rotation="-90" TranslateX="20" TranslateY="40" />
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*" />
+                        <ColumnDefinition Width="2*" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="75" />
+                        <RowDefinition Height="75" />
+                        <RowDefinition Height="0" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="75" />
+                        <RowDefinition Height="75" />
+                        <RowDefinition Height="75" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="0"
+                               Text="OUTDOOR MODE"
+                               VerticalAlignment="Center"
+                               FontSize="18"
+                               Style="{StaticResource OneStyle}" />
+                    <ToggleSwitch x:Name="IndoorOutdoorSwitch"
+                                  Grid.Row="0"
+                                  HorizontalAlignment="Center"
+                                  Grid.Column="1"
+                                  Margin="-80,0,0,0"
+                                  OffContent=""
+                                  OnContent=""
+                                  Toggled="OutdoorModeToggleSwitch_OnToggled" />
+
+                    <TextBlock Grid.Row="1"
+                               Grid.Column="0"
+                               Text="VIDEO CROPPING"
+                               VerticalAlignment="Center"
+                               FontSize="18"
+                               Style="{StaticResource OneStyle}" />
+                    <ToggleSwitch Grid.Row="1"
+                                  HorizontalAlignment="Center"
+                                  Grid.Column="1"
+                                  Margin="-80,0,0,0"
+                                  OffContent=""
+                                  OnContent=""
+                                  Toggled="VideoCroppingToggleSwitch_OnToggled" />
+
+                    <!--<TextBlock Grid.Row="2"
+                               Grid.Column="0"
+                               FontSize="18"
+                               Text="ALTITUDE MAX"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource OneStyle}" />
+                    <Slider Grid.Row="2"
+                            Grid.Column="1"
+                            Value="{Binding NavigationDataViewModel.Altitude, Converter={StaticResource StringToFloatConverter}}"
+                            Style="{StaticResource ThreeStyle}"
+                            Minimum="0"
+                            Maximum="10000"
+                            StepFrequency="100"
+                            VerticalAlignment="Stretch"
+                            HorizontalAlignment="Center"
+                            Margin="0,10"
+                            Height="NaN"
+                            Orientation="Vertical" />
+                    <TextBlock Grid.Row="2"
+                               Grid.Column="0"
+                               FontSize="18"
+                               Text="{Binding NavigationDataViewModel.Altitude}"
+                               Margin="0,60,10,0"
+                               VerticalAlignment="Center"
+                               Style="{StaticResource TwoStyle}" />-->
+
+                    <Button x:Name="PlayAnimationButton"
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Content="Flip Animation"
+                            Click="PlayAnimationButton_Click"
+                            FontSize="15"
+                            Width="NaN"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Margin="15"
+                            Style="{StaticResource FourStyle}" />
+                    <Button x:Name="PlayLedAnimationButton"
+                            Grid.Row="5"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Content="Led animation"
+                            Click="PlayLedAnimationButton_Click"
+                            FontSize="15"
+                            Width="NaN"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Margin="15"
+                            Style="{StaticResource FourStyle}" />
+                    <Button x:Name="FlatTrimButton"
+                            Grid.Row="6"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Content="Flat Trim"
+                            Click="FlatTrimButton_Click"
+                            FontSize="15"
+                            Width="NaN"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Margin="15"
+                            Style="{StaticResource FourStyle}" />
+                </Grid>
+            </Grid>
+        </Popup>
+    </Grid>
+</common:LayoutAwarePage>

@@ -267,7 +267,14 @@ namespace ARDrone2Client.Common
                 await Log.Instance.WriteLineAsync("DroneClient:Connecting");
                 _RequestedState = RequestedState.Initialize;
                 _ConfigurationWorker.Start();
+                //try
+                //{
                 _NavDataWorker.Start();
+                //}
+                //catch (Exception e)
+                //{
+
+                //}
                 //TODO revoir InitState
                 _CommandWorker.Start();
                 _WatchdogWorker.Start();
@@ -378,11 +385,16 @@ namespace ARDrone2Client.Common
             SendMessageToUI("The Drone is taking off");
         }
 
-        public async void Hover()
+        public async void ExecuteFlatTrim()
         {
-            //No command means hovering
-            _RequestedState = RequestedState.None;
-            await Log.Instance.WriteLineAsync("DroneClient:Hover");
+            for (int i = 0; i < 5; i++)
+            {
+                _CommandWorker.PostCommand(Command.FlatTrim());
+                await Task.Delay(25);
+            }
+
+            await Log.Instance.WriteLineAsync("DroneClient:FlatTrim ");
+            SendMessageToUI("Flat trim processed");
         }
 
         public async void TakePicture()
@@ -419,7 +431,7 @@ namespace ARDrone2Client.Common
 
         public async void PlayAnimation(FlightAnimationType animationType)
         {
-            _configuration.Control.FlightAnimation = new FlightAnimation(animationType, 2);
+            _configuration.Control.FlightAnimation = new FlightAnimation(animationType, 6000);
             await SendConfiguration();
 
             await Log.Instance.WriteLineAsync("DroneClient:PlayAnimation");
@@ -452,7 +464,12 @@ namespace ARDrone2Client.Common
         public async void SetDefaultConfiguration()
         {
             _configuration.General.NavdataDemo = true;
+
             _configuration.Video.Codec = VideoCodecType.H264_360P;
+            //_configuration.Video.CodecFps = 30;
+            //_configuration.Video.BitrateCtrlMode = VideoBitrateControlMode.Dynamic;
+            //_configuration.Video.Bitrate = 2000;
+            //_configuration.Video.MaxBitrate = 4000;
 
             await SendConfiguration();
             await Log.Instance.WriteLineAsync("DroneClient:SetDefaultConfiguration");

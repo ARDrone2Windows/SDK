@@ -1,0 +1,174 @@
+﻿<W8:MainPageViewModel xmlns:W8="using:AR.Drone2.Sample.W8" xmlns:Model="using:AR.Drone2.Sample.W8.Model" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:System="using:System">
+	<W8:MainPageViewModel.Flights>
+		<Model:FlightData x:Name="Vol1" StartTime="12:43:41">
+			<Model:FlightData.Duration>5</Model:FlightData.Duration>
+			<Model:FlightData.Pictures>
+				<Model:FlightPictureData x:Name="Aenean nam maecenas integer sed" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Praesent dis mauris nullam est" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Hac parturient" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Auctor amet congue cursus" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Dictum vestibulum" Source="ms-appx:///Assets/Earth.png"/>
+			</Model:FlightData.Pictures>
+			<Model:FlightData.Videos>
+				<Model:FlightVideoData x:Name="Lectus bibendum adipiscing" Preview="Etiam arcu libero phasellus" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Consequat nec fusce" Preview="Dictumst non diam" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Ligula commodo conubia facilisi faucibus" Preview="Parturient habitant cubilia elit" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Lobortis per" Preview="Dapibus enim nascetur erat pharetra" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Egestas lorem sed nibh" Preview="Placerat morbi" Source="ms-appx:///Assets/Earth.png"/>
+			</Model:FlightData.Videos>
+		</Model:FlightData>
+		<Model:FlightData x:Name="Nulla fermentum nisi" StartTime="12:43:42">
+            <Model:FlightData.Duration>5</Model:FlightData.Duration>
+            <Model:FlightData.Pictures>
+				<Model:FlightPictureData x:Name="Euismod luctus" Source="ms-appx://ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Habitasse nisl hendrerit" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Odio orci vestibulum himenaeos" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Sit adipiscing iaculis vel dolor" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Fames felis sociosqu natoque ipsum" Source="ms-appx:///Assets/Earth.png"/>
+			</Model:FlightData.Pictures>
+			<Model:FlightData.Videos>
+				<Model:FlightVideoData x:Name="Suscipit pede posuere" Preview="Lacus potenti vestibulum lorem" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Mauris sed mollis" Preview="Magna dis" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Torquent quam adipiscing montes parturient" Preview="Leo quis nostra vestibulum" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Ornare vestibulum ultrices pretium adipiscing" Preview="Platea primis" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Rhoncus sodales viverra cras" Preview="Morbi mus" Source="ms-appx:///Assets/Earth.png"/>
+			</Model:FlightData.Videos>
+		</Model:FlightData>
+		<Model:FlightData x:Name="Vestibulum integer sapien duis" StartTime="12:43:42">
+            <Model:FlightData.Duration>5</Model:FlightData.Duration>
+            <Model:FlightData.Pictures>
+				<Model:FlightPictureData x:Name="Vestibulum nunc" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Neque sociis volutpat penatibus" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Arcu praesent vivamus aliquam" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Accumsan eget bibendum nulla elit" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Parturient commodo porttitor porta" Source="ms-appx:///Assets/Earth.png"/>
+			</Model:FlightData.Pictures>
+			<Model:FlightData.Videos>
+				<Model:FlightVideoData x:Name="Per faucibus purus sed" Preview="Tellus tincidunt tristique sem" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Vel velit nam sed vitae" Preview="Habitant class dis ultricies" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Inceptos tempus parturient enim" Preview="Conubia interdum" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Tortor phasellus" Preview="Cubilia turpis lobortis consequat" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Curae varius donec dapibus egestas" Preview="Nascetur aenean convallis euismod" Source="ms-appx:///Assets/Earth.png"/>
+			</Model:FlightData.Videos>
+		</Model:FlightData>
+		<Model:FlightData x:Name="Etiam fusce" StartTime="12:43:42">
+            <Model:FlightData.Duration>5</Model:FlightData.Duration>
+            <Model:FlightData.Pictures>
+				<Model:FlightPictureData x:Name="Dignissim gravida" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Nullam pulvinar nibh" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Auctor laoreet sagittis fringilla" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Cursus dictum nisl" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Nulla lectus" Source="ms-appx:///Assets/Earth.png"/>
+			</Model:FlightData.Pictures>
+			<Model:FlightData.Videos>
+				<Model:FlightVideoData x:Name="Non per senectus" Preview="Adipiscing proin sociosqu" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Libero sed parturient ligula vestibulum" Preview="Malesuada penatibus dolor fames porttitor" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Ipsum odio pretium tincidunt torquent" Preview="Rhoncus tristique litora justo lacus" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Vestibulum adipiscing" Preview="Sit lorem parturient orci" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Mollis pede" Preview="Ultricies magna quam montes ultrices" Source="ms-appx:///Assets/Earth.png"/>
+			</Model:FlightData.Videos>
+		</Model:FlightData>
+		<Model:FlightData x:Name="Venenatis ornare platea primis" StartTime="12:43:42">
+            <Model:FlightData.Duration>5</Model:FlightData.Duration>
+            <Model:FlightData.Pictures>
+				<Model:FlightPictureData x:Name="Nam sed rutrum" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Urna viverra" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Cras est parturient duis" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Phasellus sociis leo" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Mus convallis neque volutpat" Source="ms-appx:///Assets/Earth.png"/>
+			</Model:FlightData.Pictures>
+			<Model:FlightData.Videos>
+				<Model:FlightVideoData x:Name="Quisque vivamus netus" Preview="Dignissim elementum vestibulum nec" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Praesent aliquet accumsan" Preview="Non tempus nulla" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Turpis dictumst facilisis vestibulum" Preview="Porta varius" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Fringilla velit vitae" Preview="Eleifend habitasse ante aenean" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Imperdiet conubia malesuada" Preview="Per adipiscing class" Source="ms-appx:///Assets/Earth.png"/>
+			</Model:FlightData.Videos>
+		</Model:FlightData>
+		<Model:FlightData x:Name="Facilisi penatibus cubilia diam dapibus" StartTime="12:43:42">
+            <Model:FlightData.Duration>5</Model:FlightData.Duration>
+            <Model:FlightData.Pictures>
+				<Model:FlightPictureData x:Name="Sed porttitor faucibus egestas tincidunt" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Vestibulum vestibulum elit" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Habitant enim sem" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Vel euismod" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Nam nibh" Source="ms-appx:///Assets/Earth.png"/>
+			</Model:FlightData.Pictures>
+			<Model:FlightData.Videos>
+				<Model:FlightVideoData x:Name="Feugiat sed dis gravida" Preview="Venenatis congue" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Inceptos interdum lacinia" Preview="Parturient laoreet lobortis nascetur natoque" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Nunc posuere" Preview="Potenti placerat dictum" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Odio phasellus" Preview="Consequat sociosqu vestibulum" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Vestibulum libero hac ligula fusce" Preview="Adipiscing litora luctus parturient" Source="ms-appx:///Assets/Earth.png"/>
+			</Model:FlightData.Videos>
+		</Model:FlightData>
+		<Model:FlightData x:Name="Vestibulum lorem sodales morbi mattis" StartTime="12:43:42">
+            <Model:FlightData.Duration>5</Model:FlightData.Duration>
+            <Model:FlightData.Pictures>
+				<Model:FlightPictureData x:Name="Viverra dignissim mauris" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Adipiscing leo mus parturient facilisis" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Vestibulum orci ultrices proin" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Augue vestibulum volutpat maecenas" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Quisque quis" Source="ms-appx:///Assets/Earth.png"/>
+			</Model:FlightData.Pictures>
+			<Model:FlightData.Videos>
+				<Model:FlightVideoData x:Name="Hendrerit per" Preview="Sed parturient praesent nostra" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Vestibulum adipiscing aliquam felis ipsum" Preview="Parturient himenaeos aliquet cras" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Duis imperdiet" Preview="Nunc malesuada vel penatibus justo" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Commodo conubia amet" Preview="Nam cubilia" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Lacus vestibulum bibendum" Preview="Porttitor sapien dapibus" Source="ms-appx:///Assets/Earth.png"/>
+			</Model:FlightData.Videos>
+		</Model:FlightData>
+		<Model:FlightData x:Name="Dis euismod lorem tristique arcu" StartTime="12:43:42">
+            <Model:FlightData.Duration>5</Model:FlightData.Duration>
+            <Model:FlightData.Pictures>
+				<Model:FlightPictureData x:Name="Diam magna feugiat vestibulum" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Eleifend massa eget elit" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Morbi sociis" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Erat neque taciti faucibus" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Leo tellus habitant inceptos netus" Source="ms-appx:///Assets/Earth.png"/>
+			</Model:FlightData.Pictures>
+			<Model:FlightData.Videos>
+				<Model:FlightVideoData x:Name="Tempus lobortis" Preview="Porta laoreet natoque nascetur" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Varius adipiscing" Preview="Purus risus velit mus" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Pulvinar potenti" Preview="Pretium vitae eros aenean" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Mauris nullam rhoncus vestibulum" Preview="Vestibulum adipiscing sodales curabitur" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Parturient non aliquam integer" Preview="Quisque per phasellus sed aptent" Source="ms-appx:///Assets/Earth.png"/>
+			</Model:FlightData.Videos>
+		</Model:FlightData>
+		<Model:FlightData x:Name="Auctor suscipit nisi vestibulum curae" StartTime="12:43:42">
+            <Model:FlightData.Duration>5</Model:FlightData.Duration>
+            <Model:FlightData.Pictures>
+				<Model:FlightPictureData x:Name="Nisl sem adipiscing" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Nunc parturient vel congue" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Odio dignissim" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Elementum aliquam vestibulum facilisis aliquet" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Habitasse adipiscing" Source="ms-appx:///Assets/Earth.png"/>
+			</Model:FlightData.Pictures>
+			<Model:FlightData.Videos>
+				<Model:FlightVideoData x:Name="Hendrerit himenaeos pede quam commodo" Preview="Imperdiet parturient vestibulum vehicula conubia" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Hac dictum quis" Preview="Vestibulum lectus" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Volutpat mus" Preview="Cubilia dapibus" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Non lorem per sed" Preview="Parturient penatibus morbi" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Egestas cras euismod feugiat tincidunt" Preview="Gravida duis nunc iaculis nulla" Source="ms-appx:///Assets/Earth.png"/>
+			</Model:FlightData.Videos>
+		</Model:FlightData>
+		<Model:FlightData x:Name="Ante ligula augue praesent" StartTime="12:43:42">
+            <Model:FlightData.Duration>5</Model:FlightData.Duration>
+            <Model:FlightData.Pictures>
+				<Model:FlightPictureData x:Name="Venenatis dolor lacinia" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Dictumst laoreet" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Curabitur felis ipsum justo" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Vel lorem" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightPictureData x:Name="Massa metus" Source="ms-appx:///Assets/Earth.png"/>
+			</Model:FlightData.Pictures>
+			<Model:FlightData.Videos>
+				<Model:FlightVideoData x:Name="Mattis faucibus parturient nam sed" Preview="Habitant dis vestibulum est" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Morbi hac leo potenti" Preview="Adipiscing interdum parturient convallis vestibulum" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Diam eget" Preview="Dignissim rhoncus netus" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Facilisis nec fermentum" Preview="Pharetra nulla placerat porta" Source="ms-appx:///Assets/Earth.png"/>
+				<Model:FlightVideoData x:Name="Sagittis senectus elit enim" Preview="Mauris risus sodales" Source="ms-appx:///Assets/Earth.png"/>
+			</Model:FlightData.Videos>
+		</Model:FlightData>
+	</W8:MainPageViewModel.Flights>
+</W8:MainPageViewModel>

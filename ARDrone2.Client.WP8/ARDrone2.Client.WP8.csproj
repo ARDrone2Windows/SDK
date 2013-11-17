@@ -397,6 +397,9 @@
     <Compile Include="..\Workers\WorkerBase.cs">
       <Link>Workers\WorkerBase.cs</Link>
     </Compile>
+    <Compile Include="Input\JoystickControl.xaml.cs">
+      <DependentUpon>JoystickControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Video\ARDroneStreamSource.cs" />
     <Compile Include="Video\ARDroneVideoPacketStream.cs" />
@@ -406,6 +409,12 @@
       <Project>{84AB2B95-9703-46F4-8E25-86554DFA126F}</Project>
       <Name>ARDrone2VideoTcpWrapper</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="Input\JoystickControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />

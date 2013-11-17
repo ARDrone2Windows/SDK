@@ -86,9 +86,9 @@ namespace ARDrone2Client.Common.Configuration.Sections
             set { Set("control_level", value); }
         }
 
-        public Single EulerAngleMax
+        public Double EulerAngleMax
         {
-            get { return GetSingle("euler_angle_max"); }
+            get { return GetDouble("euler_angle_max"); }
             set { Set("euler_angle_max", value); }
         }
 
@@ -110,15 +110,15 @@ namespace ARDrone2Client.Common.Configuration.Sections
             set { Set("control_iphone_tilt", value); }
         }
 
-        public Single ControlVzMax
+        public Double ControlVzMax
         {
-            get { return GetSingle("control_vz_max"); }
+            get { return GetDouble("control_vz_max"); }
             set { Set("control_vz_max", value); }
         }
 
-        public Single ControlYaw
+        public Double ControlYaw
         {
-            get { return GetSingle("control_yaw"); }
+            get { return GetDouble("control_yaw"); }
             set { Set("control_yaw", value); }
         }
 

@@ -1,0 +1,194 @@
+﻿<W8:MainPageViewModel xmlns:W8="using:AR.Drone2.Sample.W8" xmlns:Model="using:AR.Drone2.Sample.W8.Model" xmlns:System="using:System">
+	<W8:MainPageViewModel.Flights>
+		<Model:FlightData Name="Aenean curabitur cras" StartTime="11/06/2013 12:42:48">
+			<Model:FlightData.Duration>
+				<System:TimeSpan/>
+			</Model:FlightData.Duration>
+			<Model:FlightData.Pictures>
+				<Model:FlightPictureData Name="Phasellus aliquam maecenas duis mauris" Source="Nullam nunc"/>
+				<Model:FlightPictureData Name="Praesent accumsan vestibulum consequat adipiscing" Source="Parturient class amet ante"/>
+				<Model:FlightPictureData Name="Integer convallis quisque nam" Source="Arcu aptent"/>
+				<Model:FlightPictureData Name="Dignissim auctor bibendum" Source="Sed curae congue"/>
+				<Model:FlightPictureData Name="Diam vivamus" Source="Donec dictumst eget etiam"/>
+			</Model:FlightData.Pictures>
+			<Model:FlightData.Videos>
+				<Model:FlightVideoData Name="Dis elementum fusce facilisis" Preview="Elit enim lorem aliquam vestibulum" Source="Fermentum est eleifend fringilla morbi"/>
+				<Model:FlightVideoData Name="Facilisi vestibulum habitasse nulla adipiscing" Preview="Faucibus hac proin habitant erat" Source="Aliquet cursus leo"/>
+				<Model:FlightVideoData Name="Hendrerit blandit" Preview="Mus inceptos" Source="Eros himenaeos interdum nibh"/>
+				<Model:FlightVideoData Name="Dictum imperdiet lobortis nascetur augue" Preview="Malesuada commodo lectus parturient" Source="Libero vestibulum"/>
+				<Model:FlightVideoData Name="Nisi nec" Preview="Pharetra nisl penatibus" Source="Vestibulum placerat ligula dolor porttitor"/>
+			</Model:FlightData.Videos>
+		</Model:FlightData>
+		<Model:FlightData Name="Non per nunc" StartTime="11/06/2013 12:42:48">
+			<Model:FlightData.Duration>
+				<System:TimeSpan/>
+			</Model:FlightData.Duration>
+			<Model:FlightData.Pictures>
+				<Model:FlightPictureData Name="Tincidunt sed litora adipiscing" Source="Tristique odio"/>
+				<Model:FlightPictureData Name="Ultricies parturient orci" Source="Sem fames sit"/>
+				<Model:FlightPictureData Name="Vel pulvinar" Source="Conubia vestibulum luctus venenatis"/>
+				<Model:FlightPictureData Name="Sagittis vulputate senectus" Source="Pede nam sed magnis"/>
+				<Model:FlightPictureData Name="Felis sociosqu" Source="Mattis ipsum justo"/>
+			</Model:FlightData.Pictures>
+			<Model:FlightData.Videos>
+				<Model:FlightVideoData Name="Lacus lorem" Preview="Curabitur mauris vestibulum magna massa" Source="Suscipit cubilia phasellus"/>
+				<Model:FlightVideoData Name="Dapibus adipiscing dis parturient mollis" Preview="Est consequat" Source="Metus quam"/>
+				<Model:FlightVideoData Name="Egestas vestibulum hac" Preview="Morbi quis euismod feugiat" Source="Leo montes gravida iaculis nostra"/>
+				<Model:FlightVideoData Name="Ornare torquent convallis ultrices vestibulum" Preview="Neque lacinia" Source="Vehicula urna volutpat maecenas"/>
+				<Model:FlightVideoData Name="Cras adipiscing netus praesent duis" Preview="Mus laoreet nulla" Source="Platea primis nunc accumsan"/>
+			</Model:FlightData.Videos>
+		</Model:FlightData>
+		<Model:FlightData Name="Rutrum porta nec natoque parturient" StartTime="11/06/2013 12:42:48">
+			<Model:FlightData.Duration>
+				<System:TimeSpan/>
+			</Model:FlightData.Duration>
+			<Model:FlightData.Pictures>
+				<Model:FlightPictureData Name="Sapien purus vestibulum non per" Source="Semper amet ante"/>
+				<Model:FlightPictureData Name="Arcu diam posuere dignissim eget" Source="Potenti sed vestibulum elit"/>
+				<Model:FlightPictureData Name="Adipiscing sociis" Source="Parturient elementum risus"/>
+				<Model:FlightPictureData Name="Vestibulum facilisis velit sem" Source="Vestibulum enim"/>
+				<Model:FlightPictureData Name="Adipiscing vitae taciti parturient" Source="Bibendum dictumst class"/>
+			</Model:FlightData.Pictures>
+			<Model:FlightData.Videos>
+				<Model:FlightVideoData Name="Fermentum eleifend" Preview="Facilisi erat pretium eros tellus" Source="Sit fringilla vel tempor"/>
+				<Model:FlightVideoData Name="Curae vestibulum" Preview="Nibh habitasse donec tempus" Source="Faucibus habitant"/>
+				<Model:FlightVideoData Name="Nam sed etiam nisi hendrerit" Preview="Vestibulum tortor dis fusce" Source="Himenaeos imperdiet"/>
+				<Model:FlightVideoData Name="Inceptos nisl rhoncus" Preview="Nunc odio orci turpis malesuada" Source="Penatibus interdum lorem pede"/>
+				<Model:FlightVideoData Name="Quam lobortis adipiscing porttitor" Preview="Est parturient hac" Source="Leo vestibulum morbi vestibulum sodales"/>
+			</Model:FlightData.Videos>
+		</Model:FlightData>
+		<Model:FlightData Name="Quis varius viverra adipiscing" StartTime="11/06/2013 12:42:48">
+			<Model:FlightData.Duration>
+				<System:TimeSpan/>
+			</Model:FlightData.Duration>
+			<Model:FlightData.Pictures>
+				<Model:FlightPictureData Name="Urna mus cras" Source="Duis nunc parturient aenean amet"/>
+				<Model:FlightPictureData Name="Nascetur pharetra nec" Source="Placerat tincidunt pulvinar tristique vestibulum"/>
+				<Model:FlightPictureData Name="Sagittis vestibulum" Source="Ante mauris"/>
+				<Model:FlightPictureData Name="Ultricies non nulla per" Source="Arcu venenatis"/>
+				<Model:FlightPictureData Name="Vulputate proin diam adipiscing sed" Source="Senectus aliquam integer quisque sociosqu"/>
+			</Model:FlightData.Pictures>
+			<Model:FlightData.Videos>
+				<Model:FlightVideoData Name="Vivamus eget sem elit" Preview="Augue suscipit sit" Source="Nullam parturient aptent"/>
+				<Model:FlightVideoData Name="Enim dolor aliquam vestibulum curabitur" Preview="Fames felis" Source="Erat vel"/>
+				<Model:FlightVideoData Name="Nam phasellus" Preview="Sed dis auctor est hac" Source="Vestibulum torquent"/>
+				<Model:FlightVideoData Name="Ultrices ipsum leo" Preview="Eros mus nec congue aliquet" Source="Consequat adipiscing non nibh per"/>
+				<Model:FlightVideoData Name="Parturient nisi" Preview="Vehicula blandit commodo convallis justo" Source="Nisl volutpat cursus dictum conubia"/>
+			</Model:FlightData.Videos>
+		</Model:FlightData>
+		<Model:FlightData Name="Lectus vestibulum" StartTime="11/06/2013 12:42:48">
+			<Model:FlightData.Duration>
+				<System:TimeSpan/>
+			</Model:FlightData.Duration>
+			<Model:FlightData.Pictures>
+				<Model:FlightPictureData Name="Libero nunc" Source="Cubilia odio orci"/>
+				<Model:FlightPictureData Name="Maecenas lacus" Source="Dignissim dapibus"/>
+				<Model:FlightPictureData Name="Ligula sed pede litora" Source="Egestas lorem luctus magna"/>
+				<Model:FlightPictureData Name="Sem vestibulum sit elementum adipiscing" Source="Massa parturient euismod"/>
+				<Model:FlightPictureData Name="Metus praesent feugiat vestibulum vestibulum" Source="Gravida accumsan iaculis vel"/>
+			</Model:FlightData.Pictures>
+			<Model:FlightData.Videos>
+				<Model:FlightVideoData Name="Adipiscing magnis morbi facilisis parturient" Preview="Mattis bibendum quam lacinia" Source="Quis laoreet"/>
+				<Model:FlightVideoData Name="Neque netus" Preview="Dictumst vestibulum" Source="Urna nam nulla"/>
+				<Model:FlightVideoData Name="Natoque mauris cras" Preview="Posuere fermentum eleifend potenti" Source="Vestibulum adipiscing fringilla"/>
+				<Model:FlightVideoData Name="Habitasse pretium hendrerit" Preview="Porta rhoncus mollis" Source="Sodales himenaeos duis"/>
+				<Model:FlightVideoData Name="Montes nunc viverra" Preview="Purus facilisi risus amet nostra" Source="Ante parturient vestibulum"/>
+			</Model:FlightData.Videos>
+		</Model:FlightData>
+		<Model:FlightData Name="Faucibus habitant vestibulum velit arcu" StartTime="11/06/2013 12:42:48">
+			<Model:FlightData.Duration>
+				<System:TimeSpan/>
+			</Model:FlightData.Duration>
+			<Model:FlightData.Pictures>
+				<Model:FlightPictureData Name="Diam imperdiet ornare" Source="Inceptos aliquam eget"/>
+				<Model:FlightPictureData Name="Adipiscing platea parturient vitae" Source="Sed class elit interdum"/>
+				<Model:FlightPictureData Name="Vestibulum enim dis est integer" Source="Hac leo erat quisque"/>
+				<Model:FlightPictureData Name="Eros lobortis nibh primis mus" Source="Nec non"/>
+				<Model:FlightPictureData Name="Nisi nascetur vivamus per rutrum" Source="Aliquam nisl nunc"/>
+			</Model:FlightData.Pictures>
+			<Model:FlightData.Videos>
+				<Model:FlightVideoData Name="Aliquet curae" Preview="Donec sed sapien etiam fusce" Source="Malesuada odio semper"/>
+				<Model:FlightVideoData Name="Vestibulum penatibus" Preview="Blandit pharetra lorem orci" Source="Sem sit morbi pede adipiscing"/>
+				<Model:FlightVideoData Name="Sociis porttitor" Preview="Parturient taciti tincidunt" Source="Vel nulla"/>
+				<Model:FlightVideoData Name="Tristique quam proin augue" Preview="Vestibulum vestibulum tellus dolor" Source="Ultricies adipiscing"/>
+				<Model:FlightVideoData Name="Placerat quis parturient" Preview="Venenatis vestibulum nam sed" Source="Urna commodo tempor fames"/>
+			</Model:FlightData.Videos>
+		</Model:FlightData>
+		<Model:FlightData Name="Tempus vestibulum tortor" StartTime="11/06/2013 12:42:48">
+			<Model:FlightData.Duration>
+				<System:TimeSpan/>
+			</Model:FlightData.Duration>
+			<Model:FlightData.Pictures>
+				<Model:FlightPictureData Name="Cras adipiscing duis" Source="Nunc turpis felis pulvinar"/>
+				<Model:FlightPictureData Name="Conubia amet parturient dis est" Source="Ante sagittis vulputate senectus"/>
+				<Model:FlightPictureData Name="Ipsum hac justo arcu lacus" Source="Leo lorem mus"/>
+				<Model:FlightPictureData Name="Varius curabitur vestibulum diam" Source="Magna sociosqu nec aenean"/>
+				<Model:FlightPictureData Name="Eget phasellus" Source="Elit vestibulum suscipit enim"/>
+			</Model:FlightData.Pictures>
+			<Model:FlightData.Videos>
+				<Model:FlightVideoData Name="Consequat mauris massa non" Preview="Per adipiscing" Source="Convallis parturient dignissim nullam metus"/>
+				<Model:FlightVideoData Name="Elementum erat morbi" Preview="Sed facilisis eros nibh" Source="Torquent sem"/>
+				<Model:FlightVideoData Name="Fermentum ultrices" Preview="Aptent auctor neque cubilia" Source="Vestibulum dapibus vestibulum"/>
+				<Model:FlightVideoData Name="Congue cursus fringilla" Preview="Adipiscing sit nisi" Source="Parturient habitasse"/>
+				<Model:FlightVideoData Name="Nisl vel dictum netus" Preview="Egestas vestibulum lectus" Source="Hendrerit libero ligula"/>
+			</Model:FlightData.Videos>
+		</Model:FlightData>
+		<Model:FlightData Name="Vehicula nulla" StartTime="11/06/2013 12:42:48">
+			<Model:FlightData.Duration>
+				<System:TimeSpan/>
+			</Model:FlightData.Duration>
+			<Model:FlightData.Pictures>
+				<Model:FlightPictureData Name="Porta euismod vestibulum purus" Source="Volutpat litora nam adipiscing himenaeos"/>
+				<Model:FlightPictureData Name="Imperdiet luctus sed" Source="Nunc parturient magnis"/>
+				<Model:FlightPictureData Name="Vestibulum feugiat vestibulum dis odio" Source="Orci est"/>
+				<Model:FlightPictureData Name="Hac leo" Source="Risus malesuada velit"/>
+				<Model:FlightPictureData Name="Penatibus adipiscing" Source="Gravida porttitor"/>
+			</Model:FlightData.Pictures>
+			<Model:FlightData.Videos>
+				<Model:FlightVideoData Name="Pede quam" Preview="Vitae maecenas" Source="Tincidunt mattis iaculis class"/>
+				<Model:FlightVideoData Name="Praesent mus parturient vestibulum mauris" Preview="Accumsan curae" Source="Nec lacinia mollis laoreet"/>
+				<Model:FlightVideoData Name="Donec natoque" Preview="Etiam posuere quis urna potenti" Source="Vestibulum non"/>
+				<Model:FlightVideoData Name="Tristique cras fusce per duis" Preview="Adipiscing lorem ultricies" Source="Parturient morbi pretium montes sed"/>
+				<Model:FlightVideoData Name="Rhoncus nostra sem nunc sit" Preview="Bibendum ornare vestibulum" Source="Venenatis dictumst nulla platea proin"/>
+			</Model:FlightData.Videos>
+		</Model:FlightData>
+		<Model:FlightData Name="Augue vulputate sodales vel primis" StartTime="11/06/2013 12:42:48">
+			<Model:FlightData.Duration>
+				<System:TimeSpan/>
+			</Model:FlightData.Duration>
+			<Model:FlightData.Pictures>
+				<Model:FlightPictureData Name="Amet viverra rutrum" Source="Sapien aliquam"/>
+				<Model:FlightPictureData Name="Eleifend vestibulum facilisi semper dolor" Source="Sociis nam"/>
+				<Model:FlightPictureData Name="Fames adipiscing ante felis sed" Source="Parturient taciti vestibulum"/>
+				<Model:FlightPictureData Name="Arcu vestibulum tellus" Source="Diam dis tempor adipiscing faucibus"/>
+				<Model:FlightPictureData Name="Parturient habitant tempus ipsum" Source="Vestibulum curabitur justo phasellus"/>
+			</Model:FlightData.Pictures>
+			<Model:FlightData.Videos>
+				<Model:FlightVideoData Name="Integer est vestibulum" Preview="Lacus lorem tortor eget hac" Source="Turpis inceptos varius aenean"/>
+				<Model:FlightVideoData Name="Elit adipiscing magna parturient" Preview="Leo mus" Source="Massa metus nec enim"/>
+				<Model:FlightVideoData Name="Morbi non" Preview="Consequat neque interdum" Source="Lobortis vestibulum"/>
+				<Model:FlightVideoData Name="Erat eros mauris quisque netus" Preview="Nascetur vestibulum" Source="Adipiscing nibh vivamus"/>
+				<Model:FlightVideoData Name="Convallis pharetra nullam" Preview="Placerat aptent per aliquam auctor" Source="Sed congue"/>
+			</Model:FlightData.Videos>
+		</Model:FlightData>
+		<Model:FlightData Name="Cursus nisi dignissim aliquet sem" StartTime="11/06/2013 12:42:48">
+			<Model:FlightData.Duration>
+				<System:TimeSpan/>
+			</Model:FlightData.Duration>
+			<Model:FlightData.Pictures>
+				<Model:FlightPictureData Name="Elementum nulla facilisis" Source="Fermentum blandit sit"/>
+				<Model:FlightPictureData Name="Pulvinar dictum nisl nunc" Source="Commodo parturient vestibulum fringilla"/>
+				<Model:FlightPictureData Name="Odio lectus" Source="Vestibulum adipiscing"/>
+				<Model:FlightPictureData Name="Conubia cubilia dapibus" Source="Sagittis egestas"/>
+				<Model:FlightPictureData Name="Parturient vel orci habitasse senectus" Source="Porta libero nam purus vestibulum"/>
+			</Model:FlightData.Pictures>
+			<Model:FlightData.Videos>
+				<Model:FlightVideoData Name="Ligula euismod litora" Preview="Sed pede" Source="Feugiat luctus dis"/>
+				<Model:FlightVideoData Name="Risus quam magnis hendrerit est" Preview="Sociosqu gravida himenaeos hac mattis" Source="Quis velit vestibulum mauris"/>
+				<Model:FlightVideoData Name="Leo imperdiet" Preview="Malesuada suscipit vitae class" Source="Adipiscing urna"/>
+				<Model:FlightVideoData Name="Penatibus cras" Preview="Duis mus" Source="Mollis curae porttitor"/>
+				<Model:FlightVideoData Name="Donec tincidunt montes nec nostra" Preview="Etiam ornare non per sed" Source="Iaculis nunc tristique fusce"/>
+			</Model:FlightData.Videos>
+		</Model:FlightData>
+	</W8:MainPageViewModel.Flights>
+</W8:MainPageViewModel>

@@ -30,19 +30,27 @@ namespace ARDrone2Client.Common.Workers
         {
             _DroneClient = droneClient;
         }
-        
+
         public override async void Start()
         {
-            udpClient = new DatagramSocket();
-         
-            // Connect To Drone
-            udpClient.MessageReceived += MessageReceived;
-            await udpClient.BindServiceNameAsync(_ServiceName);
-            await udpClient.ConnectAsync(new HostName(DroneClient.Host), _ServiceName);
-            udpWriter = new DataWriter(udpClient.OutputStream);
+            try
+            {
+                udpClient = new DatagramSocket();
 
-            SendKeepAliveSignal();
-            _TimeoutStopWatch = Stopwatch.StartNew();
+                // Connect To Drone
+                udpClient.MessageReceived += MessageReceived;
+
+                await udpClient.BindServiceNameAsync(_ServiceName);
+                await udpClient.ConnectAsync(new HostName(DroneClient.Host), _ServiceName);
+                udpWriter = new DataWriter(udpClient.OutputStream);
+
+                SendKeepAliveSignal();
+                _TimeoutStopWatch = Stopwatch.StartNew();
+            }
+            catch (Exception e)
+            {
+                Stop();
+            }
         }
 
         public override void Stop()
@@ -96,6 +104,7 @@ namespace ARDrone2Client.Common.Workers
 
             _TimeoutStopWatch.Restart();
         }
+
         private void UpdateNavigationData(NavigationPacket packet)
         {
             NavigationData navigationData;
@@ -140,9 +149,14 @@ namespace ARDrone2Client.Common.Workers
 
         private async void SendKeepAliveSignal()
         {
-            byte[] payload = BitConverter.GetBytes(1);
-            udpWriter.WriteBytes(payload);
-            await udpWriter.StoreAsync();
+            try
+            {
+                byte[] payload = BitConverter.GetBytes(1);
+                udpWriter.WriteBytes(payload);
+                await udpWriter.StoreAsync();
+            }
+            catch(Exception)
+            { }
         }
     }
 }

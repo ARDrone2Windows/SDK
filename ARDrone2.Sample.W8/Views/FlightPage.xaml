@@ -1,0 +1,308 @@
+﻿<Page x:Class="AR.Drone2.Sample.W8.Views.FlightPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:w8="using:AR.Drone2.Sample.W8"
+      xmlns:controls="using:WinRTXamlToolkit.Controls"
+      mc:Ignorable="d"
+      x:Name="pageRoot">
+
+    <Page.DataContext>
+        <w8:FlightPageViewModel />
+    </Page.DataContext>
+
+    <Page.Resources>
+        <DataTemplate x:Key="FlightPictureDataTemplate">
+            <Button Style="{StaticResource EmptyButtonStyle}"
+                    Click="OpenPhotoViewer"
+                    Margin="0,0,5,5">
+                <Border BorderBrush="LightGray"
+                        BorderThickness="1">
+                    <Grid>
+                        <Image Source="{Binding Source}"
+                               Stretch="Uniform"
+                               Height="150" />
+                    </Grid>
+                </Border>
+            </Button>
+        </DataTemplate>
+
+        <DataTemplate x:Key="FlightVideoDataTemplate">
+            <Button Style="{StaticResource EmptyButtonStyle}"
+                    Margin="0,0,5,5">
+                <Border BorderBrush="LightGray"
+                        BorderThickness="1">
+                    <Grid>
+                        <Image Source="{Binding Preview}"
+                               Height="150"
+                               Stretch="Uniform" />
+                        <Image Source="/Assets/Play.png"
+                               Height="85" />
+                    </Grid>
+                </Border>
+            </Button>
+        </DataTemplate>
+    </Page.Resources>
+
+    <Grid Style="{StaticResource LayoutRootStyle}">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/Background.jpg" />
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="140" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                      HorizontalScrollMode="Enabled"
+                      VerticalScrollBarVisibility="Disabled"
+                      VerticalScrollMode="Disabled"
+                      Grid.Row="1">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="50" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Orientation="Vertical"
+                            Margin="120,20,0,0" Width="300">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="ms-appx:///Assets/graph-titre1.png"
+                               Stretch="None" />
+                        <TextBlock HorizontalAlignment="Left"
+                                   TextWrapping="Wrap"
+                                   Text="Informations"
+                                   VerticalAlignment="Center"
+                                   FontSize="30"
+                                   Margin="10,0,0,0"
+                                   FontFamily="Segoe UI"
+                                   FontWeight="Bold" />
+                    </StackPanel>
+
+                    <Grid Margin="0,20,0,10">
+                        <TextBlock Text="Date:"
+                                   Margin="3,-7,10,10"
+                                   Style="{StaticResource GroupHeaderTextStyle}"
+                                   Foreground="Black" />
+                        <TextBlock Text="{Binding CurrentFlight.Date}"
+                                   HorizontalAlignment="Right"
+                                   Margin="3,-7,10,10"
+                                   Style="{StaticResource GroupHeaderTextStyle}"
+                                   Foreground="Black" />
+                    </Grid>
+                    <Grid Margin="0,0,0,10">
+                        <TextBlock Text="Start time:"
+                                   Margin="3,-7,10,10"
+                                   Style="{StaticResource GroupHeaderTextStyle}"
+                                   Foreground="Black" />
+                        <TextBlock Text="{Binding CurrentFlight.StartTime}"
+                                   HorizontalAlignment="Right"
+                                   Margin="3,-7,10,10"
+                                   Style="{StaticResource GroupHeaderTextStyle}"
+                                   Foreground="Black" />
+                    </Grid>
+                    <Grid Margin="0,0,0,10">
+                        <TextBlock Text="End time:"
+                                   Margin="3,-7,10,10"
+                                   Style="{StaticResource GroupHeaderTextStyle}"
+                                   Foreground="Black" />
+                        <TextBlock Text="{Binding CurrentFlight.EndTime}"
+                                   HorizontalAlignment="Right"
+                                   Margin="3,-7,10,10"
+                                   Style="{StaticResource GroupHeaderTextStyle}"
+                                   Foreground="Black" />
+                    </Grid>
+                    <Grid Margin="0,0,0,10">
+                        <TextBlock Text="Duration:"
+                                   Margin="3,-7,10,10"
+                                   Style="{StaticResource GroupHeaderTextStyle}"
+                                   Foreground="Black" />
+                        <TextBlock Text="{Binding CurrentFlight.Duration}"
+                                   HorizontalAlignment="Right"
+                                   Margin="3,-7,10,10"
+                                   Style="{StaticResource GroupHeaderTextStyle}"
+                                   Foreground="Black" />
+                    </Grid>
+                    <Grid Margin="0,0,0,10">
+                        <TextBlock Text="Altitude minimal:"
+                                   Margin="3,-7,10,10"
+                                   Style="{StaticResource GroupHeaderTextStyle}"
+                                   Foreground="Black" />
+                        <TextBlock Text="{Binding CurrentFlight.AltitudeMin}"
+                                   HorizontalAlignment="Right"
+                                   Margin="3,-7,10,10"
+                                   Style="{StaticResource GroupHeaderTextStyle}"
+                                   Foreground="Black" />
+                    </Grid>
+                    <Grid Margin="0,0,0,10">
+                        <TextBlock Text="Altitude maximal:"
+                                   Margin="3,-7,10,10"
+                                   Style="{StaticResource GroupHeaderTextStyle}"
+                                   Foreground="Black" />
+                        <TextBlock Text="{Binding CurrentFlight.AltitudeMax}"
+                                   HorizontalAlignment="Right"
+                                   Margin="3,-7,10,10"
+                                   Style="{StaticResource GroupHeaderTextStyle}"
+                                   Foreground="Black" />
+                    </Grid>
+
+                    <!--<Image Source="/Assets/Samples/Graphique.jpg"
+                           Height="250" />-->
+                </StackPanel>
+
+                <StackPanel Orientation="Vertical"
+                            Margin="50,20,0,0"
+                            Grid.Column="1"
+                            HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="ms-appx:///Assets/graph-titre1.png"
+                               Stretch="None" />
+                        <TextBlock HorizontalAlignment="Left"
+                                   TextWrapping="Wrap"
+                                   Text="Pictures"
+                                   VerticalAlignment="Center"
+                                   FontSize="30"
+                                   Margin="10,0,0,0"
+                                   FontFamily="Segoe UI"
+                                   FontWeight="Bold" />
+                    </StackPanel>
+
+                    <ItemsControl ItemTemplate="{StaticResource FlightPictureDataTemplate}"
+                                  ItemsSource="{Binding CurrentFlight.Pictures}"
+
+                                  Margin="0,20,0,0">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapGrid Orientation="Vertical"
+                                          MaximumRowsOrColumns="3"
+                                          ItemWidth="280"
+                                          ItemHeight="145">
+                                    <WrapGrid.ChildrenTransitions>
+                                        <TransitionCollection>
+                                            <EntranceThemeTransition />
+                                        </TransitionCollection>
+                                    </WrapGrid.ChildrenTransitions>
+                                </WrapGrid>
+                                <!--<controls:WrapPanel Orientation="Horizontal" 
+                                                    ItemHeight="150">
+                                    <controls:WrapPanel.ChildrenTransitions>
+                                        <TransitionCollection>
+                                            <EntranceThemeTransition />
+                                        </TransitionCollection>
+                                    </controls:WrapPanel.ChildrenTransitions>
+                                </controls:WrapPanel>-->
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </StackPanel>
+                <StackPanel Orientation="Vertical"
+                            Margin="50,20,0,0"
+                            Grid.Column="2"
+                            HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="ms-appx:///Assets/graph-titre1.png"
+                               Stretch="None" />
+                        <TextBlock HorizontalAlignment="Left"
+                                   TextWrapping="Wrap"
+                                   Text="Videos"
+                                   VerticalAlignment="Center"
+                                   FontSize="30"
+                                   Margin="10,0,0,0"
+                                   FontFamily="Segoe UI"
+                                   FontWeight="Bold" />
+                    </StackPanel>
+
+                    <ItemsControl ItemTemplate="{StaticResource FlightVideoDataTemplate}"
+                                  ItemsSource="{Binding CurrentFlight.Videos}"
+                                  Margin="0,20,0,0">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapGrid Orientation="Vertical"
+                                          ItemWidth="280"
+                                          MaximumRowsOrColumns="3"
+                                          ItemHeight="145">
+                                    <WrapGrid.ChildrenTransitions>
+                                        <TransitionCollection>
+                                            <EntranceThemeTransition />
+                                        </TransitionCollection>
+                                    </WrapGrid.ChildrenTransitions>
+                                </WrapGrid>
+                                <!--<controls:WrapPanel Orientation="Horizontal"
+                                                    ItemHeight="150">
+                                    <controls:WrapPanel.ChildrenTransitions>
+                                        <TransitionCollection>
+                                            <EntranceThemeTransition />
+                                        </TransitionCollection>
+                                    </controls:WrapPanel.ChildrenTransitions>
+                                </controls:WrapPanel>-->
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                    </ItemsControl>
+                </StackPanel>
+            </Grid>
+        </ScrollViewer>
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Button x:Name="backButton"
+                    Click="GoBack"
+                    IsEnabled="{Binding Frame.CanGoBack, ElementName=pageRoot}"
+                    Style="{StaticResource BackButtonStyle}"
+                    Margin="36,1,36,0"
+                    VerticalAlignment="Center"
+                    FontSize="64"
+                    Width="Auto"
+                    Height="Auto" />
+            <!--<TextBlock HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="48" FontWeight="SemiBold" Text="{StaticResource AppName}" Style="{StaticResource PageSubheaderTextStyle}" 
+                       Margin="0,68,0,42"
+                       Foreground="Black" Grid.Column="1" />-->
+            <Image Grid.Column="1"
+                   HorizontalAlignment="Left"
+                   Source="/Assets/MainLogo.png"
+                   Margin="-15,0,0,0"
+                   Stretch="None" />
+        </Grid>
+        <Popup x:Name="ParametersGrid"
+               Grid.Row="1"
+               Opened="ParametersGrid_Opened"
+               Closed="ParametersGrid_Closed"
+               HorizontalAlignment="Center"
+               IsLightDismissEnabled="True"
+               VerticalAlignment="Center"
+               HorizontalOffset="-420"
+               VerticalOffset="-240">
+            <Popup.ChildTransitions>
+                <TransitionCollection>
+                    <PaneThemeTransition />
+                </TransitionCollection>
+            </Popup.ChildTransitions>
+            <Grid Background="{StaticResource ParrotBrush}">
+                <FlipView ItemsSource="{Binding CurrentFlight.Pictures}"
+                          SelectedIndex="{Binding SelectedIndex, Mode=TwoWay}"
+                          Width="840"
+                          Height="480"
+                          HorizontalAlignment="Center">
+                    <FlipView.ItemTemplate>
+                        <DataTemplate>
+                            <Image Source="{Binding Source}"
+                                   Stretch="UniformToFill" />
+                        </DataTemplate>
+                    </FlipView.ItemTemplate>
+                </FlipView>
+            </Grid>
+        </Popup>
+        <Rectangle x:Name="overlay"
+                   Fill="#D8464646"
+                   Stroke="Black"
+                   Grid.Row="1"
+                   Visibility="Collapsed" />
+
+    </Grid>
+</Page>

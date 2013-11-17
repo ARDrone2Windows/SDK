@@ -221,6 +221,15 @@
     <Compile Include="..\DroneClient.cs">
       <Link>DroneClient.cs</Link>
     </Compile>
+    <Compile Include="..\FTP\FTPClient.cs">
+      <Link>FTP\FTPClient.cs</Link>
+    </Compile>
+    <Compile Include="..\FTP\FtpException.cs">
+      <Link>FTP\FtpException.cs</Link>
+    </Compile>
+    <Compile Include="..\FTP\FtpResponse.cs">
+      <Link>FTP\FtpResponse.cs</Link>
+    </Compile>
     <Compile Include="..\Helpers\ConversionHelper.cs">
       <Link>Helpers\ConversionHelper.cs</Link>
     </Compile>
@@ -435,6 +444,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\joystick_absolut_control.png" />
+    <Content Include="Assets\joystick_halo.png" />
+    <Content Include="Assets\joystick_manuel.png" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '11.0' ">
     <VisualStudioVersion>11.0</VisualStudioVersion>

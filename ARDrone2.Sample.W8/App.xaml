@@ -1,8 +1,10 @@
-﻿<Application
-    x:Class="ARDrone2.Sample.App"
+﻿<Application x:Class="ARDrone2.Sample.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:ARDrone2.Sample">
+             xmlns:local="using:ARDrone2.Sample"
+             xmlns:localW8="using:AR.Drone2.Sample.W8"
+             RequestedTheme="Light"
+             >
 
     <Application.Resources>
         <ResourceDictionary>
@@ -12,28 +14,436 @@
                     Styles that define common aspects of the platform look and feel
                     Required by Visual Studio project and item templates
                  -->
-                <ResourceDictionary Source="Common/StandardStyles.xaml"/>
+                <ResourceDictionary Source="Common/StandardStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
+            <localW8:ViewModelLocator x:Key="ViewModelLocator" />
+
+            <Style x:Key="EmptyButtonStyle"
+                   TargetType="Button">
+                <Setter Property="Background"
+                        Value="Transparent" />
+                <Setter Property="Foreground"
+                        Value="{StaticResource ButtonForegroundThemeBrush}" />
+                <Setter Property="BorderBrush"
+                        Value="{StaticResource ButtonBorderThemeBrush}" />
+                <Setter Property="BorderThickness"
+                        Value="{StaticResource ButtonBorderThemeThickness}" />
+                <Setter Property="Padding"
+                        Value="0" />
+                <Setter Property="Margin"
+                        Value="0" />
+                <Setter Property="HorizontalAlignment"
+                        Value="Stretch" />
+                <Setter Property="VerticalAlignment"
+                        Value="Stretch" />
+                <Setter Property="HorizontalContentAlignment"
+                        Value="Stretch" />
+                <Setter Property="VerticalContentAlignment"
+                        Value="Stretch" />
+                <Setter Property="FontFamily"
+                        Value="{StaticResource ContentControlThemeFontFamily}" />
+                <Setter Property="FontWeight"
+                        Value="SemiBold" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource ControlContentThemeFontSize}" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border Margin="{TemplateBinding Margin}"
+                                    Background="{TemplateBinding Background}"
+                                    x:Name="LayoutRoot">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Pressed">
+                                            <Storyboard>
+                                                <PointerDownThemeAnimation TargetName="LayoutRoot" />
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Disabled">
+
+                                        </VisualState>
+                                        <VisualState x:Name="PointerOver" />
+                                        <VisualState x:Name="Normal">
+                                            <Storyboard>
+                                                <PointerUpThemeAnimation TargetName="LayoutRoot" />
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                    <VisualStateGroup x:Name="FocusStates">
+                                        <VisualState x:Name="Focused" />
+                                        <VisualState x:Name="PointerFocused" />
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <ContentPresenter x:Name="ContentPresenter"
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                  ContentTransitions="{TemplateBinding ContentTransitions}"
+                                                  Content="{TemplateBinding Content}"
+                                                  HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  Margin="0"
+                                                  VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="ListViewLightItemStyle"
+                   TargetType="ListViewItem">
+                <Setter Property="FontFamily"
+                        Value="{StaticResource ContentControlThemeFontFamily}" />
+                <Setter Property="FontSize"
+                        Value="{StaticResource ControlContentThemeFontSize}" />
+                <Setter Property="Background"
+                        Value="Transparent" />
+                <Setter Property="TabNavigation"
+                        Value="Local" />
+                <Setter Property="IsHoldingEnabled"
+                        Value="True" />
+                <Setter Property="Margin"
+                        Value="0,0,18,18" />
+                <Setter Property="HorizontalContentAlignment"
+                        Value="Left" />
+                <Setter Property="VerticalContentAlignment"
+                        Value="Top" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ListViewItem">
+                            <Grid x:Name="ReorderHintContent">
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal" />
+                                        <VisualState x:Name="PointerOver" />
+                                        <VisualState x:Name="Pressed" />
+                                        <VisualState x:Name="PointerOverPressed" />
+                                        <VisualState x:Name="Disabled">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="contentPresenter"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="{StaticResource ListViewItemDisabledThemeOpacity}"
+                                                                 Duration="0" />
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                    <VisualStateGroup x:Name="FocusStates">
+                                        <VisualState x:Name="Focused" />
+                                        <VisualState x:Name="Unfocused" />
+                                        <VisualState x:Name="PointerFocused" />
+                                    </VisualStateGroup>
+                                    <VisualStateGroup x:Name="SelectionHintStates">
+                                        <VisualStateGroup.Transitions>
+                                            <VisualTransition GeneratedDuration="0:0:0.65"
+                                                              To="NoSelectionHint" />
+                                        </VisualStateGroup.Transitions>
+                                        <VisualState x:Name="VerticalSelectionHint" />
+                                        <VisualState x:Name="HorizontalSelectionHint" />
+                                        <VisualState x:Name="NoSelectionHint" />
+                                    </VisualStateGroup>
+                                    <VisualStateGroup x:Name="SelectionStates">
+                                        <VisualState x:Name="Unselecting" />
+                                        <VisualState x:Name="Unselected" />
+                                        <VisualState x:Name="UnselectedPointerOver">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                               Storyboard.TargetName="contentPresenter">
+                                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                                            Value="{StaticResource ListViewItemSelectedForegroundThemeBrush}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="UnselectedSwiping" />
+                                        <VisualState x:Name="Selecting">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                               Storyboard.TargetName="contentPresenter">
+                                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                                            Value="{StaticResource ListViewItemSelectedForegroundThemeBrush}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Selected">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                               Storyboard.TargetName="contentPresenter">
+                                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                                            Value="{StaticResource ListViewItemSelectedForegroundThemeBrush}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="SelectedSwiping">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                               Storyboard.TargetName="contentPresenter">
+                                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                                            Value="{StaticResource ListViewItemSelectedForegroundThemeBrush}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="SelectedUnfocused">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Foreground"
+                                                                               Storyboard.TargetName="contentPresenter">
+                                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                                            Value="{StaticResource ListViewItemSelectedForegroundThemeBrush}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                    <VisualStateGroup x:Name="DragStates">
+                                        <VisualStateGroup.Transitions>
+                                            <VisualTransition GeneratedDuration="0:0:0.2"
+                                                              To="NotDragging" />
+                                        </VisualStateGroup.Transitions>
+                                        <VisualState x:Name="NotDragging" />
+                                        <VisualState x:Name="Dragging" />
+                                        <VisualState x:Name="DraggingTarget">
+                                            <Storyboard>
+                                                <DropTargetItemThemeAnimation TargetName="OuterContainer" />
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="MultipleDraggingPrimary" />
+                                        <VisualState x:Name="MultipleDraggingSecondary" />
+                                    </VisualStateGroup>
+                                    <VisualStateGroup x:Name="ReorderHintStates">
+                                        <VisualStateGroup.Transitions>
+                                            <VisualTransition GeneratedDuration="0:0:0.2"
+                                                              To="NoReorderHint" />
+                                        </VisualStateGroup.Transitions>
+                                        <VisualState x:Name="NoReorderHint" />
+                                        <VisualState x:Name="BottomReorderHint">
+                                            <Storyboard>
+                                                <DragOverThemeAnimation Direction="Bottom"
+                                                                        ToOffset="{StaticResource ListViewItemReorderHintThemeOffset}"
+                                                                        TargetName="ReorderHintContent" />
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="TopReorderHint">
+                                            <Storyboard>
+                                                <DragOverThemeAnimation Direction="Top"
+                                                                        ToOffset="{StaticResource ListViewItemReorderHintThemeOffset}"
+                                                                        TargetName="ReorderHintContent" />
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="RightReorderHint">
+                                            <Storyboard>
+                                                <DragOverThemeAnimation Direction="Right"
+                                                                        ToOffset="{StaticResource ListViewItemReorderHintThemeOffset}"
+                                                                        TargetName="ReorderHintContent" />
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="LeftReorderHint">
+                                            <Storyboard>
+                                                <DragOverThemeAnimation Direction="Left"
+                                                                        ToOffset="{StaticResource ListViewItemReorderHintThemeOffset}"
+                                                                        TargetName="ReorderHintContent" />
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                    <VisualStateGroup x:Name="DataVirtualizationStates">
+                                        <VisualState x:Name="DataAvailable" />
+                                        <VisualState x:Name="DataPlaceholder" />
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <ContentPresenter x:Name="contentPresenter"
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                  ContentTransitions="{TemplateBinding ContentTransitions}"
+                                                  Content="{TemplateBinding Content}" />
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
             <DataTemplate x:Key="MessageItem">
-                <Grid HorizontalAlignment="Left">
-                        <TextBlock TextWrapping="Wrap"  Margin="0, 0,0, 0" VerticalAlignment="Center" Text="{Binding Content}" HorizontalAlignment="Left" FontFamily="Segoe UI" Foreground="Green" />
+                <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                    <Grid.Background>
+                        <SolidColorBrush Color="Black" Opacity="0.7"/>
+                    </Grid.Background>
+                    <TextBlock TextWrapping="Wrap"
+                               Margin="10"
+                               VerticalAlignment="Stretch"
+                               Text="{Binding Content}"
+                               HorizontalAlignment="Stretch"
+                               TextAlignment="Left"
+                               FontFamily="Segoe UI"
+                               Foreground="White" />
                 </Grid>
             </DataTemplate>
 
-
-
             <DataTemplate x:Key="sectionList">
-                <Grid HorizontalAlignment="Left" Width="200" Height="500" Background="#77000000">
-                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
-                        <TextBlock Text="{Binding Group.SectionName}" Foreground="White" Style="{StaticResource TitleTextStyle}" FontSize="20" RenderTransformOrigin="0.5,0.5">
+                <Grid HorizontalAlignment="Left"
+                      Width="200"
+                      Height="500"
+                      Background="#77000000">
+                    <StackPanel HorizontalAlignment="Center"
+                                VerticalAlignment="Center">
+                        <TextBlock Text="{Binding Group.SectionName}"
+                                   Foreground="White"
+                                   Style="{StaticResource TitleTextStyle}"
+                                   FontSize="20"
+                                   RenderTransformOrigin="0.5,0.5">
                             <TextBlock.RenderTransform>
-                                <CompositeTransform Rotation="-90" TranslateX="-2" TranslateY="4"/>
+                                <CompositeTransform Rotation="-90"
+                                                    TranslateX="-2"
+                                                    TranslateY="4" />
                             </TextBlock.RenderTransform>
                         </TextBlock>
                     </StackPanel>
                 </Grid>
             </DataTemplate>
+            <Style x:Key="ParrotBackButtonStyle"
+                   TargetType="Button">
+                <Setter Property="MinWidth"
+                        Value="0" />
+                <Setter Property="Width"
+                        Value="48" />
+                <Setter Property="Height"
+                        Value="48" />
+                <Setter Property="Margin"
+                        Value="36,0,36,36" />
+                <Setter Property="VerticalAlignment"
+                        Value="Bottom" />
+                <Setter Property="FontFamily"
+                        Value="Segoe UI Symbol" />
+                <Setter Property="FontWeight"
+                        Value="Normal" />
+                <Setter Property="FontSize"
+                        Value="56" />
+                <Setter Property="AutomationProperties.AutomationId"
+                        Value="BackButton" />
+                <Setter Property="AutomationProperties.Name"
+                        Value="Back" />
+                <Setter Property="AutomationProperties.ItemType"
+                        Value="Navigation Button" />
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Grid x:Name="RootGrid">
+
+                                <VisualStateManager.VisualStateGroups>
+                                    <VisualStateGroup x:Name="CommonStates">
+                                        <VisualState x:Name="Normal" />
+                                        <VisualState x:Name="PointerOver">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundGlyph"
+                                                                               Storyboard.TargetProperty="Foreground">
+                                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                                            Value="{StaticResource BackButtonPointerOverBackgroundThemeBrush}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="NormalGlyph"
+                                                                               Storyboard.TargetProperty="Foreground">
+                                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                                            Value="{StaticResource BackButtonPointerOverForegroundThemeBrush}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Pressed">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="BackgroundGlyph"
+                                                                               Storyboard.TargetProperty="Foreground">
+                                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                                            Value="{StaticResource BackButtonForegroundThemeBrush}" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                                <DoubleAnimation Storyboard.TargetName="ArrowGlyph"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="1"
+                                                                 Duration="0" />
+                                                <DoubleAnimation Storyboard.TargetName="NormalGlyph"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="0"
+                                                                 Duration="0" />
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Disabled">
+                                            <Storyboard>
+                                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="RootGrid"
+                                                                               Storyboard.TargetProperty="Visibility">
+                                                    <DiscreteObjectKeyFrame KeyTime="0"
+                                                                            Value="Collapsed" />
+                                                </ObjectAnimationUsingKeyFrames>
+                                            </Storyboard>
+                                        </VisualState>
+                                    </VisualStateGroup>
+                                    <VisualStateGroup x:Name="FocusStates">
+                                        <VisualState x:Name="Focused">
+                                            <Storyboard>
+                                                <DoubleAnimation Storyboard.TargetName="FocusVisualWhite"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="1"
+                                                                 Duration="0" />
+                                                <DoubleAnimation Storyboard.TargetName="FocusVisualBlack"
+                                                                 Storyboard.TargetProperty="Opacity"
+                                                                 To="1"
+                                                                 Duration="0" />
+                                            </Storyboard>
+                                        </VisualState>
+                                        <VisualState x:Name="Unfocused" />
+                                        <VisualState x:Name="PointerFocused" />
+                                    </VisualStateGroup>
+                                </VisualStateManager.VisualStateGroups>
+                                <Grid Margin="{TemplateBinding Padding}">
+                                    <TextBlock x:Name="BackgroundGlyph"
+                                               Text="&#xE0A8;"
+                                               Foreground="{StaticResource BackButtonBackgroundThemeBrush}" />
+                                    <TextBlock x:Name="NormalGlyph"
+                                               Text="{StaticResource BackButtonGlyph}"
+                                               Foreground="{TemplateBinding Foreground}" />
+                                    <TextBlock x:Name="ArrowGlyph"
+                                               Text="&#xE0A6;"
+                                               Foreground="{StaticResource BackButtonPressedForegroundThemeBrush}"
+                                               Opacity="0" />
+                                </Grid>
+                                <Rectangle x:Name="FocusVisualWhite"
+                                           IsHitTestVisible="False"
+                                           Stroke="{StaticResource FocusVisualWhiteStrokeThemeBrush}"
+                                           StrokeEndLineCap="Square"
+                                           StrokeDashArray="1,1"
+                                           Opacity="0"
+                                           StrokeDashOffset="1.5" />
+                                <Rectangle x:Name="FocusVisualBlack"
+                                           IsHitTestVisible="False"
+                                           Stroke="{StaticResource FocusVisualBlackStrokeThemeBrush}"
+                                           StrokeEndLineCap="Square"
+                                           StrokeDashArray="1,1"
+                                           Opacity="0"
+                                           StrokeDashOffset="0.5" />
+
+                            </Grid>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+            <SolidColorBrush x:Key="ParrotBrush"
+                             Color="#ffff7b00" />
+
+            <DataTemplate x:Key="FlightPictureDataTemplate">
+                <Button Style="{StaticResource EmptyButtonStyle}">
+                <Border BorderBrush="LightGray"
+                        BorderThickness="1">
+                    <Grid>
+                        <Image Source="{Binding Source}" 
+                                   Stretch="Uniform"
+                                   Height="150" />
+                    </Grid>
+                </Border>
+                </Button>
+            </DataTemplate>
+
+            <DataTemplate x:Key="FlightVideoDataTemplate">
+                <Button Style="{StaticResource EmptyButtonStyle}" Margin="0,0,5,5">
+                <Border BorderBrush="LightGray"
+                        BorderThickness="1">
+                    <Grid>
+                        <Image Source="{Binding Preview}"
+                                   Height="150"
+                               Stretch="Uniform" />
+                            <Image Source="/Assets/Play.png"
+                                   Height="85"/>
+                    </Grid>
+                </Border>
+                </Button>
+            </DataTemplate>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

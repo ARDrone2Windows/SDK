@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using AR.Drone2.Sample.W8.Views;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -75,7 +76,9 @@ namespace ARDrone2.Sample
                 // When the navigation stack isn't restored navigate to the first page,
                 // configuring the new page by passing required information as a navigation
                 // parameter
-                if (!rootFrame.Navigate(typeof(FlyPage), args.Arguments))
+                //if (!rootFrame.Navigate(typeof(FlyPage), args.Arguments))
+                if (!rootFrame.Navigate(typeof(MainPage)))
+                //if (!rootFrame.Navigate(typeof(FlightPage)))
                 {
                     throw new Exception("Failed to create initial page");
                 }

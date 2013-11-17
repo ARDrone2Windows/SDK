@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Globalization;
-
 
 namespace ARDrone2Client.Common.Configuration.Sections
 {
@@ -122,7 +120,12 @@ namespace ARDrone2Client.Common.Configuration.Sections
 
         protected void Set(string index, Single value)
         {
-            Set(index, value.ToString(CultureInfo.InvariantCulture));
+            Set(index, ToInt(value).ToString());
+        }
+
+        protected void Set(string index, Double value)
+        {
+            Set(index, value.ToString());
         }
 
         protected void Set(string index, Boolean value)
