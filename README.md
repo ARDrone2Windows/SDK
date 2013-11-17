@@ -1,7 +1,7 @@
 Welcome to our ARDrone2Windows Web site.
 ===
 
-This SDK shared “As Is” is composed of one Windows Phone 8 and one Windows 8 library that share 95% of their code. 
+This SDK shared “As Is” lets you control your Parrot AR.Drone for either a Windows 8 tablet or a Windows Phone 8. It is composed of one Windows Phone 8 and one Windows 8 library that share 95% of their code. 
 We also provide two samples apps (one for Windows 8 and one for Windows Phone 8) to demonstrate the usage of our SDK.
 
 ### Content
