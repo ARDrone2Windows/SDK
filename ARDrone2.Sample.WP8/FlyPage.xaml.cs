@@ -157,7 +157,7 @@ namespace ARDrone2.Sample.WP8
 
         private void TakeOff_Click(object sender, RoutedEventArgs e)
         {
-            if (_droneClient.IsFlying)
+            if (_droneClient.IsFlying())
             {
                 _droneClient.Land();
                 TakeOffButton.Content = "Take off";

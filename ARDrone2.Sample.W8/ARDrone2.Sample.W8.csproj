@@ -17,7 +17,7 @@
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>
     <SccProvider>SAK</SccProvider>
-    <AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+    <AppxAutoIncrementPackageRevision>False</AppxAutoIncrementPackageRevision>
     <AppxPackageDir>C:\Tmp\</AppxPackageDir>
     <AppxSymbolPackageEnabled>False</AppxSymbolPackageEnabled>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -148,6 +148,9 @@
     <Compile Include="Views\FlightPage.xaml.cs">
       <DependentUpon>FlightPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\XboxControls.xaml.cs">
+      <DependentUpon>XboxControls.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\PilotagePage.xaml.cs">
       <DependentUpon>PilotagePage.xaml</DependentUpon>
     </Compile>
@@ -216,6 +219,7 @@
     <Content Include="Assets\VitesseMax.png" />
     <Content Include="Assets\Vols.png" />
     <Content Include="Assets\Weather.png" />
+    <Content Include="Assets\XboxControls.png" />
     <Content Include="Common\ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
@@ -243,6 +247,10 @@
     <Page Include="Views\FlightPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\XboxControls.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\PilotagePage.xaml">
       <SubType>Designer</SubType>

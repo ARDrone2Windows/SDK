@@ -1,18 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media.Imaging;
 using Windows.UI.Xaml.Navigation;
-using ARDrone2.Sample;
 using ARDrone2Client.Common;
 using ARDrone2Client.Common.Configuration;
-using ARDrone2Client.Common.FTP;
 using ARDrone2Client.Common.Input;
 
 namespace AR.Drone2.Sample.W8.Views
@@ -47,32 +41,9 @@ namespace AR.Drone2.Sample.W8.Views
             _timer.Start();
         }
 
-        private bool _bypassFtp = false;
-
         private async void _Timer_Tick(object sender, object e)
         {
             UpdateDisplay();
-            if (_droneClient.IsActive)
-            {
-                if (_bypassFtp) return;
-
-                var ftp = new FTPClient();
-                ftp.Verbose = true;
-                ftp.HostName = "192.168.1.1";
-                ftp.TimeOut = 1000;
-                await ftp.LoginAsync();
-                await ftp.PrintWorkingDirectoryAsync();
-                await ftp.ChangeWorkingDirectoryAsync("/boxes");
-                var files = await ftp.ListFilesAsync();
-                foreach (var file in files)
-                {
-                    Debug.WriteLine(string.Format("{0}", file));
-                    //await ftp.DownloadFileAsync(file, file, true);
-                }
-                _bypassFtp = true;
-
-                return;
-            }
 
             await _droneClient.ConnectAsync();
             if (!_droneClient.IsActive)
@@ -92,7 +63,7 @@ namespace AR.Drone2.Sample.W8.Views
         {
             var active = _droneClient.IsActive;
             TakeOffLandButton.IsEnabled = active;
-            TakeOffLandingTextBlock.Text = _droneClient.IsFlying ? "LANDING" : "TAKE OFF";
+            TakeOffLandingTextBlock.Text = _droneClient.IsFlying() ? "LANDING" : "TAKE OFF";
 
             SwitchVideoChannelButton.IsEnabled = active;
             EmergencyButton.IsEnabled = active;
@@ -146,7 +117,7 @@ namespace AR.Drone2.Sample.W8.Views
 
             Point pos = e.GetCurrentPoint(JoystickGrid).Position;
             var joy = pos.X < (ActualWidth / 2) ? RollPitchJoystick : YawGazJoystick;
-            var bounds = new Rect(joy.ActualWidth / 2, joy.ActualHeight / 2, JoystickGrid.ActualWidth - joy.ActualWidth / 2, JoystickGrid.ActualHeight - joy.ActualHeight / 2);
+            var bounds = new Rect(joy.ActualWidth / 2, joy.ActualHeight / 2, JoystickGrid.ActualWidth - joy.ActualWidth / 2, JoystickGrid.ActualHeight - 75 - joy.ActualHeight / 2);
             if (!bounds.Contains(pos))
                 return;
             joy.Margin = new Thickness(pos.X - joy.ActualWidth / 2, pos.Y - joy.ActualHeight / 2, 0, 0);
@@ -164,6 +135,7 @@ namespace AR.Drone2.Sample.W8.Views
             joy.Margin = joy == YawGazJoystick ? new Thickness(0, 0, 80, 80) : new Thickness(80, 0, 0, 80);
             joy.VerticalAlignment = VerticalAlignment.Bottom;
             joy.HorizontalAlignment = joy == YawGazJoystick ? HorizontalAlignment.Right : HorizontalAlignment.Left;
+            joy.Reset();
         }
 
         private void Configuration_Click(object sender, RoutedEventArgs e)
@@ -223,7 +195,7 @@ namespace AR.Drone2.Sample.W8.Views
 
         private void TakeOffLandButton_Click(object sender, RoutedEventArgs e)
         {
-            if (_droneClient.IsFlying)
+            if (_droneClient.IsFlying())
                 _droneClient.Land();
             else
                 _droneClient.TakeOff();

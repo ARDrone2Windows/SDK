@@ -19,6 +19,7 @@ using ARDrone2Client.Common.Configuration;
 using ARDrone2Client.Common.Input;
 using ARDrone2Client.Common.Navigation;
 using ARDrone2Client.Common.ViewModel;
+using AR.Drone2.Sample.W8.Views;
 
 namespace ARDrone2.Sample
 {
@@ -98,6 +99,11 @@ namespace ARDrone2.Sample
             AngleInclinaisonMax.Value = (int)(_droneClient.Configuration.Control.EulerAngleMax * 180 / System.Math.PI);
 
             await _droneClient.SendConfiguration();
+        }
+
+        private void ShowCommandButton_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(XboxControls));
         }
     }
 }

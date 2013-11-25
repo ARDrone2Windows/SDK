@@ -17,7 +17,6 @@ namespace ARDrone2Client.Common.Workers
         public const string _ServiceName = "5554";
         public const int KeepAliveTimeout = 200;
         public const int Timeout = 2000;
-        private int consecutiveCommandMask = 0;
 
         private DroneClient _DroneClient;
         private Stopwatch _TimeoutStopWatch;
@@ -116,21 +115,7 @@ namespace ARDrone2Client.Common.Workers
                 {
                     _DroneClient.PostCommand(Command.Watchdog());
                 }
-
-                //if (navigationData.Masks.HasFlag(def_ardrone_state_mask_t.ARDRONE_COMMAND_MASK))
-                //{
-                //    if (consecutiveCommandMask >= 5)
-                //    {
-                //        _DroneClient.FlushConfigCommands();
-                //        consecutiveCommandMask = 0;
-                //    }
-                //    else
-                //        consecutiveCommandMask++;
-                //}
-                //else
-                //{
-                //    consecutiveCommandMask = 0;
-                //}
+ 
                 //TODO gérer les autres MASKS (LOW Battery, Too much wind) pour la gestion d'alertes
 
             }

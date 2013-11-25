@@ -194,7 +194,7 @@ namespace ARDrone2Client.Windows.Input
             Touch_FrameReported(e.GetCurrentPoint(this));
         }
 
-        private void Reset()
+        public void Reset()
         {
             pointerId = 0;
             byPassTicks = false;

@@ -79,6 +79,7 @@ namespace ARDrone2Client.Common.Input
             if (rightThumb.NormalizedMagnitude > 0)
             {
                 yaw = (float)_ControllerState.Gamepad.RightThumbX * _YawThrottle / _JoystickRange;
+                Debug.WriteLine(yaw);
                 gaz = (float)_ControllerState.Gamepad.RightThumbY * _GazThrottle / _JoystickRange;
             }
 
@@ -108,19 +109,26 @@ namespace ARDrone2Client.Common.Input
             }
             if (buttons.HasFlag(GamepadButtonFlags.Y))
             {
-                DroneClient.CycleProgressiveMode();
+                DroneClient.ResetEmergency();
             }
             if (buttons.HasFlag(GamepadButtonFlags.X))
             {
-                DroneClient.TakePicture();
+                DroneClient.ExecuteFlatTrim();
             }
             if (buttons.HasFlag(GamepadButtonFlags.A))
             {
-                DroneClient.StartRecordingVideo();
+                DroneClient.TakePicture();
             }
             if (buttons.HasFlag(GamepadButtonFlags.B))
             {
-                DroneClient.StopRecordingVideo();
+                if (DroneClient.IsRecording())
+                {
+                    DroneClient.StopRecordingVideo();
+                }
+                else
+                {
+                    DroneClient.StartRecordingVideo();
+                }
             }
             if (buttons.HasFlag(GamepadButtonFlags.DPadLeft))
             {

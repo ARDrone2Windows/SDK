@@ -25,6 +25,7 @@ namespace ARDrone2Client.Common
 {
     public class DroneClient : DisposableBase
     {
+        #region Variables and Fields
         private const int AckControlAndWaitForConfirmationTimeout = 1000;
         
         private string _ApplicationId = "a1b2c3d4";
@@ -63,14 +64,6 @@ namespace ARDrone2Client.Common
                 _SessionId = value;
             }
         }
-
-        private static readonly object _SyncRoot = new object();
-        private readonly CommandWorker _CommandWorker;
-        private readonly ConfigurationWorker _ConfigurationWorker;
-        private readonly NavDataWorker _NavDataWorker;
-        private readonly WatchdogWorker _WatchdogWorker;
-        private ThreadPoolTimer _InputTimer;
-
         private string _Host = "192.168.1.1";
         public string Host
         {
@@ -83,6 +76,14 @@ namespace ARDrone2Client.Common
                 _Host = value;
             }
         }
+
+        private static readonly object _SyncRoot = new object();
+        private readonly CommandWorker _CommandWorker;
+        private readonly ConfigurationWorker _ConfigurationWorker;
+        private readonly NavDataWorker _NavDataWorker;
+        private readonly WatchdogWorker _WatchdogWorker;
+        private ThreadPoolTimer _InputTimer;
+
         private NavigationData _navigationData;
         internal NavigationData NavigationData
         {
@@ -115,12 +116,6 @@ namespace ARDrone2Client.Common
             }
         }
 
-        // Actions & Events
-        public Action<NavigationPacket> NavigationPacketAcquired { get; set; }
-        public Action<NavigationData> NavigationDataUpdated { get; set; }
-        public Action<ConfigurationPacket> ConfigurationPacketAcquired { get; set; }
-        public Action<DroneConfiguration> ConfigurationUpdated { get; set; }
-
         private static DroneClient _Instance;
         public static DroneClient Instance
         {
@@ -138,12 +133,23 @@ namespace ARDrone2Client.Common
             }
         }
 
-        public bool IsFlying
+        // Actions & Events
+        public Action<NavigationPacket> NavigationPacketAcquired { get; set; }
+        public Action<NavigationData> NavigationDataUpdated { get; set; }
+        public Action<ConfigurationPacket> ConfigurationPacketAcquired { get; set; }
+        public Action<DroneConfiguration> ConfigurationUpdated { get; set; }
+        #endregion
+
+        public bool IsFlying()
         {
-            get
-            {
-                return NavigationData.State.HasFlag(NavigationState.Flying);
-            }
+            return NavigationData.State.HasFlag(NavigationState.Flying);
+        }
+
+        private bool isRecording = false;
+        public bool IsRecording()
+        {
+            //TODO explore Navdata masks usage to base the result on real Drone feedback.
+            return isRecording;
         }
 
         public DroneClient()
@@ -387,14 +393,17 @@ namespace ARDrone2Client.Common
 
         public async void ExecuteFlatTrim()
         {
-            for (int i = 0; i < 5; i++)
+            if (!IsFlying())
             {
-                _CommandWorker.PostCommand(Command.FlatTrim());
-                await Task.Delay(25);
-            }
+                for (int i = 0; i < 5; i++)
+                {
+                    _CommandWorker.PostCommand(Command.FlatTrim());
+                    await Task.Delay(25);
+                }
 
-            await Log.Instance.WriteLineAsync("DroneClient:FlatTrim ");
-            SendMessageToUI("Flat trim processed");
+                await Log.Instance.WriteLineAsync("DroneClient:FlatTrim ");
+                SendMessageToUI("Flat trim processed");
+            }
         }
 
         public async void TakePicture()
@@ -408,25 +417,33 @@ namespace ARDrone2Client.Common
 
         public async void StartRecordingVideo()
         {
-            _configuration.Video.Codec = VideoCodecType.MP4_360P_H264_720P;
-          
-            //If you want to store your video on USB
-            _configuration.Video.OnUsb = true;
-            _configuration.Userbox.Command = new UserboxCommand(UserboxCommandType.Start, DateTime.Now);
-            await SendConfiguration();
+            if (!isRecording)
+            {
+                _configuration.Video.Codec = VideoCodecType.MP4_360P_H264_720P;
 
-            await Log.Instance.WriteLineAsync("DroneClient:StartVideoRecording");
-            SendMessageToUI("Video recording started successfully");
+                //If you want to store your video on USB
+                _configuration.Video.OnUsb = true;
+                _configuration.Userbox.Command = new UserboxCommand(UserboxCommandType.Start, DateTime.Now);
+                await SendConfiguration();
+
+                await Log.Instance.WriteLineAsync("DroneClient:StartVideoRecording");
+                SendMessageToUI("Video recording started successfully");
+                isRecording = true;
+            }
         }
 
         public async void StopRecordingVideo()
         {
-            _configuration.Video.Codec = VideoCodecType.H264_360P;
-            _configuration.Userbox.Command = new UserboxCommand(UserboxCommandType.Stop);
-            await SendConfiguration();
+            if (isRecording)
+            {
+                _configuration.Video.Codec = VideoCodecType.H264_360P;
+                _configuration.Userbox.Command = new UserboxCommand(UserboxCommandType.Stop);
+                await SendConfiguration();
 
-            await Log.Instance.WriteLineAsync("DroneClient:StopVideoRecording");
-            SendMessageToUI("Video recording stopted successfully");
+                await Log.Instance.WriteLineAsync("DroneClient:StopVideoRecording");
+                SendMessageToUI("Video recording stopted successfully");
+                isRecording = false;
+            }
         }
 
         public async void PlayAnimation(FlightAnimationType animationType)

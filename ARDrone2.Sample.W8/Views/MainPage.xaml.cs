@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading.Tasks;
 using AR.Drone2.Sample.W8;
 using ARDrone2Client.Common;
@@ -7,6 +8,7 @@ using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 using AR.Drone2.Sample.W8.Views;
 using AR.Drone2.Sample.W8.Model;
+using ARDrone2Client.Common.FTP;
 
 namespace ARDrone2.Sample
 {
@@ -19,6 +21,7 @@ namespace ARDrone2.Sample
 
         private DroneClient _droneClient;
         private DispatcherTimer _timer;
+        private bool FtpHasBeenChecked = false;
 
         public MainPage()
         {
@@ -32,7 +35,7 @@ namespace ARDrone2.Sample
         /// </summary>
         /// <param name="e">Event data that describes how this page was reached.  The Parameter
         /// property is typically used to configure the page.</param>
-        protected override void OnNavigatedTo(NavigationEventArgs e)
+        protected override async void OnNavigatedTo(NavigationEventArgs e)
         {
             if(this._viewModel != null)
             {
@@ -65,6 +68,8 @@ namespace ARDrone2.Sample
 
             if (!_droneClient.IsActive)
                 await Task.Delay(5000);
+            else
+                await ConnectToFtpAsync();
         }
 
         private void SetConnectionStatus()
@@ -78,6 +83,31 @@ namespace ARDrone2.Sample
             {
                 this.progressConnection.Visibility = Visibility.Visible;
                 this.imgConnection.Visibility = Visibility.Collapsed;
+            }
+        }
+
+        private async Task ConnectToFtpAsync()
+        {
+            if (_droneClient.IsActive)
+            {
+                try
+                {
+                    var ftp = new FTPClient();
+                    ftp.Verbose = true;
+                    ftp.HostName = "192.168.1.1";
+                    ftp.TimeOut = 1000;
+                    await ftp.LoginAsync();
+                    await ftp.PrintWorkingDirectoryAsync();
+                    await ftp.ChangeWorkingDirectoryAsync("/boxes");
+                    var files = await ftp.ListFilesAsync();
+                    foreach (var file in files)
+                    {
+                        Debug.WriteLine(string.Format("{0}", file));
+                        //await ftp.DownloadFileAsync(file, file, true);
+                    }
+                }
+                catch (Exception) { }
+                return;
             }
         }
 

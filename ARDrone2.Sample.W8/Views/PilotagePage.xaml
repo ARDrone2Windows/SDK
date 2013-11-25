@@ -1006,17 +1006,12 @@
                                    Width="200" />
         </Grid>
 
-        <Grid Grid.Row="1"
-              VerticalAlignment="Bottom"
-              HorizontalAlignment="Center">
-
             <Button x:Name="TakeOffLandButton"
-                    IsEnabled="False"
+                    Grid.Row="1"
                     VerticalAlignment="Bottom"
-                    BorderThickness="0"
-                    Padding="0"
-                    Margin="0,0,0,0"
                     HorizontalAlignment="Center"
+                    IsEnabled="False"
+                    BorderThickness="0"
                     Click="TakeOffLandButton_Click"
                     Style="{StaticResource ImageButtonStyle}">
                 <!--<Image x:Name="TakeOffLandImage"
@@ -1068,7 +1063,6 @@
                                Padding="50,0">TAKE OFF</TextBlock>
                 </Grid>
             </Button>
-        </Grid>
 
         <Button x:Name="EmergencyButton"
                 Grid.Row="0"
