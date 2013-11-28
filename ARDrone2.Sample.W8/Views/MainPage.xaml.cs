@@ -52,12 +52,15 @@ namespace ARDrone2.Sample
 
         private async void _Timer_Tick(object sender, object e)
         {
+            SetConnectionStatus();
+            
             if (_droneClient.IsActive)
+            {
                 return;
+            }
 
             try
             {
-                SetConnectionStatus();
                 await _droneClient.ConnectAsync();
             }
             catch (Exception ex) 
@@ -81,11 +84,15 @@ namespace ARDrone2.Sample
             {
                 this.progressConnection.Visibility = Visibility.Collapsed;
                 this.imgConnection.Visibility = Visibility.Visible;
+                this.GoToPilotagePageButton.IsEnabled = true;
+                this.ConfigButton.IsEnabled = true;
             }
             else
             {
                 this.progressConnection.Visibility = Visibility.Visible;
                 this.imgConnection.Visibility = Visibility.Collapsed;
+                this.GoToPilotagePageButton.IsEnabled = false;
+                this.ConfigButton.IsEnabled = false;
             }
         }
 

@@ -39,7 +39,14 @@ namespace ARDrone2Client.Common.Workers
         {
             get
             {
-                return true;
+                if (socket != null)
+                {
+                    return socket.Information.RemoteAddress != null;
+                }
+                else
+                {
+                    return false;
+                }
             }
         }
         public override void Start()
@@ -50,7 +57,10 @@ namespace ARDrone2Client.Common.Workers
         public override void Stop()
         {
             if (socket != null)
+            {
                 socket.Dispose();
+                socket = null;
+            }
         }
 
         protected override async void Loop()
@@ -97,7 +107,6 @@ namespace ARDrone2Client.Common.Workers
                                 break;
                         }
                     };
-                    //socket.Dispose();
                     await Task.Delay(500);
                 }
             }

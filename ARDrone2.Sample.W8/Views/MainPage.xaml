@@ -118,7 +118,8 @@
                         <ColumnDefinition />
                     </Grid.ColumnDefinitions>
 
-                    <Button Style="{StaticResource EmptyButtonStyle}"
+                    <Button x:Name="GoToPilotagePageButton"
+                            Style="{StaticResource EmptyButtonStyle}"
                             Padding="0"
                             BorderThickness="0"
                             Click="GoToPilotagePageButton_OnClick"
@@ -151,7 +152,8 @@
                         </ctrls:LiveTileControl>
 
                     </Button>
-                    <Button Style="{StaticResource EmptyButtonStyle}"
+                    <Button x:Name="ConfigButton"
+                            Style="{StaticResource EmptyButtonStyle}"
                             Grid.Column="1"
                             Padding="0"
                             BorderThickness="0"

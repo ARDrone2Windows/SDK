@@ -220,6 +220,7 @@ namespace ARDrone2Client.Common
                     if (wb.IsAlive)
                     {
                         activeCount++;
+                        Debug.WriteLine("DroneClient.IsAlive=true " + wb.GetType().Name);
                     }
                     else
                     {
@@ -271,6 +272,9 @@ namespace ARDrone2Client.Common
             {
                 if (IsActive)
                     return true;
+                else
+                    //We close the workers previously started.
+                    Close();
 
                 SendMessageToUI("Starting Connection process");
                 await Log.Instance.WriteLineAsync("DroneClient:Connecting");
@@ -458,7 +462,8 @@ namespace ARDrone2Client.Common
 
         public async void PlayAnimation(FlightAnimationType animationType)
         {
-            _configuration.Control.FlightAnimation = new FlightAnimation(animationType, 5);
+            // 6000 = infinity : need to be tuned for some type of animations          
+            _configuration.Control.FlightAnimation = new FlightAnimation(animationType, 6000);
             await SendConfiguration();
 
             await Log.Instance.WriteLineAsync("DroneClient:PlayAnimation");
