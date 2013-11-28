@@ -33,8 +33,6 @@ namespace ARDrone2Client.Common.Workers
         private DataWriter udpWriter;
         private bool isInitialized = false;
 
-        //private StorageFile commandHistoryFile;
-
         public CommandWorker(DroneClient droneClient)
         {
             _DroneClient = droneClient;
@@ -49,23 +47,24 @@ namespace ARDrone2Client.Common.Workers
                 return;
             _SequenceNumber = 1;
 
-            // Connect To Drone
-            udpClient = new DatagramSocket();
-            await udpClient.BindServiceNameAsync(_ServiceName);
-            await udpClient.ConnectAsync(new HostName(DroneClient.Host), _ServiceName);
-            udpWriter = new DataWriter(udpClient.OutputStream);
+            try
+            {
+                // Connect to the Drone
+                udpClient = new DatagramSocket();
+                await udpClient.BindServiceNameAsync(_ServiceName);
+                await udpClient.ConnectAsync(new HostName(DroneClient.Host), _ServiceName);
+                udpWriter = new DataWriter(udpClient.OutputStream);
 
-            //string path = string.Format("AR.Drone-CommandHistory_{0:yyyy-MM-dd-HH-mm}.txt", DateTime.Now);
-            //commandHistoryFile = await ApplicationData.Current.TemporaryFolder.CreateFileAsync(path, CreationCollisionOption.ReplaceExisting);
-            // Write first message
-            //byte[] firstMessage = BitConverter.GetBytes(1);
-            //WriteString(firstMessage.ToString());
+                udpWriter.WriteByte(1);
+                await udpWriter.StoreAsync();
 
-            udpWriter.WriteByte(1);
-            await udpWriter.StoreAsync();
-
-            _Timer = ThreadPoolTimer.CreatePeriodicTimer(new TimerElapsedHandler(timerElapsedHandler), TimeSpan.FromMilliseconds(25));
-            _Started = true;
+                _Timer = ThreadPoolTimer.CreatePeriodicTimer(new TimerElapsedHandler(timerElapsedHandler), TimeSpan.FromMilliseconds(25));
+                _Started = true;
+            }
+            catch (Exception)
+            {
+                Stop();
+            }
         }
 
         public override void Stop()

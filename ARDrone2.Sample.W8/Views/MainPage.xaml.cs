@@ -59,9 +59,12 @@ namespace ARDrone2.Sample
             {
                 SetConnectionStatus();
                 await _droneClient.ConnectAsync();
-                SetConnectionStatus();
             }
-            catch (Exception)
+            catch (Exception ex) 
+            {
+                Debug.WriteLine(ex.Message);
+            }
+            finally
             {
                 SetConnectionStatus();
             }

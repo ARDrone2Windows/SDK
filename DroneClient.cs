@@ -265,23 +265,19 @@ namespace ARDrone2Client.Common
 
         public async Task<bool> ConnectAsync()
         {
+            bool isConnected = false;
+
             try
             {
                 if (IsActive)
                     return true;
+
                 SendMessageToUI("Starting Connection process");
                 await Log.Instance.WriteLineAsync("DroneClient:Connecting");
                 _RequestedState = RequestedState.Initialize;
-                _ConfigurationWorker.Start();
-                //try
-                //{
-                _NavDataWorker.Start();
-                //}
-                //catch (Exception e)
-                //{
 
-                //}
-                //TODO revoir InitState
+                _ConfigurationWorker.Start();
+                _NavDataWorker.Start();
                 _CommandWorker.Start();
                 _WatchdogWorker.Start();
 
@@ -292,31 +288,45 @@ namespace ARDrone2Client.Common
                     await Task.Delay(100);
                     attempt++;
                 }
-                if (attempt == 10)
-                    return false;
-                SendMessageToUI("All workers have been activated");
-                attempt = 0;
-                while (_RequestedState != RequestedState.None && attempt < 10) { await Task.Delay(100); attempt++; }
-                if (attempt == 10)
+                if (attempt < 10)
                 {
-                    Close();
-                    DisposeOverride();
-                    return false;
+                    
+                    SendMessageToUI("All workers have been activated");
+                    
+                    attempt = 0;
+                    // We Check if the AR.Drone is well initialized
+                    while (_RequestedState != RequestedState.None && attempt < 10)
+                    { 
+                        await Task.Delay(100); 
+                        attempt++; 
+                    }
+
+                    if (attempt < 10)
+                    {
+                        SendMessageToUI("Connected with the Drone successfully");
+
+                        await InitMultiConfiguration();
+                        SetDefaultConfiguration();
+                        RequestConfiguration();
+                        
+                        SendMessageToUI("Configuration sent to the Drone successfully");
+                        isConnected = true;
+                    }
                 }
-                SendMessageToUI("Connected with the Drone successfully");
-
-                await InitMultiConfiguration();
-                SetDefaultConfiguration();
-
-                RequestConfiguration();
-                SendMessageToUI("Configuration sent to the Drone successfully");
-                return true;
             }
             catch (Exception ex)
             {
                 SendMessageToUI(ex.Message);
                 return false;
             }
+
+            if (!isConnected)
+            {
+                Close();
+                DisposeOverride();
+            }
+
+            return isConnected;
         }
 
         public async void Close()
@@ -448,7 +458,7 @@ namespace ARDrone2Client.Common
 
         public async void PlayAnimation(FlightAnimationType animationType)
         {
-            _configuration.Control.FlightAnimation = new FlightAnimation(animationType, 6000);
+            _configuration.Control.FlightAnimation = new FlightAnimation(animationType, 5);
             await SendConfiguration();
 
             await Log.Instance.WriteLineAsync("DroneClient:PlayAnimation");
