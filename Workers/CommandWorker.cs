@@ -129,7 +129,10 @@ namespace ARDrone2Client.Common.Workers
                     s = input.ToString();
                     if (input.Roll != 0 || input.Pitch != 0 || input.Yaw != 0 || input.Gaz != 0)
                     {
-                        _NormalPriorityCommandQueue.Enqueue(Command.Progressive(DroneClient.ProgressiveMode, input.Roll, input.Pitch, input.Yaw, input.Gaz));
+                        if (input.Mag == 0)
+                            _NormalPriorityCommandQueue.Enqueue(Command.Progressive(DroneClient.ProgressiveMode, input.Roll, input.Pitch, input.Yaw, input.Gaz));
+
+                        else _NormalPriorityCommandQueue.Enqueue(Command.Absolute(ProgressiveMode.AbsoluteControl, input.Roll, input.Pitch, input.Yaw, input.Gaz, input.Mag, input.MagAcu));
                         //DroneClient.SendMessageToUI(input.ToString());
                     }
                 }

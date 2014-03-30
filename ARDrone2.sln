@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ARDrone2Video", "ARDrone2Video\ARDrone2Video.vcxproj", "{DBBB5103-4579-4889-AEBA-793C89745AF9}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ARDrone2VideoTcp", "ARDrone2VideoTcp\ARDrone2VideoTcp.vcxproj", "{97A6EF7B-47CB-44F5-9051-CFFA75847394}"
@@ -87,6 +85,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Helpers", "Helpers", "{CBA8
 	ProjectSection(SolutionItems) = preProject
 		Helpers\ConversionHelper.cs = Helpers\ConversionHelper.cs
 		Helpers\DisposableBase.cs = Helpers\DisposableBase.cs
+		Helpers\MagnetometerHelper.cs = Helpers\MagnetometerHelper.cs
 		Helpers\MathHelper.cs = Helpers\MathHelper.cs
 	EndProjectSection
 EndProject
@@ -182,36 +181,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "FTP", "FTP", "{C1FF26C8-A77
 	EndProjectSection
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 9
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://infinitesquare.visualstudio.com/defaultcollection
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = ARDrone2.Client.W8\\ARDrone2.Client.W8.csproj
-		SccProjectName1 = ARDrone2.Client.W8
-		SccLocalPath1 = ARDrone2.Client.W8
-		SccProjectUniqueName2 = ARDrone2.Client.WP8\\ARDrone2.Client.WP8.csproj
-		SccProjectName2 = ARDrone2.Client.WP8
-		SccLocalPath2 = ARDrone2.Client.WP8
-		SccProjectUniqueName3 = ARDrone2.Sample.W8\\ARDrone2.Sample.W8.csproj
-		SccProjectName3 = ARDrone2.Sample.W8
-		SccLocalPath3 = ARDrone2.Sample.W8
-		SccProjectUniqueName4 = ARDrone2.Sample.WP8\\ARDrone2.Sample.WP8.csproj
-		SccProjectName4 = ARDrone2.Sample.WP8
-		SccLocalPath4 = ARDrone2.Sample.WP8
-		SccProjectUniqueName5 = ARDrone2Video\\ARDrone2Video.vcxproj
-		SccProjectName5 = ARDrone2Video
-		SccLocalPath5 = ARDrone2Video
-		SccProjectUniqueName6 = ARDrone2VideoTcp\\ARDrone2VideoTcp.vcxproj
-		SccProjectName6 = ARDrone2VideoTcp
-		SccLocalPath6 = ARDrone2VideoTcp
-		SccProjectUniqueName7 = ARDrone2VideoTcp\\ARDrone2VideoTcpWP8.vcxproj
-		SccProjectName7 = ARDrone2VideoTcp
-		SccLocalPath7 = ARDrone2VideoTcp
-		SccProjectUniqueName8 = ARDrone2VideoTcpWrapper\\ARDrone2VideoTcpWrapper.vcxproj
-		SccProjectName8 = ARDrone2VideoTcpWrapper
-		SccLocalPath8 = ARDrone2VideoTcpWrapper
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|ARM = Debug|ARM

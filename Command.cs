@@ -60,6 +60,17 @@ namespace ARDrone2Client.Common
                 ConversionHelper.ToInt(gaz),
                 ConversionHelper.ToInt(yaw));
         }
+        public static string Absolute(ProgressiveMode mode, float roll, float pitch, float yaw, float gaz, float mag, float mag_acu)
+        {
+            return string.Format("AT*PCMD_MAG=[SEQUENCE],{0},{1},{2},{3},{4},{5},{6}\r",
+                (int)mode,
+                ConversionHelper.ToInt(roll),
+                ConversionHelper.ToInt(pitch),
+                ConversionHelper.ToInt(gaz),
+                ConversionHelper.ToInt(yaw),
+                ConversionHelper.ToInt(mag),
+                ConversionHelper.ToInt(mag_acu));
+        }
         public static string Ref(RefMode refMode)
         {
             return string.Format("AT*REF=[SEQUENCE],{0}\r", (int)refMode);

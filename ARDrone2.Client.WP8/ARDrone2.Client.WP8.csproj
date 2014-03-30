@@ -208,6 +208,9 @@
     <Compile Include="..\Helpers\DisposableBase.cs">
       <Link>Helpers\DisposableBase.cs</Link>
     </Compile>
+    <Compile Include="..\Helpers\MagnetometerHelper.cs">
+      <Link>Helpers\MagnetometerHelper.cs</Link>
+    </Compile>
     <Compile Include="..\Helpers\MathHelper.cs">
       <Link>Helpers\MathHelper.cs</Link>
     </Compile>
