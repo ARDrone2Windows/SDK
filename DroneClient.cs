@@ -420,6 +420,18 @@ namespace ARDrone2Client.Common
             }
         }
 
+        public async void CalibrateMagnetometer()
+        {
+            if (IsFlying())
+            {
+                _CommandWorker.PostCommand(Command.Calibration());
+                await Task.Delay(1000);
+
+                await Log.Instance.WriteLineAsync("DroneClient:MagnetometerCalibration ");
+                SendMessageToUI("Magnetometer calibration done");
+            }
+        }
+
         public async void TakePicture()
         {
             _configuration.Userbox.Command = new UserboxCommand(UserboxCommandType.Screenshot, 0, 0, DateTime.Now);
